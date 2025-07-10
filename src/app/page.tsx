@@ -1,103 +1,166 @@
-import Image from "next/image";
+'use client'
 
-export default function Home() {
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import Loading from './components/Loading'
+
+interface Statistics {
+  totalParticipants: number
+  easyAverage: number
+  mediumAverage: number
+  hardAverage: number
+}
+
+export default function HomePage() {
+  const [stats, setStats] = useState<Statistics | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const [easyStats, mediumStats, hardStats] = await Promise.all([
+          fetch('/api/analytics?level=1').then(res => res.json()),
+          fetch('/api/analytics?level=2').then(res => res.json()),
+          fetch('/api/analytics?level=3').then(res => res.json())
+        ])
+
+        setStats({
+          totalParticipants: Math.max(
+            easyStats.totalParticipants,
+            mediumStats.totalParticipants,
+            hardStats.totalParticipants
+          ),
+          easyAverage: easyStats.averageScore,
+          mediumAverage: mediumStats.averageScore,
+          hardAverage: hardStats.averageScore
+        })
+      } catch (error) {
+        console.error('Error fetching stats:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchStats()
+  }, [])
+
+  const difficultyLevels = [
+    {
+      level: 'facil',
+      title: 'Nível Fácil',
+      description: 'Ideal para iniciantes. Questões básicas sobre regras de trânsito, sinalizações e procedimentos simples.',
+      color: 'green',
+      average: stats?.easyAverage
+    },
+    {
+      level: 'medio',
+      title: 'Nível Médio',
+      description: 'Para quem já tem conhecimento básico. Aborda situações mais complexas e legislação específica.',
+      color: 'yellow',
+      average: stats?.mediumAverage
+    },
+    {
+      level: 'dificil',
+      title: 'Nível Difícil',
+      description: 'Para especialistas. Questões avançadas sobre legislação, mecânica e situações especiais.',
+      color: 'red',
+      average: stats?.hardAverage
+    }
+  ]
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+      <div className="max-w-7xl mx-auto pt-20 px-4 pb-12">
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+            Quiz de Conhecimentos sobre Trânsito
+          </h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Teste seus conhecimentos sobre as leis e regras de trânsito. Escolha entre três níveis
+            de dificuldade e descubra o quanto você sabe sobre segurança viária.
+          </p>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          {isLoading ? (
+            <div className="mt-8">
+              <Loading message="Carregando estatísticas..." />
+            </div>
+          ) : stats && (
+            <div className="mt-8 inline-flex items-center bg-blue-50 px-6 py-3 rounded-full">
+              <span className="text-blue-600 font-semibold">
+                {stats.totalParticipants} participantes já realizaram o quiz
+              </span>
+            </div>
+          )}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          {difficultyLevels.map(({ level, title, description, color, average }) => (
+            <Link
+              key={level}
+              href={`/quiz/${level}`}
+              className={`group relative overflow-hidden p-6 rounded-xl shadow-lg bg-white hover:shadow-xl 
+                transition-all duration-300 transform hover:-translate-y-1 border-2
+                ${color === 'green' 
+                  ? 'border-green-500 hover:border-green-600' 
+                  : color === 'yellow'
+                    ? 'border-yellow-500 hover:border-yellow-600'
+                    : 'border-red-500 hover:border-red-600'
+                }`}
+            >
+              <div className="relative z-10">
+                <h2 className={`text-2xl font-bold mb-3 ${
+                  color === 'green' 
+                    ? 'text-green-700' 
+                    : color === 'yellow'
+                      ? 'text-yellow-700'
+                      : 'text-red-700'
+                }`}>
+                  {title}
+                </h2>
+                <p className="text-gray-600 mb-4">
+                  {description}
+                </p>
+                {typeof average === 'number' && (
+                  <div className="mt-4 pt-4 border-t border-gray-100">
+                    <p className="text-sm text-gray-500">Média de Acertos</p>
+                    <p className={`text-2xl font-bold ${
+                      average >= 70
+                        ? 'text-green-600'
+                        : average >= 50
+                          ? 'text-yellow-600'
+                          : 'text-red-600'
+                    }`}>
+                      {Math.round(average)}%
+                    </p>
+                  </div>
+                )}
+              </div>
+              
+              <div className={`absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity
+                ${color === 'green' 
+                  ? 'bg-green-500' 
+                  : color === 'yellow'
+                    ? 'bg-yellow-500'
+                    : 'bg-red-500'
+                }`}
+              />
+            </Link>
+          ))}
+        </div>
+
+        <div className="text-center text-gray-600">
+          <p className="mb-4 max-w-2xl mx-auto">
+            Este quiz foi desenvolvido para ajudar motoristas e futuros condutores a testarem seus
+            conhecimentos sobre as leis e regras de trânsito. As questões são baseadas no Código
+            de Trânsito Brasileiro (CTB) e em situações reais do dia a dia.
+          </p>
+          <p className="text-sm">
+            * Seus resultados serão armazenados anonimamente e usados apenas para fins
+            estatísticos e de pesquisa sobre o conhecimento da população em relação às leis
+            de trânsito.
+          </p>
+        </div>
+      </div>
+    </main>
+  )
 }

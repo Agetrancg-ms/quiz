@@ -1,0 +1,43 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Question {
+  id               Int      @id @default(autoincrement())
+  text             String
+  options          Json     // Array of options
+  correctOption    Int
+  explanation      String?  // Optional explanation for the correct answer
+  difficultyLevel  Int      @default(1) // 1: Easy, 2: Medium, 3: Hard
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  answers          Answer[]
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  cpf       String?  @unique
+  answers   Answer[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Answer {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  questionId Int
+  answer     Int
+  isCorrect  Boolean
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id])
+  question   Question @relation(fields: [questionId], references: [id])
+
+  @@index([userId])
+  @@index([questionId])
+}
