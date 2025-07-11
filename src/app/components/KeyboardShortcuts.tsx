@@ -70,7 +70,12 @@ function ShortcutOverlay({ isOpen, onClose }: ShortcutOverlayProps) {
 
 export default function KeyboardShortcuts() {
   const [showOverlay, setShowOverlay] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
   const { playClick } = useSoundEffects()
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -103,12 +108,15 @@ export default function KeyboardShortcuts() {
 
   // Mostrar sobreposição de atalhos na primeira visita
   useEffect(() => {
+    if (!isMounted) return
     const hasSeenShortcuts = localStorage.getItem('hasSeenShortcuts')
     if (!hasSeenShortcuts) {
       setShowOverlay(true)
       localStorage.setItem('hasSeenShortcuts', 'true')
     }
-  }, [])
+  }, [isMounted])
+
+  if (!isMounted) return null
 
   return (
     <ShortcutOverlay

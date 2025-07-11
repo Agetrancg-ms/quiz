@@ -14,9 +14,11 @@ export function ThemeCustomizer() {
     colorScheme: 'default',
     fontSize: 'normal'
   })
+  const [isMounted, setIsMounted] = useState(false)
   const { playClick, playSuccess } = useSoundEffects()
 
   useEffect(() => {
+    setIsMounted(true)
     // Load saved theme preferences
     const savedTheme = localStorage.getItem('quizTheme')
     if (savedTheme) {
@@ -59,6 +61,8 @@ export function ThemeCustomizer() {
     playClick()
     setIsOpen(prev => !prev)
   }
+
+  if (!isMounted) return null
 
   return (
     <>

@@ -29,9 +29,11 @@ export default function Question({
   const optionsRef = useRef<(HTMLButtonElement | null)[]>([])
   const { playSuccess, playIncorrect, playClick } = useSoundEffects()
 
-  // Animate question in on mount
+  // Reset state when question changes
   useEffect(() => {
-    return () => setConfirmed(false)
+    setConfirmed(false)
+    setSelected(null)
+    setShowExplanation(false)
   }, [question?.id])
 
   // Handle keyboard navigation
@@ -82,26 +84,25 @@ export default function Question({
     if (selected === null || confirmed) return
 
     setConfirmed(true)
-    if (showFeedback) {
-      if (selected === question.correctOption) {
-        playSuccess()
-      } else {
-        playIncorrect()
-      }
-      setShowExplanation(true)
+    const isCorrect = selected === question.correctOption
+    
+    if (isCorrect) {
+      playSuccess()
+    } else {
+      playIncorrect()
     }
+    
+    setShowExplanation(true)
     onAnswer(question.id, selected)
   }
 
-  // Focus management
   useEffect(() => {
     if (selected !== null && optionsRef.current[selected]) {
       optionsRef.current[selected]?.focus()
     }
   }, [selected])
 
-  // Add guard to render nothing if question or question.options is undefined
-  if (!question || !question.options) return null;
+  if (!question || !question.options) return null
 
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 animate-fade-in">
@@ -110,76 +111,70 @@ export default function Question({
       </h3>
 
       <div className="space-y-3 mb-6">
-        {question.options.map((option, index) => (
-          <button
-            key={index}
-            ref={el => { optionsRef.current[index] = el }}
-            onClick={() => {
-              if (!confirmed) {
-                playClick()
-                setSelected(index)
-              }
-            }}
-            className={`w-full text-left p-4 rounded-lg transition-all
-              ${selected === index ? 'ring-2 ring-blue-500' : 'hover:bg-gray-50'}
-              ${confirmed && showFeedback
-                ? index === question.correctOption
-                  ? 'bg-green-50 text-green-700'
-                  : selected === index
-                    ? 'bg-red-50 text-red-700'
-                    : 'opacity-50'
-                : 'bg-white text-gray-700'}
-              focus:outline-none focus:ring-2 focus:ring-blue-500`}
-            disabled={confirmed}
-          >
-            <div className="flex items-center gap-3">
-              <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center
-                border-2 rounded-full
-                ${selected === index ? 'border-blue-500' : 'border-gray-300'}
-                ">
-                {index + 1}
-              </span>
-              <span>{option}</span>
-            </div>
-          </button>
-        ))}
+        {question.options.map((option, index) => {
+          const isSelected = selected === index
+          const isCorrect = index === question.correctOption
+          const isWrong = confirmed && isSelected && !isCorrect
+
+          return (
+            <button
+              key={index}
+              ref={el => { optionsRef.current[index] = el }}
+              onClick={() => {
+                if (!confirmed) {
+                  playClick()
+                  setSelected(index)
+                }
+              }}
+              className={`w-full text-left p-4 rounded-lg transition-all
+                ${!confirmed && isSelected ? 'ring-2 ring-blue-500' : ''}
+                ${confirmed
+                  ? isCorrect
+                    ? 'bg-green-100 text-green-700 border-2 border-green-500'
+                    : isWrong
+                      ? 'bg-red-100 text-red-700 border-2 border-red-500'
+                      : 'opacity-70'
+                  : 'hover:bg-gray-50 bg-white text-gray-700'
+                }
+                focus:outline-none focus:ring-2 focus:ring-blue-500`}
+              disabled={confirmed}
+              aria-selected={isSelected}
+            >
+              {option}
+              {confirmed && isCorrect && (
+                <span className="ml-2 text-green-600">✓</span>
+              )}
+              {confirmed && isWrong && (
+                <span className="ml-2 text-red-600">✗</span>
+              )}
+            </button>
+          )
+        })}
       </div>
 
-      {!confirmed && (
+      {!confirmed ? (
         <button
           onClick={handleConfirm}
           disabled={selected === null}
-          className={`w-full py-3 px-6 rounded-lg text-white font-medium
-            transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2
+          className={`w-full py-3 px-4 rounded-lg text-white font-medium transition-all
             ${selected === null
-              ? 'bg-gray-400 cursor-not-allowed'
-              : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-500'}`}
+              ? 'bg-gray-300 cursor-not-allowed'
+              : 'bg-blue-600 hover:bg-blue-700'
+            }
+            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500`}
         >
           Confirmar Resposta
         </button>
+      ) : (
+        showExplanation && question.explanation && (
+          <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+            <p className="text-gray-700">
+              <span className="font-medium">Explicação: </span>
+              {question.explanation}
+            </p>
+          </div>
+        )
       )}
-
-      {showExplanation && question.explanation && (
-        <div className={`mt-6 p-4 rounded-lg ${
-          selected === question.correctOption ? 'bg-green-50' : 'bg-red-50'
-        }`}>
-          <p className={`text-sm ${
-            selected === question.correctOption ? 'text-green-700' : 'text-red-700'
-          }`}>
-            {question.explanation}
-          </p>
-        </div>
-      )}
-
-      <div className="mt-4 text-center text-sm text-gray-500">
-        Use as teclas <kbd className="px-2 py-1 text-sm font-semibold text-gray-800 bg-gray-100 
-          border border-gray-200 rounded shadow-sm">↑</kbd> <kbd className="px-2 py-1 text-sm 
-          font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded shadow-sm">↓</kbd> ou 
-        <kbd className="px-2 py-1 text-sm font-semibold text-gray-800 bg-gray-100 
-          border border-gray-200 rounded shadow-sm">1-4</kbd> para selecionar e 
-        <kbd className="px-2 py-1 text-sm font-semibold text-gray-800 bg-gray-100 
-          border border-gray-200 rounded shadow-sm">Enter</kbd> para confirmar
-      </div>
     </div>
   )
 }

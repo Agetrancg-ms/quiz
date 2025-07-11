@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 
+interface QuestionResult {
+  id: number
+  text: string
+  options: string[]
+  correctOption: number
+  explanation: string | null
+  difficultyLevel: number
+}
+
 export async function GET(request: NextRequest) {
   try {
     const searchParams = new URL(request.url).searchParams
@@ -13,7 +22,6 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    // Validar que o nível é um número válido
     const level = ['facil', 'medio', 'dificil'].indexOf(levelParam) + 1
     if (level === 0) {
       return NextResponse.json(
@@ -22,17 +30,42 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    const questions = await prisma.question.findMany({
-      where: {
-        difficultyLevel: level
-      },
-      select: {
-        id: true,
-        text: true,
-        options: true,
-        difficultyLevel: true
-      }
+    // Get a count of all questions for this level
+    const totalQuestions = await prisma.question.count({
+      where: { difficultyLevel: level },
     })
+
+    if (totalQuestions === 0) {
+      return NextResponse.json(
+        { error: 'No questions found for this level' },
+        { status: 404 }
+      )
+    }
+
+    // Use window function to get truly random questions
+    const questions = await prisma.$queryRaw<QuestionResult[]>`
+      WITH RandomizedQuestions AS (
+        SELECT 
+          id,
+          text,
+          options,
+          "correctOption",
+          explanation,
+          "difficultyLevel",
+          ROW_NUMBER() OVER (ORDER BY RANDOM()) as rn
+        FROM "Question"
+        WHERE "difficultyLevel" = ${level}
+      )
+      SELECT 
+        id,
+        text,
+        options,
+        "correctOption",
+        explanation,
+        "difficultyLevel"
+      FROM RandomizedQuestions 
+      WHERE rn <= 20
+    `
 
     if (!questions.length) {
       return NextResponse.json(

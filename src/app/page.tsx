@@ -1,6 +1,3 @@
-'use client'
-
-import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Loading from './components/Loading'
 
@@ -11,38 +8,42 @@ interface Statistics {
   hardAverage: number
 }
 
-export default function HomePage() {
-  const [stats, setStats] = useState<Statistics | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
+async function getBaseUrl() {
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  if (process.env.BASE_URL) {
+    return process.env.BASE_URL;
+  }
+  return 'http://localhost:3000';
+}
 
-  useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const [easyStats, mediumStats, hardStats] = await Promise.all([
-          fetch('/api/analytics?level=1').then(res => res.json()),
-          fetch('/api/analytics?level=2').then(res => res.json()),
-          fetch('/api/analytics?level=3').then(res => res.json())
-        ])
-
-        setStats({
-          totalParticipants: Math.max(
-            easyStats.totalParticipants,
-            mediumStats.totalParticipants,
-            hardStats.totalParticipants
-          ),
-          easyAverage: easyStats.averageScore,
-          mediumAverage: mediumStats.averageScore,
-          hardAverage: hardStats.averageScore
-        })
-      } catch (error) {
-        console.error('Error fetching stats:', error)
-      } finally {
-        setIsLoading(false)
-      }
+async function getStats(): Promise<Statistics | null> {
+  try {
+    const baseUrl = await getBaseUrl();
+    const [easyStats, mediumStats, hardStats] = await Promise.all([
+      fetch(`${baseUrl}/api/analytics?level=1`, { cache: 'no-store' }).then(res => res.json()),
+      fetch(`${baseUrl}/api/analytics?level=2`, { cache: 'no-store' }).then(res => res.json()),
+      fetch(`${baseUrl}/api/analytics?level=3`, { cache: 'no-store' }).then(res => res.json())
+    ])
+    return {
+      totalParticipants: Math.max(
+        easyStats.totalParticipants,
+        mediumStats.totalParticipants,
+        hardStats.totalParticipants
+      ),
+      easyAverage: easyStats.averageScore,
+      mediumAverage: mediumStats.averageScore,
+      hardAverage: hardStats.averageScore
     }
+  } catch (error) {
+    console.error('Error fetching stats:', error)
+    return null
+  }
+}
 
-    fetchStats()
-  }, [])
+export default async function HomePage() {
+  const stats = await getStats()
 
   const difficultyLevels = [
     {
@@ -80,11 +81,11 @@ export default function HomePage() {
             de dificuldade e descubra o quanto você sabe sobre segurança viária.
           </p>
 
-          {isLoading ? (
+          {!stats ? (
             <div className="mt-8">
               <Loading message="Carregando estatísticas..." />
             </div>
-          ) : stats && (
+          ) : (
             <div className="mt-8 inline-flex items-center bg-blue-50 px-6 py-3 rounded-full">
               <span className="text-blue-600 font-semibold">
                 {stats.totalParticipants} participantes já realizaram o quiz

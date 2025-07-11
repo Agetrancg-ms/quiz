@@ -7,6 +7,7 @@ import Loading from './Loading';
 import Statistics from './Statistics';
 import QuizReview from './QuizReview';
 import HelpDialog from './HelpDialog';
+import UserForm from './UserForm';
 import { useSoundEffects } from './SoundEffects';
 
 interface QuizClientProps {
@@ -21,18 +22,34 @@ export default function QuizClient({ level }: QuizClientProps) {
   const [showReview, setShowReview] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [userData, setUserData] = useState<{ name: string; cpf: string } | null>(null);
   const router = useRouter();
   const { playSuccess, playClick } = useSoundEffects();
 
+  // Only fetch questions after user submits their data
   useEffect(() => {
-    fetch(`/api/questions?level=${level}`)
-      .then(res => res.json())
-      .then(data => {
-        setQuestions(data);
-        setIsLoading(false);
-      });
-  }, [level]);
+    if (userData) {
+      fetch(`/api/questions?level=${level}`)
+        .then(res => res.json())
+        .then(data => {
+          // Garante que data seja um array de questões
+          const questionsArray = Array.isArray(data) ? data : data.questions;
+          if (!Array.isArray(questionsArray)) {
+            throw new Error('Formato inesperado de dados das questões');
+          }
+          // Shuffle questions and take only 20
+          const shuffled = [...questionsArray].sort(() => Math.random() - 0.5);
+          setQuestions(shuffled.slice(0, 20));
+          setIsLoading(false);
+        })
+        .catch(err => {
+          setIsLoading(false);
+          alert('Erro ao carregar questões: ' + err.message);
+        });
+    }
+  }, [level, userData]);
 
+  // Handle keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
@@ -73,12 +90,21 @@ export default function QuizClient({ level }: QuizClientProps) {
   }, [showStatistics, showReview, playClick]);
 
   const handleAnswer = async (questionId: number, answer: number) => {
-    setAnswers(prev => ({ ...prev, [questionId]: answer }));
+    const isCorrect = questions.find(q => q.id === questionId)?.correctOption === answer;
+    
+    setAnswers(prev => ({
+      ...prev,
+      [questionId]: answer
+    }));
+
+    // Wait a bit to show the feedback
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(prev => prev + 1);
     } else {
       const score = calculateScore();
-      await submitScore(score);
+      await submitQuizResults(score);
       playSuccess();
       setShowStatistics(true);
     }
@@ -91,8 +117,18 @@ export default function QuizClient({ level }: QuizClientProps) {
     }, 0);
   };
 
-  const submitScore = async (score: number) => {
+  const submitQuizResults = async (score: number) => {
     try {
+      // Prepare detailed answers data
+      const detailedAnswers = Object.entries(answers).map(([questionId, answer]) => {
+        const question = questions.find(q => q.id === parseInt(questionId));
+        return {
+          questionId: parseInt(questionId),
+          answer,
+          correct: answer === question?.correctOption
+        };
+      });
+
       await fetch('/api/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -100,10 +136,12 @@ export default function QuizClient({ level }: QuizClientProps) {
           level,
           score,
           totalQuestions: questions.length,
+          answers: detailedAnswers,
+          userData
         }),
       });
     } catch (error) {
-      console.error('Error submitting score:', error);
+      console.error('Error submitting quiz results:', error);
     }
   };
 
@@ -112,8 +150,18 @@ export default function QuizClient({ level }: QuizClientProps) {
     setAnswers({});
     setShowStatistics(false);
     setShowReview(false);
+    setUserData(null);
     router.refresh();
   };
+
+  // Show user form if no user data
+  if (!userData) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <UserForm onSubmit={setUserData} />
+      </div>
+    );
+  }
 
   if (isLoading) {
     return (
@@ -132,6 +180,10 @@ export default function QuizClient({ level }: QuizClientProps) {
             questionId: Number(questionId),
             answer
           }))}
+          onBackToStats={() => {
+            setShowReview(false);
+            setShowStatistics(true);
+          }}
         />
       </div>
     );
@@ -162,8 +214,13 @@ export default function QuizClient({ level }: QuizClientProps) {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-4 flex justify-between items-center">
-        <div className="text-gray-600">
-          Questão {currentQuestionIndex + 1} de {questions.length}
+        <div className="flex items-center gap-4">
+          <div className="text-gray-600">
+            Questão {currentQuestionIndex + 1} de {questions.length}
+          </div>
+          <div className="text-sm text-gray-500">
+            Usuário: {userData.name}
+          </div>
         </div>
         <button
           onClick={() => {
@@ -174,25 +231,23 @@ export default function QuizClient({ level }: QuizClientProps) {
             focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded"
           aria-label="Ajuda"
         >
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-              d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <svg className="w-5 h-5" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+            <path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <span>Ajuda</span>
         </button>
       </div>
+
       <Question
+        key={currentQuestion.id}
         question={currentQuestion}
         onAnswer={handleAnswer}
         showFeedback={true}
       />
-      <HelpDialog
-        isOpen={showHelp}
-        onClose={() => {
-          playClick();
-          setShowHelp(false);
-        }}
-      />
+
+      {showHelp && (
+        <HelpDialog onClose={() => setShowHelp(false)} isOpen={true} />
+      )}
     </div>
   );
 }

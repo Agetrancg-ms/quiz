@@ -58,7 +58,7 @@ export default function Statistics({
   }, [score, level, percentage, playSuccess])
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
+    <div className="bg-white rounded-lg shadow-lg p-6 mb-8 animate-fade-in">
       <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
         Resultados do Quiz
       </h2>

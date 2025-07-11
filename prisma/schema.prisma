@@ -20,12 +20,13 @@ model Question {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  cpf       String?  @unique
-  answers   Answer[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           Int           @id @default(autoincrement())
+  name         String
+  cpf          String?      @unique
+  answers      Answer[]
+  quizAttempts QuizAttempt[] // Added this field
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
 }
 
 model Answer {
@@ -40,4 +41,17 @@ model Answer {
 
   @@index([userId])
   @@index([questionId])
+}
+
+model QuizAttempt {
+  id             Int      @id @default(autoincrement())
+  score          Int      // Number of correct answers
+  totalQuestions Int      // Total number of questions (20)
+  level          String   // facil, medio, or dificil
+  answers        Json     // Array of {questionId, answer, correct}
+  createdAt      DateTime @default(now())
+  userId         Int?     // Optional user ID for authenticated users
+  user           User?    @relation(fields: [userId], references: [id])
+
+  @@index([userId])
 }

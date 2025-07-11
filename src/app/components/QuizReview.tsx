@@ -15,9 +15,10 @@ interface QuizReviewProps {
     questionId: number
     answer: number
   }>
+  onBackToStats: () => void
 }
 
-export default function QuizReview({ questions, userAnswers }: QuizReviewProps) {
+export default function QuizReview({ questions, userAnswers, onBackToStats }: QuizReviewProps) {
   const [expandedQuestion, setExpandedQuestion] = useState<number | null>(null)
 
   const getQuestionResult = (questionId: number) => {
@@ -33,9 +34,18 @@ export default function QuizReview({ questions, userAnswers }: QuizReviewProps) 
 
   return (
     <div className="space-y-6">
-      <h3 className="text-xl font-semibold text-gray-800 mb-4">
-        Revisão das Questões
-      </h3>
+      <div className="flex justify-between items-center mb-6">
+        <h3 className="text-xl font-semibold text-gray-800">
+          Revisão das Questões
+        </h3>
+        <button
+          onClick={onBackToStats}
+          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 
+            transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        >
+          Voltar para Estatísticas
+        </button>
+      </div>
 
       {questions.map((question) => {
         const { isCorrect, userOption } = getQuestionResult(question.id)
