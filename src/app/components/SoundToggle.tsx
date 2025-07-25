@@ -13,22 +13,22 @@ export default function SoundToggle() {
   return (
     <button
       onClick={handleClick}
-      className="fixed bottom-20 left-6 bg-white text-gray-700 w-12 h-12 rounded-full shadow-lg 
-        hover:bg-gray-50 transition-colors flex items-center justify-center z-40
-        hover:scale-110 transform transition-transform duration-200 border border-gray-200"
+      className="fixed bottom-4 left-4 bg-white text-gray-700 w-12 h-12 rounded-full shadow-lg 
+        hover:bg-gray-50 flex items-center justify-center z-40
+        hover:scale-110 transform transition-transform duration-200 border border-gray-200 cursor-pointer"
       aria-label={isSoundEnabled ? 'Desativar sons' : 'Ativar sons'}
     >
       {isSoundEnabled ? (
-        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-            d="M15.536 8.464a5 5 0 010 7.072M17.95 6.05a8 8 0 010 11.9M6.5 8.688l5.762-5.762a1 1 0 011.414 0l2.37 2.37a1 1 0 010 1.414L7.914 15.087a1 1 0 01-1.414 0l-2.37-2.37a1 1 0 010-1.414l2.37-2.37zM6 15.5a1 1 0 001 1h4a1 1 0 001-1v-6a1 1 0 00-1-1H7a1 1 0 00-1 1v6z" />
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
         </svg>
       ) : (
-        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-            d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-            d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+          <line x1="23" y1="9" x2="17" y2="15" />
+          <line x1="17" y1="9" x2="23" y2="15" />
         </svg>
       )}
     </button>

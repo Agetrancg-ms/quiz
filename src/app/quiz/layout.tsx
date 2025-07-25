@@ -26,34 +26,22 @@ interface QuizLayoutProps {
 
 export default function QuizLayout({ children }: QuizLayoutProps) {
   return (
-    <section className="min-h-screen bg-gradient-to-b from-blue-50 to-white overflow-x-hidden relative">
+    <section className="flex items-center justify-center relative overflow-hidden">
       {/* Background pattern */}
-      <div className="fixed inset-0 bg-grid-pattern opacity-5 pointer-events-none" />
-      
-      {/* Floating sound toggle button will be rendered by SoundEffects provider */}
+      <div className="fixed inset-0 opacity-5 pointer-events-none" />
       
       {/* Main content */}
-      <div className="relative z-10">
+      <div className="relative z-10 w-full max-w-4xl">
         {children}
       </div>
-
+      
       {/* Accessibility skip link */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 
-          bg-white p-4 z-50 rounded-lg shadow-lg"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-white p-4 z-50 rounded-lg shadow-lg"
       >
         Pular para o conteúdo principal
       </a>
     </section>
   )
 }
-
-// Add background grid pattern to global.css
-const styles = `
-  .bg-grid-pattern {
-    background-image: linear-gradient(to right, #ccc 1px, transparent 1px),
-                      linear-gradient(to bottom, #ccc 1px, transparent 1px);
-    background-size: 20px 20px;
-  }
-`

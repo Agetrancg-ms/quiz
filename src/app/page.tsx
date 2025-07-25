@@ -1,167 +1,202 @@
 import Link from 'next/link'
-import Loading from './components/Loading'
+import Image from 'next/image'
 
-interface Statistics {
-  totalParticipants: number
-  easyAverage: number
-  mediumAverage: number
-  hardAverage: number
-}
+const quizCategories = [
+	{
+		id: 'ciclista',
+		title: 'Ciclista',
+		description: '10 perguntas sobre segurança e regras para quem pedala',
+		color: 'bg-[#31D893]',
+		icon: 'fas fa-bicycle',
+	},
+	{
+		id: 'motorista',
+		title: 'Motorista',
+		description: '10 perguntas sobre direção defensiva e legislação',
+		color: 'bg-[#2F7CF6]',
+		icon: 'fas fa-car',
+	},
+	{
+		id: 'pedestre',
+		title: 'Pedestre',
+		description: '10 perguntas sobre travessia segura e direitos',
+		color: 'bg-[#9747FF]',
+		icon: 'fas fa-walking',
+	},
+	{
+		id: 'motociclista',
+		title: 'Motociclista',
+		description: '10 perguntas sobre pilotagem segura e normas',
+		color: 'bg-[#FF4545]',
+		icon: 'fas fa-motorcycle',
+	},
+]
 
-async function getBaseUrl() {
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`;
-  }
-  if (process.env.BASE_URL) {
-    return process.env.BASE_URL;
-  }
-  return 'http://localhost:3000';
-}
+export default function HomePage() {
+	return (
+		<div className="h-full w-full flex flex-col overflow-x-hidden">
+			<div className="flex-1">
+				<div className="flex flex-col gap-6 max-w-4xl mx-auto py-6 px-5 sm:px-6 md:px-8 transform-gpu origin-top xl:scale-100 lg:scale-[0.85]">
+					{/* Welcome section */}
+					<div className="text-center">
+						<h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-3">
+							Bem-vindo ao Quiz de Trânsito
+						</h2>
+						<p className="text-gray-600 max-w-2xl mx-auto mb-8 text-sm sm:text-base">
+							Teste seus conhecimentos sobre trânsito e segurança viária. Escolha um dos
+							módulos abaixo e responda às perguntas para avaliar seu conhecimento.
+						</p>
+					</div>
 
-async function getStats(): Promise<Statistics | null> {
-  try {
-    const baseUrl = await getBaseUrl();
-    const [easyStats, mediumStats, hardStats] = await Promise.all([
-      fetch(`${baseUrl}/api/analytics?level=1`, { cache: 'no-store' }).then(res => res.json()),
-      fetch(`${baseUrl}/api/analytics?level=2`, { cache: 'no-store' }).then(res => res.json()),
-      fetch(`${baseUrl}/api/analytics?level=3`, { cache: 'no-store' }).then(res => res.json())
-    ])
-    return {
-      totalParticipants: Math.max(
-        easyStats.totalParticipants,
-        mediumStats.totalParticipants,
-        hardStats.totalParticipants
-      ),
-      easyAverage: easyStats.averageScore,
-      mediumAverage: mediumStats.averageScore,
-      hardAverage: hardStats.averageScore
-    }
-  } catch (error) {
-    console.error('Error fetching stats:', error)
-    return null
-  }
-}
+					{/* Difficulty level cards */}
+					<div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+						<Link
+							href="/quiz/fundamental"
+							className="block p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+						>
+							<div className="flex items-center gap-4">
+								<div className="bg-green-100 p-3 rounded-lg">
+									<i className="fas fa-book text-green-600 text-xl"></i>
+								</div>
+								<div>
+									<h3 className="text-lg font-semibold text-gray-800">Nível Fundamental</h3>
+									<p className="text-sm text-gray-600">Questões básicas sobre regras e sinais de trânsito</p>
+								</div>
+							</div>
+						</Link>
 
-export default async function HomePage() {
-  const stats = await getStats()
+						<Link
+							href="/quiz/medio"
+							className="block p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+						>
+							<div className="flex items-center gap-4">
+								<div className="bg-yellow-100 p-3 rounded-lg">
+									<i className="fas fa-graduation-cap text-yellow-600 text-xl"></i>
+								</div>
+								<div>
+									<h3 className="text-lg font-semibold text-gray-800">Nível Médio</h3>
+									<p className="text-sm text-gray-600">Questões intermediárias sobre regras e conduta</p>
+								</div>
+							</div>
+						</Link>
+					</div>
 
-  const difficultyLevels = [
-    {
-      level: 'facil',
-      title: 'Nível Fácil',
-      description: 'Ideal para iniciantes. Questões básicas sobre regras de trânsito, sinalizações e procedimentos simples.',
-      color: 'green',
-      average: stats?.easyAverage
-    },
-    {
-      level: 'medio',
-      title: 'Nível Médio',
-      description: 'Para quem já tem conhecimento básico. Aborda situações mais complexas e legislação específica.',
-      color: 'yellow',
-      average: stats?.mediumAverage
-    },
-    {
-      level: 'dificil',
-      title: 'Nível Difícil',
-      description: 'Para especialistas. Questões avançadas sobre legislação, mecânica e situações especiais.',
-      color: 'red',
-      average: stats?.hardAverage
-    }
-  ]
+					{/* Quiz categories grid */}
+					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+						{quizCategories.map((category) => (
+							<Link
+								key={category.id}
+								href={`/quiz/${category.id}`}
+								className={`group ${category.color} text-white p-5 rounded-2xl 
+                  transition-all duration-300 shadow-lg hover:shadow-xl
+                  flex flex-col min-h-[180px] relative overflow-hidden`}
+							>
+								{/* Hover overlay */}
+								<div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
 
-  return (
-    <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-      <div className="max-w-7xl mx-auto pt-20 px-4 pb-12">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-            Quiz de Conhecimentos sobre Trânsito
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Teste seus conhecimentos sobre as leis e regras de trânsito. Escolha entre três níveis
-            de dificuldade e descubra o quanto você sabe sobre segurança viária.
-          </p>
+								<div className="flex flex-col items-center text-center h-full justify-between gap-3 relative z-10">
+									<div className="mb-1 transform group-hover:scale-110 transition-transform duration-300">
+										<i className={`${category.icon} text-4xl`}></i>
+									</div>
+									<div className="space-y-2">
+										<h3 className="text-xl font-semibold">{category.title}</h3>
+										<p className="text-sm leading-snug opacity-90">
+											{category.description}
+										</p>
+									</div>
+								</div>
+							</Link>
+						))}
+					</div>
+				</div>
+			</div>
 
-          {!stats ? (
-            <div className="mt-8">
-              <Loading message="Carregando estatísticas..." />
-            </div>
-          ) : (
-            <div className="mt-8 inline-flex items-center bg-blue-50 px-6 py-3 rounded-full">
-              <span className="text-blue-600 font-semibold">
-                {stats.totalParticipants} participantes já realizaram o quiz
-              </span>
-            </div>
-          )}
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {difficultyLevels.map(({ level, title, description, color, average }) => (
-            <Link
-              key={level}
-              href={`/quiz/${level}`}
-              className={`group relative overflow-hidden p-6 rounded-xl shadow-lg bg-white hover:shadow-xl 
-                transition-all duration-300 transform hover:-translate-y-1 border-2
-                ${color === 'green' 
-                  ? 'border-green-500 hover:border-green-600' 
-                  : color === 'yellow'
-                    ? 'border-yellow-500 hover:border-yellow-600'
-                    : 'border-red-500 hover:border-red-600'
-                }`}
-            >
-              <div className="relative z-10">
-                <h2 className={`text-2xl font-bold mb-3 ${
-                  color === 'green' 
-                    ? 'text-green-700' 
-                    : color === 'yellow'
-                      ? 'text-yellow-700'
-                      : 'text-red-700'
-                }`}>
-                  {title}
-                </h2>
-                <p className="text-gray-600 mb-4">
-                  {description}
-                </p>
-                {typeof average === 'number' && (
-                  <div className="mt-4 pt-4 border-t border-gray-100">
-                    <p className="text-sm text-gray-500">Média de Acertos</p>
-                    <p className={`text-2xl font-bold ${
-                      average >= 70
-                        ? 'text-green-600'
-                        : average >= 50
-                          ? 'text-yellow-600'
-                          : 'text-red-600'
-                    }`}>
-                      {Math.round(average)}%
-                    </p>
-                  </div>
-                )}
-              </div>
-              
-              <div className={`absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity
-                ${color === 'green' 
-                  ? 'bg-green-500' 
-                  : color === 'yellow'
-                    ? 'bg-yellow-500'
-                    : 'bg-red-500'
-                }`}
-              />
-            </Link>
-          ))}
-        </div>
+			{/* Footer section with mascot */}
+			<div className="relative">
+				{/* Mascote posicionado acima do rodapé - versão desktop/tablet */}
+				<div className="hidden sm:block absolute -top-[100px] right-4 w-40 h-40 pointer-events-none z-20">
+					<Image
+						src="/mascote.png"
+						alt="Mascote"
+						width={160}
+						height={160}
+						className="w-full h-full object-contain"
+					/>
+				</div>
 
-        <div className="text-center text-gray-600">
-          <p className="mb-4 max-w-2xl mx-auto">
-            Este quiz foi desenvolvido para ajudar motoristas e futuros condutores a testarem seus
-            conhecimentos sobre as leis e regras de trânsito. As questões são baseadas no Código
-            de Trânsito Brasileiro (CTB) e em situações reais do dia a dia.
-          </p>
-          <p className="text-sm">
-            * Seus resultados serão armazenados anonimamente e usados apenas para fins
-            estatísticos e de pesquisa sobre o conhecimento da população em relação às leis
-            de trânsito.
-          </p>
-        </div>
-      </div>
-    </main>
-  )
+				<footer className="bg-[#1e293b] text-white relative overflow-x-hidden z-10">
+					{/* Footer content */}
+					<div className="container mx-auto px-5 sm:px-6 md:px-8 py-4">
+						<div className="grid grid-cols-12 gap-4">
+							{/* Logo PREFCG - versão desktop/tablet */}
+							<div className="hidden sm:block col-span-2">
+								<Image
+									src="/prefcg_agetran_logo.png"
+									alt="Prefeitura Campo Grande e Agetran"
+									width={200}
+									height={140}
+									className="object-contain w-32 md:w-40 lg:w-44 xl:w-50"
+								/>
+							</div>
+							
+							{/* Textos centralizados */}
+							<div className="col-span-12 sm:col-span-10 pl-0 lg:pl-0 xl:pl-0 md:pr-10 lg:pr-25 xl:pr-30">
+								<p className="mb-4 text-center text-gray-300 text-sm xl:text-base">
+									Este quiz foi desenvolvido para ajudar motoristas e futuros condutores a testarem seus
+									conhecimentos sobre as leis e regras de trânsito. As questões são baseadas no Código
+									de Trânsito Brasileiro (CTB) e em situações reais do dia a dia.
+								</p>
+								<p className="mb-6 text-center text-xs xl:text-sm text-gray-400">
+									* Seus resultados serão armazenados e usados apenas para fins
+									estatísticos e de pesquisa sobre o conhecimento em relação às leis
+									de trânsito.
+								</p>
+
+								{/* Logo e mascote em mobile */}
+								<div className="sm:hidden flex justify-center items-center gap-2 mb-6">
+									<div className="flex-shrink-0">
+										<Image
+											src="/prefcg_agetran_logo.png"
+											alt="Prefeitura Campo Grande e Agetran"
+											width={120}
+											height={80}
+											className="object-contain w-24"
+										/>
+									</div>
+									<div className="flex-shrink-0">
+										<Image
+											src="/mascote.png"
+											alt="Mascote"
+											width={100}
+											height={100}
+											className="object-contain w-24 h-24"
+										/>
+									</div>
+								</div>
+
+								<hr className="border-t border-gray-400 w-full my-2" />
+								<div className="flex justify-between items-center">
+									<p className="text-xs xl:text-sm text-gray-400">
+										© 2023 Agetran. Todos os direitos reservados.
+									</p>
+									{/* Ícones sociais */}
+									<div className="flex gap-4">
+										<a href="https://www.facebook.com/agetran" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
+											<i className="fab fa-facebook-f text-lg xl:text-xl"></i>
+										</a>
+										<a href="https://www.instagram.com/agetran.cg" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
+											<i className="fab fa-instagram text-lg xl:text-xl"></i>
+										</a>
+										<a href="https://www.youtube.com/agetran" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
+											<i className="fab fa-youtube text-lg xl:text-xl"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</footer>
+			</div>
+		</div>
+	)
 }

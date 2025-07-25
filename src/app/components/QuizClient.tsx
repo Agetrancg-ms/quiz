@@ -7,14 +7,23 @@ import Loading from './Loading';
 import Statistics from './Statistics';
 import QuizReview from './QuizReview';
 import HelpDialog from './HelpDialog';
-import UserForm from './UserForm';
 import { useSoundEffects } from './SoundEffects';
 
 interface QuizClientProps {
-  level: string;
+  level?: string;
+  group?: string;
+  userData: {
+    name: string;
+    bairro: string;
+    idade: string;
+    sexo: string;
+    cnh: string[];
+    conducao: string[];
+    outrosConducao?: string;
+  } | null;
 }
 
-export default function QuizClient({ level }: QuizClientProps) {
+export default function QuizClient({ level = '', group = '', userData }: QuizClientProps) {
   const [questions, setQuestions] = useState<any[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
@@ -22,32 +31,51 @@ export default function QuizClient({ level }: QuizClientProps) {
   const [showReview, setShowReview] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [userData, setUserData] = useState<{ name: string; cpf: string } | null>(null);
+  const [quizStatistics, setQuizStatistics] = useState<any>(null);
   const router = useRouter();
   const { playSuccess, playClick } = useSoundEffects();
 
-  // Only fetch questions after user submits their data
+  // Fetch questions
   useEffect(() => {
-    if (userData) {
-      fetch(`/api/questions?level=${level}`)
-        .then(res => res.json())
-        .then(data => {
-          // Garante que data seja um array de questões
-          const questionsArray = Array.isArray(data) ? data : data.questions;
-          if (!Array.isArray(questionsArray)) {
-            throw new Error('Formato inesperado de dados das questões');
-          }
-          // Shuffle questions and take only 20
-          const shuffled = [...questionsArray].sort(() => Math.random() - 0.5);
-          setQuestions(shuffled.slice(0, 20));
-          setIsLoading(false);
-        })
-        .catch(err => {
-          setIsLoading(false);
-          alert('Erro ao carregar questões: ' + err.message);
-        });
+    if (!userData) {
+      return;
     }
-  }, [level, userData]);
+
+    setIsLoading(true);
+    const queryParams = new URLSearchParams();
+    if (group) {
+      queryParams.append('group', group);
+    } else if (level) {
+      queryParams.append('level', level);
+    }
+
+    fetch(`/api/questions?${queryParams}`)
+      .then(async res => {
+        const data = await res.json();
+        if (!res.ok) {
+          console.error('API error:', data.error || 'Falha ao buscar questões');
+          throw new Error(data.error || 'Falha ao buscar questões');
+        }
+        return data;
+      })
+      .then(data => {
+        console.log('Questions fetched:', data);
+        const questionsArray = Array.isArray(data) ? data : [];
+        if (!questionsArray.length) {
+          console.warn('Nenhuma questão disponível para esta categoria e nível');
+          throw new Error('Nenhuma questão disponível para esta categoria e nível');
+        }
+
+        const shuffled = [...questionsArray].sort(() => Math.random() - 0.5);
+        setQuestions(shuffled.slice(0, 10));
+        setIsLoading(false);
+      })
+      .catch(err => {
+        setIsLoading(false);
+        alert(`Error: ${err.message}. Redirecionando para a página inicial...`);
+        router.push('/');
+      });
+  }, [group, level, userData, router]);
 
   // Handle keyboard shortcuts
   useEffect(() => {
@@ -89,59 +117,93 @@ export default function QuizClient({ level }: QuizClientProps) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [showStatistics, showReview, playClick]);
 
-  const handleAnswer = async (questionId: number, answer: number) => {
-    const isCorrect = questions.find(q => q.id === questionId)?.correctOption === answer;
-    
-    setAnswers(prev => ({
-      ...prev,
-      [questionId]: answer
-    }));
+  const finishQuiz = async () => {
+    try {
+      const finalScore = calculateScore();
+      const result = await submitQuizResults(finalScore);
+      
+      if (result.success && result.statistics) {
+        setQuizStatistics(result.statistics);
+        playSuccess();
 
-    // Wait a bit to show the feedback
+        // Salvar os dados do quiz no localStorage
+        const quizState = {
+          questions,
+          userAnswers: Object.entries(answers).map(([questionId, answer]) => ({
+            questionId: Number(questionId),
+            answer
+          })),
+          statistics: result.statistics,
+          level
+        };
+        localStorage.setItem('quizState', JSON.stringify(quizState));
+
+        // Redirecionar para a página de estatísticas
+        router.push('/quiz/estatisticas');
+      } else {
+        throw new Error('Resultados inválidos da API');
+      }
+    } catch (error) {
+      alert('Erro ao finalizar o quiz. Por favor, tente novamente.');
+    }
+  };
+
+  const handleAnswer = async (questionId: number, answer: number) => {    
+    const newAnswers = {
+      ...answers,
+      [questionId]: answer
+    };
+    setAnswers(newAnswers);
+
     await new Promise(resolve => setTimeout(resolve, 1500));
 
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(prev => prev + 1);
-    } else {
-      const score = calculateScore();
-      await submitQuizResults(score);
-      playSuccess();
-      setShowStatistics(true);
+    const nextIndex = currentQuestionIndex + 1;
+    if (nextIndex < questions.length) {
+      setCurrentQuestionIndex(nextIndex);
+    } else if (Object.keys(newAnswers).length === questions.length) {
+      // Só finaliza o quiz se todas as questões foram respondidas
+      await finishQuiz();
     }
   };
 
   const calculateScore = () => {
-    return Object.entries(answers).reduce((score, [questionId, answer]) => {
+    const score = Object.entries(answers).reduce((total, [questionId, answer]) => {
       const question = questions.find(q => q.id === parseInt(questionId));
-      return score + (answer === question?.correctOption ? 1 : 0);
+      const isCorrect = question?.correctOption === answer;
+      return total + (isCorrect ? 1 : 0);
     }, 0);
+    return score;
   };
 
   const submitQuizResults = async (score: number) => {
     try {
-      // Prepare detailed answers data
-      const detailedAnswers = Object.entries(answers).map(([questionId, answer]) => {
-        const question = questions.find(q => q.id === parseInt(questionId));
-        return {
-          questionId: parseInt(questionId),
-          answer,
-          correct: answer === question?.correctOption
-        };
-      });
-
-      await fetch('/api/submit', {
+      const response = await fetch('/api/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
           level,
+          group,
           score,
           totalQuestions: questions.length,
-          answers: detailedAnswers,
-          userData
+          answers: Object.entries(answers).map(([questionId, answer]) => ({
+            questionId: parseInt(questionId),
+            answer,
+          })),
+          userData,
         }),
       });
+
+      if (!response.ok) {
+        throw new Error('Falha ao enviar resultados do quiz');
+      }
+
+      const result = await response.json();
+      return result;
     } catch (error) {
-      console.error('Error submitting quiz results:', error);
+      console.error('Erro ao enviar resultados do quiz:', error);
+      throw error;
     }
   };
 
@@ -150,61 +212,54 @@ export default function QuizClient({ level }: QuizClientProps) {
     setAnswers({});
     setShowStatistics(false);
     setShowReview(false);
-    setUserData(null);
+    setQuizStatistics(null);
     router.refresh();
   };
 
-  // Show user form if no user data
-  if (!userData) {
-    return (
-      <div className="container mx-auto px-4 py-8">
-        <UserForm onSubmit={setUserData} />
-      </div>
-    );
-  }
-
   if (isLoading) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <Loading size="large" message="Carregando questões..." />
+      <div className="fixed inset-0 flex items-center justify-center">
+        <div className="w-full max-w-4xl px-4">
+          <Loading size="large" message="Carregando questões..." />
+        </div>
       </div>
     );
   }
 
   if (showReview) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <QuizReview
-          questions={questions}
-          userAnswers={Object.entries(answers).map(([questionId, answer]) => ({
-            questionId: Number(questionId),
-            answer
-          }))}
-          onBackToStats={() => {
-            setShowReview(false);
-            setShowStatistics(true);
-          }}
-        />
+      <div className="fixed inset-0 flex items-center justify-center">
+        <div className="w-full px-4">
+          <QuizReview
+            questions={questions}
+            userAnswers={Object.entries(answers).map(([questionId, answer]) => ({
+              questionId: Number(questionId),
+              answer
+            }))}
+          />
+        </div>
       </div>
     );
   }
 
-  if (showStatistics) {
+  if (showStatistics && quizStatistics) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <Statistics
-          totalQuestions={questions.length}
-          correctAnswers={calculateScore()}
-          wrongAnswers={questions.length - calculateScore()}
-          score={calculateScore()}
-          level={level}
-          onRestart={handleRestart}
-          onShowReview={() => {
-            playClick();
-            setShowStatistics(false);
-            setShowReview(true);
-          }}
-        />
+      <div className="fixed inset-0 flex items-center justify-center">
+        <div className="w-full max-w-4xl px-4">
+          <Statistics
+            totalQuestions={questions.length}
+            correctAnswers={quizStatistics.correctAnswers}
+            wrongAnswers={quizStatistics.wrongAnswers}
+            score={quizStatistics.score}
+            level={level}
+            onRestart={handleRestart}
+            questions={questions}
+            userAnswers={Object.entries(answers).map(([questionId, answer]) => ({
+              questionId: parseInt(questionId),
+              answer
+            }))}
+          />
+        </div>
       </div>
     );
   }
@@ -212,42 +267,21 @@ export default function QuizClient({ level }: QuizClientProps) {
   const currentQuestion = questions[currentQuestionIndex];
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mb-4 flex justify-between items-center">
-        <div className="flex items-center gap-4">
-          <div className="text-gray-600">
-            Questão {currentQuestionIndex + 1} de {questions.length}
-          </div>
-          <div className="text-sm text-gray-500">
-            Usuário: {userData.name}
-          </div>
-        </div>
-        <button
-          onClick={() => {
-            playClick();
-            setShowHelp(true);
-          }}
-          className="text-blue-600 hover:text-blue-700 flex items-center gap-2
-            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded"
-          aria-label="Ajuda"
-        >
-          <svg className="w-5 h-5" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-            <path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          <span>Ajuda</span>
-        </button>
+    <div className="fixed inset-0 flex items-center justify-center">
+      <div className="w-full max-w-4xl px-4">
+        <Question
+          question={currentQuestion}
+          onAnswer={handleAnswer}
+          currentQuestionNumber={currentQuestionIndex + 1}
+          totalQuestions={questions.length}
+        />
+        {showHelp && (
+          <HelpDialog
+            isOpen={showHelp}
+            onClose={() => setShowHelp(false)}
+          />
+        )}
       </div>
-
-      <Question
-        key={currentQuestion.id}
-        question={currentQuestion}
-        onAnswer={handleAnswer}
-        showFeedback={true}
-      />
-
-      {showHelp && (
-        <HelpDialog onClose={() => setShowHelp(false)} isOpen={true} />
-      )}
     </div>
   );
 }

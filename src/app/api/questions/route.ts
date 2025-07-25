@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { Prisma } from '@prisma/client'
 
 interface QuestionResult {
   id: number
@@ -8,73 +9,68 @@ interface QuestionResult {
   correctOption: number
   explanation: string | null
   difficultyLevel: number
+  group: string | null
 }
 
-export async function GET(request: NextRequest) {
+export async function GET(request: Request) {
   try {
-    const searchParams = new URL(request.url).searchParams
-    const levelParam = searchParams.get('level')
+    const { searchParams } = new URL(request.url)
+    const group = searchParams.get('group')
+    const level = searchParams.get('level')
 
-    if (!levelParam) {
+    const validGroups = ['ciclista', 'motorista', 'pedestre', 'motociclista']
+    const validLevels = ['fundamental', 'medio', 'especialista']
+
+    let whereClause: Prisma.QuestionWhereInput = {}
+
+    if (group && validGroups.includes(group)) {
+      // Filtra apenas pelo grupo
+      whereClause = {
+        group: {
+          equals: group,
+          mode: 'insensitive' as Prisma.QueryMode,
+        },
+      }
+    } else if (level && validLevels.includes(level)) {
+      // Filtra apenas pelo nível de dificuldade
+      const difficultyLevel = {
+        fundamental: 1,
+        medio: 2,
+        especialista: 3,
+      }[level]
+      whereClause = {
+        difficultyLevel,
+      }
+    } else {
       return NextResponse.json(
-        { error: 'Level parameter is required' },
+        { error: 'Invalid or missing group/level parameter' },
         { status: 400 }
       )
     }
 
-    const level = ['facil', 'medio', 'dificil'].indexOf(levelParam) + 1
-    if (level === 0) {
-      return NextResponse.json(
-        { error: 'Invalid level parameter. Must be facil, medio, or dificil' },
-        { status: 400 }
-      )
-    }
-
-    // Get a count of all questions for this level
-    const totalQuestions = await prisma.question.count({
-      where: { difficultyLevel: level },
+    const questions = await prisma.question.findMany({
+      where: whereClause,
+      select: {
+        id: true,
+        text: true,
+        options: true,
+        correctOption: true,
+        explanation: true,
+        difficultyLevel: true,
+        group: true,
+      },
+      take: 10,
     })
-
-    if (totalQuestions === 0) {
-      return NextResponse.json(
-        { error: 'No questions found for this level' },
-        { status: 404 }
-      )
-    }
-
-    // Use window function to get truly random questions
-    const questions = await prisma.$queryRaw<QuestionResult[]>`
-      WITH RandomizedQuestions AS (
-        SELECT 
-          id,
-          text,
-          options,
-          "correctOption",
-          explanation,
-          "difficultyLevel",
-          ROW_NUMBER() OVER (ORDER BY RANDOM()) as rn
-        FROM "Question"
-        WHERE "difficultyLevel" = ${level}
-      )
-      SELECT 
-        id,
-        text,
-        options,
-        "correctOption",
-        explanation,
-        "difficultyLevel"
-      FROM RandomizedQuestions 
-      WHERE rn <= 20
-    `
 
     if (!questions.length) {
       return NextResponse.json(
-        { error: 'No questions found for this level' },
+        { error: 'No questions found for this filter' },
         { status: 404 }
       )
     }
 
-    return NextResponse.json(questions)
+    const shuffledQuestions = [...questions].sort(() => Math.random() - 0.5)
+    return NextResponse.json(shuffledQuestions)
   } catch (error) {
     console.error('Error fetching questions:', error)
     return NextResponse.json(

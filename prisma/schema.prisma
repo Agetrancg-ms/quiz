@@ -13,7 +13,8 @@ model Question {
   options          Json     // Array of options
   correctOption    Int
   explanation      String?  // Optional explanation for the correct answer
-  difficultyLevel  Int      @default(1) // 1: Easy, 2: Medium, 3: Hard
+  group           String   // Add group field (e.g., "Sinalização", "Legislação", etc)
+  difficultyLevel  Int      @default(1) // 1: Fundamental, 2: Médio, 3: Especialista
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
   answers          Answer[]
@@ -22,7 +23,13 @@ model Question {
 model User {
   id           Int           @id @default(autoincrement())
   name         String
-  cpf          String?      @unique
+  bairro       String
+  idade        Int
+  sexo         String       // "M" ou "F"
+  cnh          String[]     // Array of strings ["A", "B", "C", "D", "E"]
+  conducao     String[]     // Array of strings ["Carro", "Moto", "Bicicleta", "Onibus", "Aplicativos", "Outros"]
+  outrosConducao String?    // Campo opcional para especificar outros meios de condução
+  //cpf          String?      @unique
   answers      Answer[]
   quizAttempts QuizAttempt[] // Added this field
   createdAt    DateTime     @default(now())

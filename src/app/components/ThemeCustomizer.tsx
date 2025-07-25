@@ -1,4 +1,4 @@
-'use client'
+/*'use client'
 
 import { useState, useEffect } from 'react'
 import { useSoundEffects } from './SoundEffects'
@@ -68,16 +68,14 @@ export function ThemeCustomizer() {
     <>
       <button
         onClick={handleOpenClose}
-        className="fixed bottom-6 left-6 bg-white text-gray-700 w-12 h-12 rounded-full shadow-lg 
-          hover:bg-gray-50 transition-colors flex items-center justify-center z-40
-          hover:scale-110 transform transition-transform duration-200 border border-gray-200
-          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-        aria-label="Personalizar tema"
-        aria-expanded={isOpen}
+        className="fixed bottom-4 left-4 bg-white text-gray-700 w-12 h-12 rounded-full shadow-lg 
+          hover:bg-gray-50 flex items-center justify-center z-40
+          hover:scale-110 transform transition-transform duration-200 border border-gray-200 cursor-pointer"
+        aria-label="Personalizar Tema"
       >
-        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-            d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="3" />
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
         </svg>
       </button>
 
@@ -125,7 +123,7 @@ export function ThemeCustomizer() {
                       className={`p-3 rounded-lg border-2 transition-all
                         ${theme.colorScheme === id
                           ? 'border-blue-500 bg-blue-50'
-                          : 'border-gray-200 hover:border-blue-300'}
+                          : 'border-gray-200 hover:border-blue-300 '}
                         focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
                       `}
                       role="radio"
@@ -183,4 +181,4 @@ export function ThemeCustomizer() {
       )}
     </>
   )
-}
+}*/

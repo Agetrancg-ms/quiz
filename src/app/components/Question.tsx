@@ -1,8 +1,9 @@
+// src/app/components/Question.tsx
 'use client'
-
 import { useEffect, useState, useRef } from 'react'
 import Loading from './Loading'
 import { useSoundEffects } from './SoundEffects'
+import Image from 'next/image'
 
 interface QuestionProps {
   question: {
@@ -15,13 +16,17 @@ interface QuestionProps {
   onAnswer: (questionId: number, answer: number) => void
   showFeedback?: boolean
   selectedAnswer?: number
+  currentQuestionNumber: number
+  totalQuestions: number
 }
 
 export default function Question({
   question,
   onAnswer,
   showFeedback = false,
-  selectedAnswer
+  selectedAnswer,
+  currentQuestionNumber,
+  totalQuestions
 }: QuestionProps) {
   const [selected, setSelected] = useState<number | null>(selectedAnswer ?? null)
   const [confirmed, setConfirmed] = useState(false)
@@ -36,9 +41,21 @@ export default function Question({
     setShowExplanation(false)
   }, [question?.id])
 
+  // Auto-continue after showing feedback
+  useEffect(() => {
+    if (!question) return // Guard clause for undefined question
+    
+    if (confirmed && showExplanation && selected !== null) {
+      const timer = setTimeout(() => {
+        onAnswer(question.id, selected)
+      }, 1000) // Match the timing in QuizClient
+      return () => clearTimeout(timer)
+    }
+  }, [confirmed, showExplanation, selected, onAnswer, question])
+
   // Handle keyboard navigation
   useEffect(() => {
-    if (!question || !question.options) return;
+    if (!question || !question.options) return
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
         return
@@ -93,7 +110,6 @@ export default function Question({
     }
     
     setShowExplanation(true)
-    onAnswer(question.id, selected)
   }
 
   useEffect(() => {
@@ -105,76 +121,117 @@ export default function Question({
   if (!question || !question.options) return null
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 animate-fade-in">
-      <h3 className="text-xl font-semibold text-gray-800 mb-6">
-        {question.text}
-      </h3>
-
-      <div className="space-y-3 mb-6">
-        {question.options.map((option, index) => {
-          const isSelected = selected === index
-          const isCorrect = index === question.correctOption
-          const isWrong = confirmed && isSelected && !isCorrect
-
-          return (
-            <button
-              key={index}
-              ref={el => { optionsRef.current[index] = el }}
-              onClick={() => {
-                if (!confirmed) {
-                  playClick()
-                  setSelected(index)
-                }
-              }}
-              className={`w-full text-left p-4 rounded-lg transition-all
-                ${!confirmed && isSelected ? 'ring-2 ring-blue-500' : ''}
-                ${confirmed
-                  ? isCorrect
-                    ? 'bg-green-100 text-green-700 border-2 border-green-500'
-                    : isWrong
-                      ? 'bg-red-100 text-red-700 border-2 border-red-500'
-                      : 'opacity-70'
-                  : 'hover:bg-gray-50 bg-white text-gray-700'
-                }
-                focus:outline-none focus:ring-2 focus:ring-blue-500`}
-              disabled={confirmed}
-              aria-selected={isSelected}
-            >
-              {option}
-              {confirmed && isCorrect && (
-                <span className="ml-2 text-green-600">✓</span>
-              )}
-              {confirmed && isWrong && (
-                <span className="ml-2 text-red-600">✗</span>
-              )}
-            </button>
-          )
-        })}
+    <div className="fixed inset-0 flex items-center justify-center">
+      {/* Background with overlay */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0">
+          <Image
+            src="/bg.jpg"
+            alt="Background"
+            fill
+            className="object-cover"
+            priority
+            sizes="100vw"
+          />
+        </div>
+        <div 
+          className="absolute inset-0"
+          style={{ backgroundColor: '#0b45af', opacity: 0.94, mixBlendMode: 'normal'}}
+        />
       </div>
 
-      {!confirmed ? (
-        <button
-          onClick={handleConfirm}
-          disabled={selected === null}
-          className={`w-full py-3 px-4 rounded-lg text-white font-medium transition-all
-            ${selected === null
-              ? 'bg-gray-300 cursor-not-allowed'
-              : 'bg-blue-600 hover:bg-blue-700'
-            }
-            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500`}
-        >
-          Confirmar Resposta
-        </button>
-      ) : (
-        showExplanation && question.explanation && (
-          <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
-            <p className="text-gray-700">
-              <span className="font-medium">Explicação: </span>
-              {question.explanation}
-            </p>
+      {/* Content */}
+      <div className="relative z-10 w-full max-w-4xl -mt-12 px-8">
+        {/* Progress indicator */}
+        <div className="text-center mb-4 text-white text-lg font-semibold">
+          Questão {currentQuestionNumber} de {totalQuestions}
+        </div>
+
+        <div className="w-full">
+          {/* Question Box with Mascot */}
+          <div className="relative">
+            {/* Question Box */}
+            <div className="relative bg-[#F1C307] rounded-2xl shadow-xl p-6 mb-8 pr-40">
+              <h3 className="text-2xl font-bold text-black">
+                {question.text}
+              </h3>
+              {/* Mascot */}
+              <div className="absolute -right-8 lg:-right-18 top-1/2 -translate-y-1/2">
+                <Image
+                  src="/mascote.png"
+                  alt="Mascote"
+                  width={180}
+                  height={180}
+                  priority
+                  className="w-[170px] h-[170px] lg:w-[180px] lg:h-[180px] object-contain"
+                />
+              </div>
+            </div>
+
+            {/* Options Container */}
+            <div className="bg-white rounded-2xl shadow-xl p-6 bg-opacity-95">
+              <div className="space-y-4">
+                {question.options.map((option, index) => {
+                  const isSelected = selected === index
+                  const isCorrect = confirmed && index === question.correctOption
+                  const isWrong = confirmed && isSelected && index !== question.correctOption
+
+                  return (
+                    <button
+                      key={index}
+                      ref={(el) => {
+                        if (optionsRef.current) {
+                          optionsRef.current[index] = el
+                        }
+                      }}
+                      onClick={() => !confirmed && setSelected(index)}
+                      disabled={confirmed}
+                      className={`w-full text-left p-4 rounded-xl cursor-pointer
+                        ${isSelected ? 'ring-2 ring-[#007aff]' : 'hover:bg-gray-50'}
+                        ${isCorrect ? 'bg-green-100 text-green-800' : ''}
+                        ${isWrong ? 'bg-red-100 text-red-800' : ''}
+                        ${!confirmed && !isSelected ? 'hover:border-[#F1C307] border-2 border-transparent' : ''}
+                        ${confirmed ? 'cursor-pointer' : ''}
+                      `}
+                    >
+                      <span className="inline-flex items-center">
+                        <span className={`w-8 h-8 flex items-center justify-center rounded-full mr-3 aspect-square flex-shrink-0
+                          ${isSelected ? 'bg-[#007aff] text-white' : 'bg-[#F1C307]'}
+                          ${isCorrect ? 'bg-green-500 text-white' : ''}
+                          ${isWrong ? 'bg-red-500 text-white' : ''}
+                        `}>
+                          {String.fromCharCode(65 + index)}
+                        </span>
+                        {option}
+                      </span>
+                    </button>
+                  )
+                })}
+              </div>
+
+              {/*{showExplanation && question.explanation && (
+                <div className="bg-[#F1C307] bg-opacity-10 border-l-4 border-[#D6A103] p-4 rounded-r-lg mt-6">
+                  <p className="text-[#204da5]">{question.explanation}</p>
+                </div>
+              )}*/}
+
+              <button
+                onClick={handleConfirm}
+                disabled={selected === null || confirmed}
+                className={`w-full p-4 rounded-xl font-semibold mt-6
+                  ${confirmed 
+                    ? 'bg-gray-200 text-gray-500 cursor-pointer' 
+                    : selected === null
+                      ? 'bg-gray-200 text-gray-500 cursor-pointer'
+                      : 'bg-[#007aff] text-white hover:bg-[#204da5] cursor-pointer'}
+                `}
+              >
+                Confirmar
+              </button>
+            </div>
           </div>
-        )
-      )}
+        </div>
+      </div>
     </div>
   )
 }
