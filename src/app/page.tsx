@@ -82,7 +82,7 @@ export default function HomePage() {
 					</div>
 
 					{/* Quiz categories grid */}
-					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+					<div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
 						{quizCategories.map((category) => (
 							<Link
 								key={category.id}
@@ -113,8 +113,8 @@ export default function HomePage() {
 
 			{/* Footer section with mascot */}
 			<div className="relative">
-				{/* Mascote posicionado acima do rodapé - versão desktop/tablet */}
-				<div className="hidden sm:block absolute -top-[100px] right-4 w-40 h-40 pointer-events-none z-20">
+				{/* Mascote posicionado acima do rodapé - versão desktop grande */}
+				<div className="hidden lg:block absolute -top-[100px] right-4 w-40 h-40 pointer-events-none z-20">
 					<Image
 						src="/mascote.png"
 						alt="Mascote"
@@ -128,8 +128,8 @@ export default function HomePage() {
 					{/* Footer content */}
 					<div className="container mx-auto px-5 sm:px-6 md:px-8 py-4">
 						<div className="grid grid-cols-12 gap-4">
-							{/* Logo PREFCG - versão desktop/tablet */}
-							<div className="hidden sm:block col-span-2">
+							{/* Logo PREFCG - versão desktop grande */}
+							<div className="hidden lg:block col-span-2">
 								<Image
 									src="/prefcg_agetran_logo.png"
 									alt="Prefeitura Campo Grande e Agetran"
@@ -140,7 +140,7 @@ export default function HomePage() {
 							</div>
 							
 							{/* Textos centralizados */}
-							<div className="col-span-12 sm:col-span-10 pl-0 lg:pl-0 xl:pl-0 md:pr-10 lg:pr-25 xl:pr-30">
+							<div className="col-span-12 lg:col-span-10 pl-0 lg:pl-0 xl:pl-0 md:pr-10 lg:pr-25 xl:pr-30">
 								<p className="mb-4 text-center text-gray-300 text-sm xl:text-base">
 									Este quiz foi desenvolvido para ajudar motoristas e futuros condutores a testarem seus
 									conhecimentos sobre as leis e regras de trânsito. As questões são baseadas no Código
@@ -152,8 +152,8 @@ export default function HomePage() {
 									de trânsito.
 								</p>
 
-								{/* Logo e mascote em mobile */}
-								<div className="sm:hidden flex justify-center items-center gap-2 mb-6">
+								{/* Logo e mascote em telas < 1024px */}
+								<div className="lg:hidden flex justify-center items-center gap-2 mb-6">
 									<div className="flex-shrink-0">
 										<Image
 											src="/prefcg_agetran_logo.png"

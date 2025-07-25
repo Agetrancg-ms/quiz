@@ -40,7 +40,7 @@ export default function RootLayout({
                     alt="Logo Agetran"
                     width={158}
                     height={40}
-                    className="h-12 w-auto md:h-14 lg:h-16 xl:h-[72px] object-contain"
+                    className="h-12 w-auto md:h-14 lg:h-16 xl:h-[72px] object-contain py-2"
                     priority
                   />
                 </Link>
