@@ -360,9 +360,9 @@ export const questions: Question[] = [
   {
     text: "Qual a função do sinal sonoro ao dar ré?",
     options: [
-      "Alertar pedestres",
+      "Alertar pedestres e veículos próximos",
       "Anunciar mudança de marcha",
-      "Avisar outros motoristas",
+      "Sem nenhuma função específica",
       "Evitar colisão frontal"
     ],
     correctOption: 0,
@@ -806,9 +806,9 @@ export const questions: Question[] = [
     text: "Qual documento deve estar sempre no veículo?",
     options: [
       "CRLV",
+      "CRV",
       "CNH",
-      "IPVA",
-      "Seguro"
+      "IPVA"
     ],
     correctOption: 0,
     group: "Motorista",

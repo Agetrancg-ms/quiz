@@ -31,24 +31,49 @@ export default function Question({
   const [selected, setSelected] = useState<number | null>(selectedAnswer ?? null)
   const [confirmed, setConfirmed] = useState(false)
   const [showExplanation, setShowExplanation] = useState(false)
+  const [isProcessing, setIsProcessing] = useState(false)
   const optionsRef = useRef<(HTMLButtonElement | null)[]>([])
   const { playSuccess, playIncorrect, playClick } = useSoundEffects()
+  const autoConfirmTimer = useRef<NodeJS.Timeout | null>(null)
 
   // Reset state when question changes
   useEffect(() => {
     setConfirmed(false)
     setSelected(null)
     setShowExplanation(false)
+    setIsProcessing(false)
+    if (autoConfirmTimer.current) {
+      clearTimeout(autoConfirmTimer.current)
+      autoConfirmTimer.current = null
+    }
   }, [question?.id])
+
+  // Auto-confirm after selection (corrigido para não travar ao trocar rapidamente)
+  useEffect(() => {
+    if (!question || confirmed || selected === null) return
+    if (autoConfirmTimer.current) {
+      clearTimeout(autoConfirmTimer.current)
+    }
+    autoConfirmTimer.current = setTimeout(() => {
+      setIsProcessing(true)
+      handleConfirm()
+    }, 1000)
+    return () => {
+      if (autoConfirmTimer.current) {
+        clearTimeout(autoConfirmTimer.current)
+        autoConfirmTimer.current = null
+      }
+    }
+  }, [selected, confirmed])
 
   // Auto-continue after showing feedback
   useEffect(() => {
-    if (!question) return // Guard clause for undefined question
+    if (!question) return
     
     if (confirmed && showExplanation && selected !== null) {
       const timer = setTimeout(() => {
         onAnswer(question.id, selected)
-      }, 1000) // Match the timing in QuizClient
+      }, 1500)
       return () => clearTimeout(timer)
     }
   }, [confirmed, showExplanation, selected, onAnswer, question])
@@ -61,7 +86,7 @@ export default function Question({
         return
       }
 
-      if (confirmed) return
+      if (confirmed || isProcessing) return
 
       switch (e.key) {
         case 'ArrowUp':
@@ -73,12 +98,6 @@ export default function Question({
           e.preventDefault()
           setSelected(prev => (prev === null || prev === question.options.length - 1) ? 0 : prev + 1)
           playClick()
-          break
-        case 'Enter':
-          e.preventDefault()
-          if (selected !== null && !confirmed) {
-            handleConfirm()
-          }
           break
         case '1':
         case '2':
@@ -95,7 +114,7 @@ export default function Question({
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [selected, confirmed, question?.options?.length, playClick])
+  }, [selected, confirmed, isProcessing, question?.options?.length, playClick])
 
   const handleConfirm = () => {
     if (selected === null || confirmed) return
@@ -110,6 +129,7 @@ export default function Question({
     }
     
     setShowExplanation(true)
+    setIsProcessing(false)
   }
 
   useEffect(() => {
@@ -226,7 +246,7 @@ export default function Question({
                       : 'bg-[#007aff] text-white hover:bg-[#204da5] cursor-pointer'}
                 `}
               >
-                Confirmar
+                {isProcessing ? 'Confirmando...' : 'Confirmar'}
               </button>
             </div>
           </div>

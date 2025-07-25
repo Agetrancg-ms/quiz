@@ -4,10 +4,8 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Question from './Question';
 import Loading from './Loading';
-import Statistics from './Statistics';
-import QuizReview from './QuizReview';
-import HelpDialog from './HelpDialog';
 import { useSoundEffects } from './SoundEffects';
+import HelpDialog from './HelpDialog';
 
 interface QuizClientProps {
   level?: string;
@@ -27,11 +25,12 @@ export default function QuizClient({ level = '', group = '', userData }: QuizCli
   const [questions, setQuestions] = useState<any[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
-  const [showStatistics, setShowStatistics] = useState(false);
-  const [showReview, setShowReview] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [quizStatistics, setQuizStatistics] = useState<any>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [userAnswers, setUserAnswers] = useState<{ questionId: number, answer: number }[]>([]);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
   const router = useRouter();
   const { playSuccess, playClick } = useSoundEffects();
 
@@ -85,85 +84,78 @@ export default function QuizClient({ level = '', group = '', userData }: QuizCli
       }
       switch (e.key.toLowerCase()) {
         case 'h':
-          if (!showStatistics && !showReview) {
+          if (!showHelp) {
             playClick();
             setShowHelp(prev => !prev);
           }
           break;
-        case 'r':
-          if (showStatistics) {
-            playClick();
-            setShowStatistics(false);
-            setShowReview(true);
-          }
-          break;
         case ' ':
-          if (showStatistics || showReview) {
+          if (showHelp) {
             e.preventDefault();
             playClick();
             handleRestart();
-          }
-          break;
-        case 'escape':
-          if (showReview) {
-            playClick();
-            setShowReview(false);
-            setShowStatistics(true);
           }
           break;
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [showStatistics, showReview, playClick]);
+  }, [showHelp, playClick]);
+
+  // Submissão automática quando todas as respostas estiverem preenchidas
+  useEffect(() => {
+    if (
+      questions.length > 0 &&
+      Object.keys(answers).length === questions.length &&
+      !isSubmitting &&
+      !hasSubmitted
+    ) {
+      setIsSubmitting(true);
+      finishQuiz().finally(() => setIsSubmitting(false));
+    }
+  }, [answers, questions.length, isSubmitting, hasSubmitted]);
 
   const finishQuiz = async () => {
+    if (hasSubmitted) return;
+    setHasSubmitted(true);
     try {
       const finalScore = calculateScore();
       const result = await submitQuizResults(finalScore);
-      
       if (result.success && result.statistics) {
         setQuizStatistics(result.statistics);
         playSuccess();
-
-        // Salvar os dados do quiz no localStorage
+        // Salva as respostas do usuário para revisão
+        const userAnswersArr = Object.entries(answers).map(([questionId, answer]) => ({
+          questionId: Number(questionId),
+          answer
+        }));
+        setUserAnswers(userAnswersArr);
+        // Salvar os dados do quiz no localStorage para a página de estatísticas
         const quizState = {
           questions,
-          userAnswers: Object.entries(answers).map(([questionId, answer]) => ({
-            questionId: Number(questionId),
-            answer
-          })),
+          userAnswers: userAnswersArr,
           statistics: result.statistics,
           level
         };
         localStorage.setItem('quizState', JSON.stringify(quizState));
-
-        // Redirecionar para a página de estatísticas
+        // NÃO limpar currentQuestionIndex ou answers aqui!
+        // Redireciona para a página de estatísticas
         router.push('/quiz/estatisticas');
       } else {
         throw new Error('Resultados inválidos da API');
       }
     } catch (error) {
+      setHasSubmitted(false); // libera para tentar de novo em caso de erro
       alert('Erro ao finalizar o quiz. Por favor, tente novamente.');
     }
   };
 
-  const handleAnswer = async (questionId: number, answer: number) => {    
-    const newAnswers = {
-      ...answers,
+  const handleAnswer = (questionId: number, answer: number) => {
+    setAnswers(prev => ({
+      ...prev,
       [questionId]: answer
-    };
-    setAnswers(newAnswers);
-
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
-    const nextIndex = currentQuestionIndex + 1;
-    if (nextIndex < questions.length) {
-      setCurrentQuestionIndex(nextIndex);
-    } else if (Object.keys(newAnswers).length === questions.length) {
-      // Só finaliza o quiz se todas as questões foram respondidas
-      await finishQuiz();
-    }
+    }));
+    setCurrentQuestionIndex(idx => idx + 1);
   };
 
   const calculateScore = () => {
@@ -177,14 +169,21 @@ export default function QuizClient({ level = '', group = '', userData }: QuizCli
 
   const submitQuizResults = async (score: number) => {
     try {
+      // Verificar se todas as questões foram respondidas
+      const answeredQuestions = Object.keys(answers).length;
+      if (answeredQuestions !== questions.length) {
+        console.error(`Erro: Número incorreto de respostas. Esperado: ${questions.length}, Recebido: ${answeredQuestions}`);
+        throw new Error('Número incorreto de respostas');
+      }
+
       const response = await fetch('/api/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          level,
-          group,
+          level: level || undefined,
+          group: group || undefined,
           score,
           totalQuestions: questions.length,
           answers: Object.entries(answers).map(([questionId, answer]) => ({
@@ -195,11 +194,19 @@ export default function QuizClient({ level = '', group = '', userData }: QuizCli
         }),
       });
 
+      const result = await response.json();
+
       if (!response.ok) {
-        throw new Error('Falha ao enviar resultados do quiz');
+        console.error('Erro da API:', result);
+        if (result.error === 'Submissão duplicada detectada') {
+          throw new Error('Suas respostas já foram registradas');
+        } else if (result.error === 'Número incorreto de respostas') {
+          throw new Error('Por favor, responda todas as questões');
+        } else {
+          throw new Error(result.error || 'Falha ao enviar resultados do quiz');
+        }
       }
 
-      const result = await response.json();
       return result;
     } catch (error) {
       console.error('Erro ao enviar resultados do quiz:', error);
@@ -210,9 +217,6 @@ export default function QuizClient({ level = '', group = '', userData }: QuizCli
   const handleRestart = () => {
     setCurrentQuestionIndex(0);
     setAnswers({});
-    setShowStatistics(false);
-    setShowReview(false);
-    setQuizStatistics(null);
     router.refresh();
   };
 
@@ -221,44 +225,6 @@ export default function QuizClient({ level = '', group = '', userData }: QuizCli
       <div className="fixed inset-0 flex items-center justify-center">
         <div className="w-full max-w-4xl px-4">
           <Loading size="large" message="Carregando questões..." />
-        </div>
-      </div>
-    );
-  }
-
-  if (showReview) {
-    return (
-      <div className="fixed inset-0 flex items-center justify-center">
-        <div className="w-full px-4">
-          <QuizReview
-            questions={questions}
-            userAnswers={Object.entries(answers).map(([questionId, answer]) => ({
-              questionId: Number(questionId),
-              answer
-            }))}
-          />
-        </div>
-      </div>
-    );
-  }
-
-  if (showStatistics && quizStatistics) {
-    return (
-      <div className="fixed inset-0 flex items-center justify-center">
-        <div className="w-full max-w-4xl px-4">
-          <Statistics
-            totalQuestions={questions.length}
-            correctAnswers={quizStatistics.correctAnswers}
-            wrongAnswers={quizStatistics.wrongAnswers}
-            score={quizStatistics.score}
-            level={level}
-            onRestart={handleRestart}
-            questions={questions}
-            userAnswers={Object.entries(answers).map(([questionId, answer]) => ({
-              questionId: parseInt(questionId),
-              answer
-            }))}
-          />
         </div>
       </div>
     );

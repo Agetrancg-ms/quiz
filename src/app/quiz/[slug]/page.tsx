@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { use } from 'react';
-import { UserForm } from '@/components/UserForm';
+import { UserForm } from '@/app/components/UserForm';
 import QuizClient from '@/app/components/QuizClient';
 import { redirect } from 'next/navigation';
 
@@ -31,7 +31,7 @@ export default function QuizPage({ params }: Props) {
   };
 
   return (
-    <main className="min-h-screen py-8">
+    <main className="py-8">
       <div className="container mx-auto px-4">
         {showForm ? (
           <UserForm onSubmit={handleUserSubmit} />

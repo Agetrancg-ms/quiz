@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useSoundEffects } from './SoundEffects'
+import QuizReview from './QuizReview'
 
 interface StatisticsProps {
   totalQuestions: number
@@ -56,62 +57,65 @@ export default function Statistics({
   }, [level, score, playSuccess])
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 max-w-4xl mx-auto">
-      <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
-        Resultado do Quiz
-      </h2>
-
-      <div className="flex flex-col items-center justify-center">
-        <div className="relative w-32 h-32">
-          <svg className="transform -rotate-90" viewBox="0 0 120 120">
-            <circle
-              cx="60"
-              cy="60"
-              r="54"
-              stroke="#E5E7EB"
-              strokeWidth="12"
-              fill="transparent"
-            />
-            <circle
-              cx="60"
-              cy="60"
-              r="54"
-              stroke="currentColor"
-              strokeWidth="12"
-              fill="transparent"
-              strokeDasharray={2 * Math.PI * 54}
-              strokeDashoffset={2 * Math.PI * 54 * (1 - percentage / 100)}
-              className="text-blue-600"
-            />
-          </svg>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-3xl font-bold text-gray-800">{percentage}%</span>
+    <>
+      <div className="bg-white rounded-lg shadow-lg p-6 max-w-4xl mx-auto">
+        {/* Card de estatísticas */}
+        <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
+          Resultado do Quiz
+        </h2>
+        <div className="flex flex-col items-center justify-center">
+          <div className="relative w-32 h-32">
+            <svg className="transform -rotate-90" viewBox="0 0 120 120">
+              <circle
+                cx="60"
+                cy="60"
+                r="54"
+                stroke="#E5E7EB"
+                strokeWidth="12"
+                fill="transparent"
+              />
+              <circle
+                cx="60"
+                cy="60"
+                r="54"
+                stroke="currentColor"
+                strokeWidth="12"
+                fill="transparent"
+                strokeDasharray={2 * Math.PI * 54}
+                strokeDashoffset={2 * Math.PI * 54 * (1 - percentage / 100)}
+                className="text-blue-600"
+              />
+            </svg>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-3xl font-bold text-gray-800">{percentage}%</span>
+            </div>
           </div>
-        </div>
-
-        <p className="mt-4 text-gray-600 text-center">
-          {percentage >= 70 
-            ? 'Excelente! Você tem um ótimo conhecimento!'
-            : percentage >= 50
-            ? 'Bom trabalho! Você tem um bom conhecimento, mas pode melhorar.'
-            : 'Continue praticando para melhorar seu conhecimento.'}
-        </p>
-
-        {showAchievement && (
-          <div className="mt-4 p-2 bg-yellow-100 text-yellow-800 rounded-md">
-            {achievementMessage}
+          <p className="mt-4 text-gray-600 text-center">
+            {percentage >= 70 
+              ? 'Excelente! Você tem um ótimo conhecimento!'
+              : percentage >= 50
+              ? 'Bom trabalho! Você tem um bom conhecimento, mas pode melhorar.'
+              : 'Continue praticando para melhorar seu conhecimento.'}
+          </p>
+          {showAchievement && (
+            <div className="mt-4 p-2 bg-yellow-100 text-yellow-800 rounded-md">
+              {achievementMessage}
+            </div>
+          )}
+          <div className="mt-6 flex space-x-4">
+            <button
+              onClick={onRestart}
+              className="px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 cursor-pointer"
+            >
+              Tentar novamente
+            </button>
           </div>
-        )}
-
-        <div className="mt-6 flex space-x-4">
-          <button
-            onClick={onRestart}
-            className="px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 cursor-pointer"
-          >
-            Tentar novamente
-          </button>
         </div>
       </div>
-    </div>
+      {/* Card próprio para revisão das questões */}
+      <div className="bg-white rounded-lg shadow-lg p-6 max-w-4xl mx-auto mt-8">
+        <QuizReview questions={questions} userAnswers={userAnswers} />
+      </div>
+    </>
   )
 }

@@ -18,29 +18,14 @@ export async function GET(request: Request) {
     const group = searchParams.get('group')
     const level = searchParams.get('level')
 
-    const validGroups = ['ciclista', 'motorista', 'pedestre', 'motociclista']
-    const validLevels = ['fundamental', 'medio', 'especialista']
-
-    let whereClause: Prisma.QuestionWhereInput = {}
-
-    if (group && validGroups.includes(group)) {
-      // Filtra apenas pelo grupo
-      whereClause = {
-        group: {
-          equals: group,
-          mode: 'insensitive' as Prisma.QueryMode,
-        },
-      }
-    } else if (level && validLevels.includes(level)) {
-      // Filtra apenas pelo nível de dificuldade
-      const difficultyLevel = {
-        fundamental: 1,
-        medio: 2,
-        especialista: 3,
-      }[level]
-      whereClause = {
-        difficultyLevel,
-      }
+    // Build where clause based on group or level
+    let whereClause = {}
+    if (group) {
+      whereClause = { group: { equals: group, mode: 'insensitive' } }
+    } else if (level) {
+      const difficultyLevel =
+        level === 'fundamental' ? 1 : level === 'medio' ? 2 : 3
+      whereClause = { difficultyLevel }
     } else {
       return NextResponse.json(
         { error: 'Invalid or missing group/level parameter' },
@@ -48,8 +33,29 @@ export async function GET(request: Request) {
       )
     }
 
-    const questions = await prisma.question.findMany({
+    // First, count total questions matching the criteria
+    const totalQuestions = await prisma.question.count({
       where: whereClause,
+    })
+
+    // Get all IDs of matching questions
+    const allQuestionIds = await prisma.question.findMany({
+      where: whereClause,
+      select: { id: true },
+    })
+
+    // Randomly select 10 IDs
+    const selectedIds = allQuestionIds
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 10)
+      .map((q) => q.id)
+
+    // Fetch the complete questions for selected IDs
+    const questions = await prisma.question.findMany({
+      where: {
+        ...whereClause,
+        id: { in: selectedIds },
+      },
       select: {
         id: true,
         text: true,
@@ -59,7 +65,6 @@ export async function GET(request: Request) {
         difficultyLevel: true,
         group: true,
       },
-      take: 10,
     })
 
     if (!questions.length) {
@@ -69,6 +74,7 @@ export async function GET(request: Request) {
       )
     }
 
+    // Additional shuffle of the final questions
     const shuffledQuestions = [...questions].sort(() => Math.random() - 0.5)
     return NextResponse.json(shuffledQuestions)
   } catch (error) {

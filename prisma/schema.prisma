@@ -29,7 +29,7 @@ model User {
   cnh          String[]     // Array of strings ["A", "B", "C", "D", "E"]
   conducao     String[]     // Array of strings ["Carro", "Moto", "Bicicleta", "Onibus", "Aplicativos", "Outros"]
   outrosConducao String?    // Campo opcional para especificar outros meios de condução
-  //cpf          String?      @unique
+  cpf          String?      @unique
   answers      Answer[]
   quizAttempts QuizAttempt[] // Added this field
   createdAt    DateTime     @default(now())
@@ -54,7 +54,7 @@ model QuizAttempt {
   id             Int      @id @default(autoincrement())
   score          Int      // Number of correct answers
   totalQuestions Int      // Total number of questions (20)
-  level          String   // facil, medio, or dificil
+  level          String   // fundamental, médio, especialista, ciclista, motorista, pedestre, motociclista
   answers        Json     // Array of {questionId, answer, correct}
   createdAt      DateTime @default(now())
   userId         Int?     // Optional user ID for authenticated users

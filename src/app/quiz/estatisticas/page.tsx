@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import QuizReview from '@/app/components/QuizReview';
 import Statistics from '@/app/components/Statistics';
 
 export default function EstatisticasPage() {
@@ -38,13 +37,6 @@ export default function EstatisticasPage() {
             questions={quizData.questions}
             userAnswers={quizData.userAnswers}
           />
-          
-          <div className="mt-8">
-            <QuizReview 
-              questions={quizData.questions} 
-              userAnswers={quizData.userAnswers}
-            />
-          </div>
         </div>
       </div>
     </main>

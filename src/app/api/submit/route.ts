@@ -10,6 +10,7 @@ interface UserData {
   name: string
   bairro: string
   idade: string
+  cpf: string    // Added CPF fieldd
   sexo: string
   cnh?: string[]
   conducao?: string[]
@@ -31,7 +32,9 @@ export async function POST(request: NextRequest) {
     const submission: QuizSubmission = await request.json()
     console.log('[DEBUG] Parsed submission:', submission)
 
-    if (!submission.userData?.name || !submission.userData?.bairro || !submission.userData?.idade || !submission.userData?.sexo) {
+    if (!submission.userData?.name || !submission.userData?.bairro || 
+        !submission.userData?.idade || !submission.userData?.sexo ||
+        !submission.userData?.cpf) {
       console.error('[DEBUG] Missing required user data')
       return NextResponse.json(
         { error: 'Todos os campos obrigatórios devem ser preenchidos' },
@@ -39,19 +42,55 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Create user with their data
-    const user = await prisma.user.create({
+    // Check if user with CPF already exists
+    const existingUser = await prisma.user.findUnique({
+      where: { cpf: submission.userData.cpf }
+    });
+
+    // If user exists, use existing user
+    const user = existingUser || await prisma.user.create({
       data: {
         name: submission.userData.name,
         bairro: submission.userData.bairro,
         idade: parseInt(submission.userData.idade),
+        cpf: submission.userData.cpf,
         sexo: submission.userData.sexo,
         cnh: submission.userData.cnh || [],
         conducao: submission.userData.conducao || [],
         outrosConducao: submission.userData.outrosConducao,
       },
     })
-    console.log('[DEBUG] User created:', user.id)
+    console.log('[DEBUG] User found or created:', user.id)
+
+    // Verificar se já existe uma tentativa recente (últimos 5 segundos) para evitar duplicação
+    const recentAttempt = await prisma.quizAttempt.findFirst({
+      where: {
+        userId: user.id,
+        createdAt: {
+          gte: new Date(Date.now() - 5000) // últimos 5 segundos
+        }
+      }
+    });
+
+    if (recentAttempt) {
+      console.log('[DEBUG] Duplicate submission detected');
+      return NextResponse.json(
+        { error: 'Submissão duplicada detectada' },
+        { status: 409 }
+      );
+    }
+
+    // Verificar se o número de respostas corresponde ao total de questões
+    if (submission.answers.length !== submission.totalQuestions) {
+      console.error('[DEBUG] Answer count mismatch', {
+        answersReceived: submission.answers.length,
+        totalQuestions: submission.totalQuestions
+      });
+      return NextResponse.json(
+        { error: 'Número incorreto de respostas' },
+        { status: 400 }
+      );
+    }
 
     // Process answers and calculate statistics
     const answersWithCorrectness = await Promise.all(
@@ -91,7 +130,7 @@ export async function POST(request: NextRequest) {
     // Store the quiz attempt
     const quizAttempt = await prisma.quizAttempt.create({
       data: {
-        level: submission.level,
+        level: submission.group || submission.level || 'não especificado',
         score: submission.score,
         totalQuestions: submission.totalQuestions,
         userId: user.id,

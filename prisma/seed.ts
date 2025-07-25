@@ -24,16 +24,16 @@ function uniqueQuestions(questions: Question[]): Question[] {
 
 async function main() {
   console.log('Limpando banco de dados...');
-  //await prisma.answer.deleteMany();
-  //await prisma.quizAttempt.deleteMany();
+  await prisma.answer.deleteMany();
+  await prisma.quizAttempt.deleteMany();
   await prisma.question.deleteMany();
-  //await prisma.user.deleteMany();
+  await prisma.user.deleteMany();
   
   // Reseta o id (Postgres)
   await prisma.$executeRawUnsafe('ALTER SEQUENCE "Question_id_seq" RESTART WITH 1;');
-  //await prisma.$executeRawUnsafe('ALTER SEQUENCE "User_id_seq" RESTART WITH 1;');
-  //await prisma.$executeRawUnsafe('ALTER SEQUENCE "QuizAttempt_id_seq" RESTART WITH 1;');
-  //await prisma.$executeRawUnsafe('ALTER SEQUENCE "Answer_id_seq" RESTART WITH 1;');
+  await prisma.$executeRawUnsafe('ALTER SEQUENCE "User_id_seq" RESTART WITH 1;');
+  await prisma.$executeRawUnsafe('ALTER SEQUENCE "QuizAttempt_id_seq" RESTART WITH 1;');
+  await prisma.$executeRawUnsafe('ALTER SEQUENCE "Answer_id_seq" RESTART WITH 1;');
 
   // Remover duplicatas e classificar por nível de dificuldade
   const uniqueQuestionsList = uniqueQuestions(questions);
