@@ -181,13 +181,13 @@ export default function HomePage() {
 									</p>
 									{/* Ícones sociais */}
 									<div className="flex gap-4">
-										<a href="https://www.facebook.com/agetran" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
+										<a href="https://www.facebook.com/pages/Agetran/212168202147315" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
 											<i className="fab fa-facebook-f text-lg xl:text-xl"></i>
 										</a>
 										<a href="https://www.instagram.com/agetran.cg" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
 											<i className="fab fa-instagram text-lg xl:text-xl"></i>
 										</a>
-										<a href="https://www.youtube.com/agetran" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
+										<a href="https://www.youtube.com/@agetranimprensa1897" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
 											<i className="fab fa-youtube text-lg xl:text-xl"></i>
 										</a>
 									</div>
