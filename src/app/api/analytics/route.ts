@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
     const levelParam = searchParams.get('level')
     const groupParam = searchParams.get('group')
 
-    // Build where clause based on filters
+    // Monta o filtro conforme os parâmetros
     const whereClause: any = {}
     if (levelParam) {
       const level = parseInt(levelParam)
@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    // Get answers with filters
+    // Busca respostas com filtros
     const answers = await prisma.answer.findMany({
       where: whereClause,
       include: {
@@ -33,15 +33,12 @@ export async function GET(request: NextRequest) {
       }
     })
 
-    console.log('Analytics query params:', { levelParam, groupParam, whereClause })
-    console.log('Found answers:', answers.length)
-
-    // Calculate statistics
+    // Calcula estatísticas
     const totalAnswers = answers.length
     const correctAnswers = answers.filter(a => a.isCorrect).length
     const averageScore = totalAnswers > 0 ? Math.round((correctAnswers / totalAnswers) * 100) : 0
 
-    // Get most challenging questions
+    // Questões mais desafiadoras
     const questionStats = answers.reduce((acc: Record<number, { total: number; correct: number }>, answer) => {
       if (!acc[answer.questionId]) {
         acc[answer.questionId] = { total: 0, correct: 0 }
@@ -61,21 +58,13 @@ export async function GET(request: NextRequest) {
       .sort((a, b) => a.correctRate - b.correctRate)
       .slice(0, 5)
 
-    // Get user count with the same filters
+    // Conta de usuários com os mesmos filtros
     const userCount = await prisma.user.count({
       where: whereClause.question ? {
         answers: {
           some: whereClause
         }
       } : undefined
-    })
-
-    console.log('Analytics response:', {
-      totalParticipants: userCount,
-      averageScore,
-      totalAnswers,
-      correctAnswers,
-      challengingQuestionsCount: challengingQuestions.length
     })
 
     return NextResponse.json({
@@ -86,9 +75,8 @@ export async function GET(request: NextRequest) {
       challengingQuestions
     })
   } catch (error) {
-    console.error('Error fetching analytics:', error)
     return NextResponse.json(
-      { error: 'Failed to fetch analytics' },
+      { error: 'Erro ao buscar estatísticas' },
       { status: 500 }
     )
   }

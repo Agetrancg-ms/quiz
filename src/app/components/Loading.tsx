@@ -13,7 +13,7 @@ export default function Loading({ message = 'Carregando...', size = 'medium' }: 
   }
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center" role="status" aria-live="polite">
       <div className={`animate-spin rounded-full border-b-2 border-blue-500 ${sizeClasses[size]}`}></div>
       {message && (
         <p className="mt-4 text-gray-600 text-center">{message}</p>

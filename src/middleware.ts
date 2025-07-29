@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 
-// Remove this file if you are not using middleware. If you want to keep it, export a default function.
+// Middleware padrão, mantido apenas se necessário para o Next.js
 export function middleware() {
-  // Example: do nothing
   return NextResponse.next();
 }

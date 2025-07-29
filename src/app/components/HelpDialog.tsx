@@ -65,10 +65,10 @@ export default function HelpDialog({ isOpen, onClose }: HelpDialogProps) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-card text-card p-6 text-left align-middle shadow-xl transition-all border border-theme">
                 <Dialog.Title
                   as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900 mb-4"
+                  className="text-lg font-medium leading-6 text-card mb-4"
                 >
                   Ajuda e Atalhos do Teclado
                 </Dialog.Title>
@@ -97,15 +97,25 @@ export default function HelpDialog({ isOpen, onClose }: HelpDialogProps) {
                 <div className="mt-6">
                   <button
                     type="button"
-                    className="w-full inline-flex justify-center rounded-md border border-transparent 
-                      bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 
-                      focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 
+                    className="w-full inline-flex justify-center rounded-md border border-theme \
+                      bg-button px-4 py-2 text-sm font-medium text-button hover:opacity-90 \
+                      focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 \
                       focus-visible:ring-offset-2"
                     onClick={onClose}
                   >
                     Entendi! (Esc)
                   </button>
                 </div>
+
+                <button
+                  onClick={onClose}
+                  className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer"
+                  aria-label="Fechar atalhos de teclado"
+                >
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
               </Dialog.Panel>
             </Transition.Child>
           </div>

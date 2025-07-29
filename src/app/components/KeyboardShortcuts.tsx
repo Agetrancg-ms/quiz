@@ -24,10 +24,10 @@ function ShortcutOverlay({ isOpen, onClose }: ShortcutOverlayProps) {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full p-6 relative animate-fade-in-up">
+      <div className="bg-card text-card rounded-lg shadow-xl max-w-2xl w-full p-6 relative animate-fade-in-up border border-theme">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+          className="absolute top-4 right-4 text-card hover:text-theme"
           aria-label="Fechar atalhos de teclado"
         >
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -35,7 +35,7 @@ function ShortcutOverlay({ isOpen, onClose }: ShortcutOverlayProps) {
           </svg>
         </button>
 
-        <h2 className="text-xl font-bold text-gray-800 mb-6">
+        <h2 id="shortcuts-title" className="text-xl font-bold text-card mb-6" tabIndex={0}>
           Atalhos de Teclado
         </h2>
 
@@ -58,9 +58,8 @@ function ShortcutOverlay({ isOpen, onClose }: ShortcutOverlayProps) {
           ))}
         </div>
 
-        <div className="mt-6 text-center text-sm text-gray-500">
-          Pressione <kbd className="px-2 py-1 text-sm font-semibold text-gray-800 bg-gray-100 
-            border border-gray-200 rounded shadow-sm">?</kbd> a qualquer momento para
+        <div className="mt-6 text-center text-sm text-input">
+          Pressione <kbd className="px-2 py-1 text-sm font-semibold text-card bg-input border border-theme rounded shadow-sm">?</kbd> a qualquer momento para
           ver esta tela novamente
         </div>
       </div>

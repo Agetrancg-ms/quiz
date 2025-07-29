@@ -18,7 +18,7 @@ export async function GET(request: Request) {
     const group = searchParams.get('group')
     const level = searchParams.get('level')
 
-    // Build where clause based on group or level
+    // Monta o filtro conforme grupo ou nível
     let whereClause = {}
     if (group) {
       whereClause = { group: { equals: group, mode: 'insensitive' } }
@@ -28,29 +28,29 @@ export async function GET(request: Request) {
       whereClause = { difficultyLevel }
     } else {
       return NextResponse.json(
-        { error: 'Invalid or missing group/level parameter' },
+        { error: 'Parâmetro de grupo ou nível inválido ou ausente' },
         { status: 400 }
       )
     }
 
-    // First, count total questions matching the criteria
+    // Conta total de questões
     const totalQuestions = await prisma.question.count({
       where: whereClause,
     })
 
-    // Get all IDs of matching questions
+    // Busca todos os IDs das questões
     const allQuestionIds = await prisma.question.findMany({
       where: whereClause,
       select: { id: true },
     })
 
-    // Randomly select 10 IDs
+    // Seleciona 10 IDs aleatórios
     const selectedIds = allQuestionIds
       .sort(() => Math.random() - 0.5)
       .slice(0, 10)
       .map((q) => q.id)
 
-    // Fetch the complete questions for selected IDs
+    // Busca as questões completas
     const questions = await prisma.question.findMany({
       where: {
         ...whereClause,
@@ -69,18 +69,17 @@ export async function GET(request: Request) {
 
     if (!questions.length) {
       return NextResponse.json(
-        { error: 'No questions found for this filter' },
+        { error: 'Nenhuma questão encontrada para este filtro' },
         { status: 404 }
       )
     }
 
-    // Additional shuffle of the final questions
+    // Embaralha as questões finais
     const shuffledQuestions = [...questions].sort(() => Math.random() - 0.5)
     return NextResponse.json(shuffledQuestions)
   } catch (error) {
-    console.error('Error fetching questions:', error)
     return NextResponse.json(
-      { error: 'Failed to fetch questions' },
+      { error: 'Erro ao buscar questões' },
       { status: 500 }
     )
   }

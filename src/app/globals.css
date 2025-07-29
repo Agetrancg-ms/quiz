@@ -10,6 +10,135 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+/* Temas de cor e tamanho de fonte para personalização global */
+.theme-default {
+  --bg: #fff;
+  --text: #222;
+  --card-bg: #fff;
+  --card-text: #222;
+  --button-bg: #204da5;
+  --text-elements: #204da5;
+  --button-text: #fff;
+  --border: #e5e7eb;
+  --input-bg: #fff;
+  --input-text: #222;
+  --highlight-bg: #f1c307;
+  --highlight-text: #222;
+  --error-bg: #fee2e2;
+  --error-text: #b91c1c;
+  --wrong-circle: #f87171;
+}
+.theme-high-contrast {
+  --bg: #000;
+  --text: #fff;
+  --card-bg: #111;
+  --card-text: #fff;
+  --button-bg: #fff;
+  --button-text: #000;
+  --text-elements: #ff0;
+  --border: #fff;
+  --input-bg: #222;
+  --input-text: #fff;
+  --highlight-bg: #ff0;
+  --highlight-text: #ff0;
+  --error-bg: #fee2e2;
+  --error-text: #b91c1c;
+  --wrong-circle: #ff0a0a;
+}
+.theme-calm {
+  --bg: #e0f7fa;
+  --text: #222;
+  --card-bg: #fff;
+  --card-text: #222;
+  --button-bg: #00bcd4;
+  --button-text: #fff;
+  --border: #00bcd4;
+  --input-bg: #fff;
+  --input-text: #222;
+  --text-elements: #b2ebf2;
+  --highlight-bg: #b2ebf2;
+  --highlight-text: #222;
+  --error-bg: #fee2e2;
+  --error-text: #b91c1c;
+  --wrong-circle: #e57373;
+}
+.theme-dark {
+  --bg: #222;
+  --text: #fff;
+  --card-bg: #333;
+  --card-text: #fff;
+  --button-bg: #204da5;
+  --button-text: #fff;
+  --border: #444;
+  --input-bg: #444;
+  --input-text: #fff;
+  --highlight-bg: #204da5;
+  --highlight-text: #fff;
+  --error-bg: #b91c1c;
+  --error-text: #fff;
+  --wrong-circle: #ff4d4d;
+}
+
+.text-normal { font-size: 1rem; }
+.text-large { font-size: 1.25rem; }
+.text-extra-large { font-size: 1.5rem; }
+
+.bg-theme {
+  background-color: var(--bg) !important;
+}
+.text-theme {
+  color: var(--text) !important;
+}
+.bg-card {
+  background-color: var(--card-bg) !important;
+}
+.text-card {
+  color: var(--card-text) !important;
+}
+.bg-button {
+  background-color: var(--button-bg) !important;
+}
+.text-button {
+  color: var(--button-text) !important;
+}
+.text-elements {
+  color: var(--text-elements) !important;
+}
+.border-theme {
+  border-color: var(--border) !important;
+}
+.bg-input {
+  background-color: var(--input-bg) !important;
+}
+.text-input {
+  color: var(--input-text) !important;
+}
+.text-highlight {
+  color: var(--highlight-text) !important;
+}
+.bg-highlight {
+  background-color: var(--highlight-bg) !important;
+}
+.bg-error {
+  background-color: var(--error-bg) !important;
+}
+.text-error {
+  color: var(--error-text) !important;
+}
+.wrong-circle {
+  background-color: var(--wrong-circle) !important;
+  color: var(--error-text) !important;
+}
+
+html {
+  background: var(--bg);
+  color: var(--text);
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
 @media (min-width: 1024px) {
   html {
     overflow: hidden;

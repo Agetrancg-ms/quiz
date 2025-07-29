@@ -6,6 +6,7 @@ import Question from './Question';
 import Loading from './Loading';
 import { useSoundEffects } from './SoundEffects';
 import HelpDialog from './HelpDialog';
+import { useSnackbar } from './Snackbar';
 
 interface QuizClientProps {
   level?: string;
@@ -33,6 +34,7 @@ export default function QuizClient({ level = '', group = '', userData }: QuizCli
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const router = useRouter();
   const { playSuccess, playClick } = useSoundEffects();
+  const { showSnackbar } = useSnackbar();
 
   // Fetch questions
   useEffect(() => {
@@ -52,16 +54,13 @@ export default function QuizClient({ level = '', group = '', userData }: QuizCli
       .then(async res => {
         const data = await res.json();
         if (!res.ok) {
-          console.error('API error:', data.error || 'Falha ao buscar questões');
           throw new Error(data.error || 'Falha ao buscar questões');
         }
         return data;
       })
       .then(data => {
-        console.log('Questions fetched:', data);
         const questionsArray = Array.isArray(data) ? data : [];
         if (!questionsArray.length) {
-          console.warn('Nenhuma questão disponível para esta categoria e nível');
           throw new Error('Nenhuma questão disponível para esta categoria e nível');
         }
 
@@ -71,10 +70,10 @@ export default function QuizClient({ level = '', group = '', userData }: QuizCli
       })
       .catch(err => {
         setIsLoading(false);
-        alert(`Error: ${err.message}. Redirecionando para a página inicial...`);
-        router.push('/');
+        showSnackbar(`Erro: ${err.message}. Redirecionando para a página inicial...`, 'error');
+        setTimeout(() => router.push('/'), 2000);
       });
-  }, [group, level, userData, router]);
+  }, [group, level, userData, router, showSnackbar]);
 
   // Handle keyboard shortcuts
   useEffect(() => {
@@ -146,7 +145,7 @@ export default function QuizClient({ level = '', group = '', userData }: QuizCli
       }
     } catch (error) {
       setHasSubmitted(false); // libera para tentar de novo em caso de erro
-      alert('Erro ao finalizar o quiz. Por favor, tente novamente.');
+      showSnackbar('Erro ao finalizar o quiz. Por favor, tente novamente.', 'error');
     }
   };
 
@@ -172,7 +171,6 @@ export default function QuizClient({ level = '', group = '', userData }: QuizCli
       // Verificar se todas as questões foram respondidas
       const answeredQuestions = Object.keys(answers).length;
       if (answeredQuestions !== questions.length) {
-        console.error(`Erro: Número incorreto de respostas. Esperado: ${questions.length}, Recebido: ${answeredQuestions}`);
         throw new Error('Número incorreto de respostas');
       }
 
@@ -197,7 +195,6 @@ export default function QuizClient({ level = '', group = '', userData }: QuizCli
       const result = await response.json();
 
       if (!response.ok) {
-        console.error('Erro da API:', result);
         if (result.error === 'Submissão duplicada detectada') {
           throw new Error('Suas respostas já foram registradas');
         } else if (result.error === 'Número incorreto de respostas') {
@@ -209,7 +206,6 @@ export default function QuizClient({ level = '', group = '', userData }: QuizCli
 
       return result;
     } catch (error) {
-      console.error('Erro ao enviar resultados do quiz:', error);
       throw error;
     }
   };

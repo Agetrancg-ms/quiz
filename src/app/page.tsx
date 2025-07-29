@@ -39,10 +39,10 @@ export default function HomePage() {
 				<div className="flex flex-col gap-6 max-w-4xl mx-auto py-6 px-5 sm:px-6 md:px-8 transform-gpu origin-top xl:scale-100 lg:scale-[0.85]">
 					{/* Welcome section */}
 					<div className="text-center">
-						<h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-3">
+						<h2 className="text-2xl sm:text-3xl font-bold text-theme mb-3">
 							Bem-vindo ao Quiz de Trânsito
 						</h2>
-						<p className="text-gray-600 max-w-2xl mx-auto mb-8 text-sm sm:text-base">
+						<p className="text-theme max-w-2xl mx-auto mb-8 text-sm sm:text-base">
 							Teste seus conhecimentos sobre trânsito e segurança viária. Escolha um dos
 							módulos abaixo e responda às perguntas para avaliar seu conhecimento.
 						</p>

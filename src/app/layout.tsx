@@ -7,6 +7,8 @@ import { SoundEffectsProvider } from "./components/SoundEffects";
 import SoundToggle from "./components/SoundToggle";
 import SoundNotification from "./components/SoundNotification";
 import KeyboardShortcuts from "./components/KeyboardShortcuts";
+import { SnackbarProvider } from "./components/Snackbar";
+import { ThemeCustomizer } from "./components/ThemeCustomizer";
 
 const inter = Inter({ subsets: ["latin"], display: 'swap' });
 
@@ -28,8 +30,8 @@ export default function RootLayout({
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
         />
       </head>
-      <body className={`${inter.className}`} suppressHydrationWarning>
-        <div className="h-screen w-screen flex flex-col bg-white overflow-x-hidden">
+      <body className={`${inter.className} bg-theme text-theme`} suppressHydrationWarning>
+        <div className="h-screen w-screen flex flex-col bg-theme text-theme overflow-x-hidden">
           {/* Header */}
           <header className="bg-[#204da5] text-white">
             <div className="container mx-auto px-4">
@@ -55,21 +57,21 @@ export default function RootLayout({
               </div>
             </div>
           </header>
-
-          <SoundEffectsProvider>
-            <SoundNotification />
-            <KeyboardShortcuts />
-            
-            {/* Main content */}
-            <main className="flex-1">
-              {children}
-            </main>
-
-            {/* Sound controls */}
-            <div className="fixed right-4 bottom-4 flex flex-col gap-3 z-50">
-              <SoundToggle />
-            </div>
-          </SoundEffectsProvider>
+          <SnackbarProvider>
+            <SoundEffectsProvider>
+              <SoundNotification />
+              <KeyboardShortcuts />
+              {/* Main content */}
+              <main className="flex-1">
+                {children}
+              </main>
+              {/* Controles fixos */}
+              <div className="fixed left-4 bottom-4 flex flex-col gap-3 z-50">
+                <ThemeCustomizer />
+                <SoundToggle />
+              </div>
+            </SoundEffectsProvider>
+          </SnackbarProvider>
         </div>
       </body>
     </html>

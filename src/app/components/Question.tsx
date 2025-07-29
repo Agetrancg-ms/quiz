@@ -163,16 +163,15 @@ export default function Question({
       {/* Content */}
       <div className="relative z-10 w-full max-w-4xl -mt-12 px-8">
         {/* Progress indicator */}
-        <div className="text-center mb-4 text-white text-lg font-semibold">
+        <div className="text-center mb-4 text-button text-lg font-semibold">
           Questão {currentQuestionNumber} de {totalQuestions}
         </div>
-
         <div className="w-full">
           {/* Question Box with Mascot */}
           <div className="relative">
             {/* Question Box */}
-            <div className="relative bg-[#F1C307] rounded-2xl shadow-xl p-6 mb-8 pr-40">
-              <h3 className="text-2xl font-bold text-black">
+            <div className="relative bg-highlight rounded-2xl shadow-xl p-6 mb-8 pr-40">
+              <h3 className="text-2xl font-bold text-card">
                 {question.text}
               </h3>
               {/* Mascot */}
@@ -187,15 +186,13 @@ export default function Question({
                 />
               </div>
             </div>
-
             {/* Options Container */}
-            <div className="bg-white rounded-2xl shadow-xl p-6 bg-opacity-95">
-              <div className="space-y-4">
+            <div className="bg-card text-card rounded-2xl shadow-xl p-6 bg-opacity-95">
+              <div className="space-y-4" role="radiogroup" aria-label="Opções da questão">
                 {question.options.map((option, index) => {
                   const isSelected = selected === index
                   const isCorrect = confirmed && index === question.correctOption
                   const isWrong = confirmed && isSelected && index !== question.correctOption
-
                   return (
                     <button
                       key={index}
@@ -206,19 +203,22 @@ export default function Question({
                       }}
                       onClick={() => !confirmed && setSelected(index)}
                       disabled={confirmed}
-                      className={`w-full text-left p-4 rounded-xl cursor-pointer
-                        ${isSelected ? 'ring-2 ring-[#007aff]' : 'hover:bg-gray-50'}
+                      role="radio"
+                      aria-checked={isSelected}
+                      aria-label={`Alternativa ${String.fromCharCode(65 + index)}: ${option}`}
+                      className={`w-full text-left p-4 rounded-xl cursor-pointer 
+                        ${isSelected ? 'ring-2 ring-[#007aff]' : 'hover:bg-input'}
                         ${isCorrect ? 'bg-green-100 text-green-800' : ''}
-                        ${isWrong ? 'bg-red-100 text-red-800' : ''}
-                        ${!confirmed && !isSelected ? 'hover:border-[#F1C307] border-2 border-transparent' : ''}
+                        ${isWrong ? 'bg-error text-error' : ''}
+                        ${!confirmed && !isSelected ? 'hover:border-highlight border-2 border-transparent' : ''}
                         ${confirmed ? 'cursor-pointer' : ''}
                       `}
                     >
                       <span className="inline-flex items-center">
                         <span className={`w-8 h-8 flex items-center justify-center rounded-full mr-3 aspect-square flex-shrink-0
-                          ${isSelected ? 'bg-[#007aff] text-white' : 'bg-[#F1C307]'}
+                          ${isSelected ? 'bg-[#007aff] text-white' : 'bg-highlight'}
                           ${isCorrect ? 'bg-green-500 text-white' : ''}
-                          ${isWrong ? 'bg-red-500 text-white' : ''}
+                          ${isWrong ? 'wrong-circle' : ''}
                         `}>
                           {String.fromCharCode(65 + index)}
                         </span>
@@ -228,26 +228,25 @@ export default function Question({
                   )
                 })}
               </div>
-
               {/*{showExplanation && question.explanation && (
-                <div className="bg-[#F1C307] bg-opacity-10 border-l-4 border-[#D6A103] p-4 rounded-r-lg mt-6">
-                  <p className="text-[#204da5]">{question.explanation}</p>
+                <div className="bg-highlight bg-opacity-10 border-l-4 border-highlight p-4 rounded-r-lg mt-6" aria-live="polite" role="status">
+                  <p className="text-card">{question.explanation}</p>
                 </div>
-              )}*/}
-
+              )}
               <button
                 onClick={handleConfirm}
                 disabled={selected === null || confirmed}
+                aria-disabled={selected === null || confirmed}
                 className={`w-full p-4 rounded-xl font-semibold mt-6
                   ${confirmed 
-                    ? 'bg-gray-200 text-gray-500 cursor-pointer' 
+                    ? 'bg-input text-input cursor-pointer' 
                     : selected === null
-                      ? 'bg-gray-200 text-gray-500 cursor-pointer'
-                      : 'bg-[#007aff] text-white hover:bg-[#204da5] cursor-pointer'}
+                      ? 'bg-button text-button cursor-pointer'
+                      : 'bg-button text-button hover:opacity-90 cursor-pointer'}
                 `}
               >
                 {isProcessing ? 'Confirmando...' : 'Confirmar'}
-              </button>
+              </button>*/}
             </div>
           </div>
         </div>

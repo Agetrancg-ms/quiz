@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import { UserData } from '@/types/quiz';
 
 interface UserFormProps {
-  onSubmit: (userData: any) => void;
+  onSubmit: (userData: UserData) => void;
 }
 
 export function UserForm({ onSubmit }: UserFormProps) {
@@ -9,7 +10,7 @@ export function UserForm({ onSubmit }: UserFormProps) {
     name: '',
     bairro: '',
     idade: '',
-    cpf: '',  // Added CPF field
+    cpf: '',
     sexo: '',
     cnh: [] as string[],
     conducao: [] as string[],
@@ -45,10 +46,10 @@ export function UserForm({ onSubmit }: UserFormProps) {
       return;
     }
 
-    if (!userData.cpf.trim()) {
+    /*if (!userData.cpf.trim()) {
       setError('CPF é obrigatório');
       return;
-    }
+    }*/
 
     if (!userData.aceiteTermo) {
       setError('É necessário aceitar os termos de uso dos dados');
@@ -59,26 +60,26 @@ export function UserForm({ onSubmit }: UserFormProps) {
   };
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">Identificação</h2>
+    <div className="bg-card text-card p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
+      <h2 className="text-2xl font-bold text-theme mb-6">Identificação</h2>
       
       {error && (
-        <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg">
+        <div className="mb-4 p-3 bg-error text-error rounded-lg" aria-live="polite" role="alert">
           {error}
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-6" role="form">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="name" className="block text-sm font-medium text-theme mb-1">
               Nome Completo
             </label>
             <input
               type="text"
               id="name"
               required
-              className="w-full p-2 border border-gray-300 rounded-md"
+              className="w-full p-2 border border-theme rounded-md bg-input text-input"
               value={userData.name}
               onChange={e => setUserData(prev => ({ ...prev, name: e.target.value }))}
               placeholder="Digite seu nome completo"
@@ -86,14 +87,14 @@ export function UserForm({ onSubmit }: UserFormProps) {
           </div>
 
           <div>
-            <label htmlFor="bairro" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="bairro" className="block text-sm font-medium text-theme mb-1">
               Bairro
             </label>
             <input
               type="text"
               id="bairro"
               required
-              className="w-full p-2 border border-gray-300 rounded-md"
+              className="w-full p-2 border border-theme rounded-md bg-input text-input"
               value={userData.bairro}
               onChange={e => setUserData(prev => ({ ...prev, bairro: e.target.value }))}
               placeholder="Digite seu bairro"
@@ -101,14 +102,14 @@ export function UserForm({ onSubmit }: UserFormProps) {
           </div>
 
           <div>
-            <label htmlFor="idade" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="idade" className="block text-sm font-medium text-theme mb-1">
               Idade
             </label>
             <input
               type="number"
               id="idade"
               required
-              className="w-full p-2 border border-gray-300 rounded-md"
+              className="w-full p-2 border border-theme rounded-md bg-input text-input"
               value={userData.idade}
               onChange={e => setUserData(prev => ({ ...prev, idade: e.target.value }))}
               placeholder="Digite sua idade"
@@ -116,14 +117,14 @@ export function UserForm({ onSubmit }: UserFormProps) {
           </div>
 
           <div>
-            <label htmlFor="cpf" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="cpf" className="block text-sm font-medium text-theme mb-1">
               CPF
             </label>
             <input
               type="text"
               id="cpf"
-              required
-              className="w-full p-2 border border-gray-300 rounded-md"
+              //required
+              className="w-full p-2 border border-theme rounded-md bg-input text-input"
               value={userData.cpf}
               onChange={e => setUserData(prev => ({ ...prev, cpf: e.target.value }))}
               placeholder="Digite seu CPF"
@@ -134,7 +135,7 @@ export function UserForm({ onSubmit }: UserFormProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-6">
             <div>
-              <label htmlFor="sexo" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="sexo" className="block text-sm font-medium text-theme mb-1">
                 Sexo
               </label>
               <div className="mt-1 space-x-6">
@@ -149,7 +150,7 @@ export function UserForm({ onSubmit }: UserFormProps) {
                     onChange={e => setUserData(prev => ({ ...prev, sexo: e.target.value }))}
                     className="form-radio text-blue-600"
                   />
-                  <span className="ml-2">Masculino</span>
+                  <span className="ml-2 text-theme">Masculino</span>
                 </label>
                 <label className="inline-flex items-center">
                   <input
@@ -161,13 +162,13 @@ export function UserForm({ onSubmit }: UserFormProps) {
                     onChange={e => setUserData(prev => ({ ...prev, sexo: e.target.value }))}
                     className="form-radio text-blue-600"
                   />
-                  <span className="ml-2">Feminino</span>
+                  <span className="ml-2 text-theme">Feminino</span>
                 </label>
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-theme mb-2">
                 CNH (Se possuir)
               </label>
               <div className="flex flex-wrap gap-4">
@@ -180,7 +181,7 @@ export function UserForm({ onSubmit }: UserFormProps) {
                       onChange={() => handleCNHChange(category)}
                       className="form-checkbox text-blue-600"
                     />
-                    <span className="ml-2">{category}</span>
+                    <span className="ml-2 text-theme">{category}</span>
                   </label>
                 ))}
               </div>
@@ -188,7 +189,7 @@ export function UserForm({ onSubmit }: UserFormProps) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-theme mb-2">
               Modo de condução
             </label>
             <div className="flex flex-wrap gap-3">
@@ -201,18 +202,18 @@ export function UserForm({ onSubmit }: UserFormProps) {
                     onChange={() => handleConducaoChange(tipo)}
                     className="form-checkbox text-blue-600"
                   />
-                  <span className="ml-2">{tipo}</span>
+                  <span className="ml-2 text-theme">{tipo}</span>
                 </label>
               ))}
             </div>
             <div className="mt-2">
-              <label htmlFor="outros" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="outros" className="block text-sm font-medium text-theme">
                 Outros meios de transporte
               </label>
               <input
                 type="text"
                 id="outros"
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full p-2 border border-theme rounded-md bg-input text-input"
                 value={userData.outrosConducao}
                 onChange={e => setUserData(prev => ({ ...prev, outrosConducao: e.target.value }))}
                 placeholder="Digite outros meios de transporte"
@@ -221,8 +222,8 @@ export function UserForm({ onSubmit }: UserFormProps) {
           </div>
         </div>
 
-        <div className="border-t-2 border-gray-200 pt-6 mt-6">
-          <div className="mb-4 p-4 bg-gray-50 rounded-lg text-sm text-gray-600">
+        <div className="border-t-2 border-theme pt-6 mt-6">
+          <div className="mb-4 p-4 bg-highlight rounded-lg text-sm text-card">
             Seus dados serão utilizados apenas para fins estatísticos e de pesquisa sobre mobilidade urbana, 
             sem divulgação de informações pessoais. Os resultados auxiliarão no planejamento de políticas 
             públicas de trânsito e transporte.
@@ -233,9 +234,9 @@ export function UserForm({ onSubmit }: UserFormProps) {
               id="aceiteTermo"
               checked={userData.aceiteTermo}
               onChange={e => setUserData(prev => ({ ...prev, aceiteTermo: e.target.checked }))}
-              className="mt-0.5 h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
+              className="mt-0.5 h-5 w-5 rounded border-theme text-blue-600 focus:ring-blue-500 cursor-pointer"
             />
-            <span className="text-base text-gray-700 group-hover:text-gray-900">
+            <span className="text-base text-card group-hover:text-theme">
               Concordo com o uso dos meus dados para fins de pesquisa e planejamento urbano
             </span>
           </label>
@@ -244,7 +245,7 @@ export function UserForm({ onSubmit }: UserFormProps) {
         <div className="pt-4">
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 
+            className="w-full bg-button text-button py-3 px-4 rounded-md hover:opacity-90 
               transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 cursor-pointer text-lg"
           >
             Começar Quiz

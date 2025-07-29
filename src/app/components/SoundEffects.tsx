@@ -18,30 +18,24 @@ export function SoundEffectsProvider({ children }: { children: React.ReactNode }
   const [sounds, setSounds] = useState<{[key: string]: HTMLAudioElement}>({})
 
   useEffect(() => {
-    // Load sound effects
+    // Carrega efeitos sonoros
     const soundEffects = {
       correct: new Audio('/sounds/correct.mp3'),
       incorrect: new Audio('/sounds/incorrect.mp3'),
       click: new Audio('/sounds/click.mp3'),
       success: new Audio('/sounds/success.mp3')
     }
-
-    // Configure sounds
     Object.values(soundEffects).forEach(sound => {
       sound.volume = 0.5
       sound.preload = 'auto'
     })
-
     setSounds(soundEffects)
-
-    // Load sound preference from localStorage
+    // Carrega preferência de som do localStorage
     const soundEnabled = localStorage.getItem('soundEnabled')
     if (soundEnabled !== null) {
       setIsSoundEnabled(soundEnabled === 'true')
     }
-
     return () => {
-      // Cleanup audio objects
       Object.values(soundEffects).forEach(sound => {
         sound.pause()
         sound.currentTime = 0
@@ -52,9 +46,7 @@ export function SoundEffectsProvider({ children }: { children: React.ReactNode }
   const playSound = (soundName: string) => {
     if (isSoundEnabled && sounds[soundName]) {
       sounds[soundName].currentTime = 0
-      sounds[soundName].play().catch(error => {
-        console.error('Error playing sound:', error)
-      })
+      sounds[soundName].play().catch(() => {}) // Silencia erros de reprodução
     }
   }
 
@@ -83,7 +75,7 @@ export function SoundEffectsProvider({ children }: { children: React.ReactNode }
 export function useSoundEffects() {
   const context = useContext(SoundEffectsContext)
   if (context === undefined) {
-    throw new Error('useSoundEffects must be used within a SoundEffectsProvider')
+    throw new Error('useSoundEffects deve ser usado dentro de SoundEffectsProvider')
   }
   return context
 }

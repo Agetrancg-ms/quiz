@@ -5,6 +5,10 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  safelist: [
+    'theme-default', 'theme-high-contrast', 'theme-calm', 'theme-dark',
+    'text-normal', 'text-large', 'text-extra-large'
+  ],
   theme: {
     fontFamily: {
       sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
@@ -15,6 +19,11 @@ module.exports = {
       },
       animation: {
         'bounce-slow': 'bounce 2s infinite',
+      },
+      fontSize: {
+        'normal': '1rem',
+        'large': '1.25rem',
+        'extra-large': '1.5rem',
       },
     },
   },
