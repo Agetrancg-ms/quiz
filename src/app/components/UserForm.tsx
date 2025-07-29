@@ -46,6 +46,12 @@ export function UserForm({ onSubmit }: UserFormProps) {
       return;
     }
 
+    const idadeNum = Number(userData.idade);
+    if (isNaN(idadeNum) || idadeNum < 3 || idadeNum > 120) {
+      setError('A idade deve ser um número entre 3 e 120');
+      return;
+    }
+
     /*if (!userData.cpf.trim()) {
       setError('CPF é obrigatório');
       return;
@@ -58,6 +64,16 @@ export function UserForm({ onSubmit }: UserFormProps) {
     
     onSubmit(userData);
   };
+
+  // Função utilitária para formatar CPF
+  function formatCPF(value: string) {
+    return value
+      .replace(/\D/g, '')
+      .slice(0, 11)
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+  }
 
   return (
     <div className="bg-card text-card p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
@@ -111,6 +127,8 @@ export function UserForm({ onSubmit }: UserFormProps) {
               required
               className="w-full p-2 border border-theme rounded-md bg-input text-input"
               value={userData.idade}
+              min={3}
+              max={120}
               onChange={e => setUserData(prev => ({ ...prev, idade: e.target.value }))}
               placeholder="Digite sua idade"
             />
@@ -126,8 +144,13 @@ export function UserForm({ onSubmit }: UserFormProps) {
               //required
               className="w-full p-2 border border-theme rounded-md bg-input text-input"
               value={userData.cpf}
-              onChange={e => setUserData(prev => ({ ...prev, cpf: e.target.value }))}
+              onChange={e => {
+                const formatted = formatCPF(e.target.value);
+                setUserData(prev => ({ ...prev, cpf: formatted }));
+              }}
               placeholder="Digite seu CPF"
+              autoComplete="off"
+              inputMode="none"
             />
           </div>
         </div>
@@ -163,6 +186,18 @@ export function UserForm({ onSubmit }: UserFormProps) {
                     className="form-radio text-blue-600"
                   />
                   <span className="ml-2 text-theme">Feminino</span>
+                </label>            
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    id="sexoN"
+                    name="sexo"
+                    value="N"
+                    checked={userData.sexo === 'N'}
+                    onChange={e => setUserData(prev => ({ ...prev, sexo: e.target.value }))}
+                    className="form-radio text-blue-600"
+                  />
+                  <span className="ml-2 text-theme">Não informar</span>
                 </label>
               </div>
             </div>
@@ -223,7 +258,7 @@ export function UserForm({ onSubmit }: UserFormProps) {
         </div>
 
         <div className="border-t-2 border-theme pt-6 mt-6">
-          <div className="mb-4 p-4 bg-highlight rounded-lg text-sm text-card">
+          <div className="mb-4 p-4 bg-highlight rounded-lg text-sm text-button">
             Seus dados serão utilizados apenas para fins estatísticos e de pesquisa sobre mobilidade urbana, 
             sem divulgação de informações pessoais. Os resultados auxiliarão no planejamento de políticas 
             públicas de trânsito e transporte.
