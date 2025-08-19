@@ -8,7 +8,6 @@ interface Question {
 }
 
 export const questions: Question[] = [
-  // 1
   {
     text: "Qual a cor do semáforo que indica 'pare'?",
     options: ["Vermelho", "Verde", "Amarelo", "Azul"],
@@ -17,7 +16,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "O semáforo vermelho é o sinal universal que obriga todos os veículos a parar (CTB Art. 89, CTB Anexo II). Conforme o Código de Trânsito Brasileiro, a luz vermelha indica 'parada obrigatória'."
   },
-  // 2
   {
     text: "O que significa uma placa de trânsito circular com borda vermelha?",
     options: ["Advertência", "Indicação", "Serviço", "Regulamentação"],
@@ -26,7 +24,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Conforme o Manual Brasileiro de Sinalização de Trânsito Vol. I (Res. CONTRAN 180/2005), placas circulares com borda vermelha são de regulamentação, indicando obrigações, limitações, proibições ou restrições."
   },
-  // 3
   {
     text: "O que fazer ao avistar um pedestre na faixa?",
     options: [
@@ -40,7 +37,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "De acordo com o CTB Art. 214, não dar preferência de passagem a pedestre na faixa a ele destinada é infração gravíssima. O condutor deve reduzir a velocidade e parar o veículo para permitir a travessia segura."
   },
-  // 4
   {
     text: "Qual é a cor da faixa de pedestres?",
     options: ["Amarela", "Vermelha", "Azul", "Branca"],
@@ -49,7 +45,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Segundo o Manual Brasileiro de Sinalização Horizontal (Res. CONTRAN 236/2007), as faixas de pedestres são demarcadas em branco para garantir contraste e máxima visibilidade."
   },
-  // 5
   {
     text: "Qual é o número de emergência da Polícia Rodoviária Federal?",
     options: ["192", "191", "190", "193"],
@@ -58,7 +53,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "O telefone 191 é o canal direto para acionar a PRF em rodovias federais."
   },
-  // 6
   {
     text: "O que significa a luz amarela do semáforo?",
     options: [
@@ -72,7 +66,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "A luz amarela avisa que o sinal vai fechar, orientando a reduzir e parar com segurança (CTB Art. 29, §1º)."
   },
-  // 7
   {
     text: "Em que lado da via se deve dirigir no Brasil?",
     options: ["Qualquer lado", "Direito", "Esquerdo", "Centro"],
@@ -81,7 +74,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "No Brasil, circula-se pelo lado direito da via, conforme as normas de trânsito (CTB Art. 29, I)."
   },
-  // 8
   {
     text: "O que significa uma placa triangular amarela?",
     options: ["Indicação", "Advertência", "Regulamentação", "Serviço"],
@@ -90,7 +82,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Placas triangulares amarelas são de advertência, alertando para situações de perigo (CTB Anexo I)."
   },
-  // 9
   {
     text: "Qual a idade mínima para obter a CNH categoria B?",
     options: ["16 anos", "21 anos", "18 anos", "20 anos"],
@@ -99,7 +90,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "É preciso ter, no mínimo, 18 anos para requerer a CNH de categoria B (CTB Art. 140, I)."
   },
-  // 10
   {
     text: "O que fazer ao ver uma ambulância com sirene ligada?",
     options: ["Parar", "Dar passagem", "Seguir a ambulância", "Acelerar"],
@@ -108,7 +98,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Ao ouvir sirene, o veículo deve dar passagem, desviando com segurança (CTB Art. 29, VII)."
   },
-  // 11
   {
     text: "Qual é a validade da CNH para motoristas até 50 anos?",
     options: ["5 anos", "10 anos", "3 anos", "1 ano"],
@@ -117,7 +106,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Para condutores até 50 anos, a CNH vale por 10 anos antes da renovação (CTB Art. 147, I)."
   },
-  // 12
   {
     text: "Qual é a distância segura do ciclista ao ultrapassar?",
     options: ["0,5 metro", "1,5 metros", "2 metros", "1 metro"],
@@ -126,7 +114,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "O CTB exige 1,5 m de separação lateral ao ultrapassar um ciclista, garantindo sua segurança (CTB Art. 201, parágrafo único)."
   },
-  // 13
   {
     text: "O que significa piscar o pisca-alerta?",
     options: ["Festa", "Chegada", "Emergência/perigo", "Ultrapassagem"],
@@ -135,7 +122,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Piscar o pisca-alerta sinaliza situação de emergência ou perigo no veículo (CTB Art. 40, §2º)."
   },
-  // 14
   {
     text: "O que significa placa com fundo azul?",
     options: ["Serviços auxiliares", "Advertência", "Regulamentação", "Indicação"],
@@ -144,7 +130,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "Placas azuis indicam serviços e facilidades para o usuário da via (CTB Anexo I)."
   },
-  // 15
   {
     text: "O que significa uma faixa contínua amarela?",
     options: [
@@ -158,7 +143,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "Faixa amarela contínua inibe ultrapassagens, mantendo a segurança do tráfego (CTB Art. 29, §1º)."
   },
-  // 16
   {
     text: "O que significa uma placa circular vermelha com desenho de bicicleta?",
     options: [
@@ -172,7 +156,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Esse símbolo delimita espaço exclusivo para ciclistas, separando-os do tráfego motorizado (CTB Art. 58)."
   },
-  // 17
   {
     text: "Qual a cor das placas de advertência?",
     options: ["Amarela", "Azul", "Branca", "Verde"],
@@ -181,7 +164,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Placas de advertência têm fundo amarelo para chamar atenção a riscos adiante (CTB Anexo I)."
   },
-  // 18
   {
     text: "O cinto de segurança é obrigatório para:",
     options: [
@@ -195,7 +177,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "O CTB obriga o uso do cinto por todos os ocupantes, reforçando a segurança em colisões (CTB Art. 65)."
   },
-  // 19
   {
     text: "É permitido estacionar em calçada?",
     options: ["Não", "Sim se breve", "Sim se vazio", "Sim à noite"],
@@ -204,7 +185,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Estacionar em calçada é infração: a área deve ficar livre para pedestres (CTB Art. 181, V)."
   },
-  // 20
   {
     text: "O que indica uma placa retangular, com fundo amarelo e desenho de crianças atravessando uma faixa de pedestres?",
     options: [
@@ -218,7 +198,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Essa placa avisa proximidade de escola e alerta para redução de velocidade e atenção redobrada (CTB Art. 61)."
   },
-  // 21
   {
     text: "Quando o semáforo está verde, o que fazer?",
     options: ["Prosseguir com atenção", "Parar", "Acelerar ao máximo", "Buzinar"],
@@ -227,7 +206,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Sinal verde autoriza prosseguir, mas sempre com atenção ao tráfego e pedestres (CTB Art. 29, I)."
   },
-  // 22
   {
     text: "Qual o objetivo do triângulo de sinalização?",
     options: ["Avisar emergência", "Iluminar a via", "Indicar velocidade", "Apontar sentido"],
@@ -236,7 +214,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "O triângulo é o dispositivo obrigatório para sinalizar veículo parado em emergência (CTB Art. 40, §2º)."
   },
-  // 23
   {
     text: "O que é faixa de retenção?",
     options: [
@@ -250,7 +227,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Faixa de retenção marca onde o veículo deve parar antes de uma faixa de pedestres ou sinal (CTB Art. 89)."
   },
-  // 24
   {
     text: "Qual a função do farol alto?",
     options: [
@@ -264,7 +240,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Farol alto amplia o alcance da iluminação em vias sem iluminação pública (CTB Art. 40, §3º)."
   },
-  // 25
   {
     text: "Pode ultrapassar pelo acostamento?",
     options: ["Não", "Sim em emergência", "Sim com motocicleta", "Sim em dia de chuva"],
@@ -273,7 +248,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Acostamento não é via de ultrapassagem, exceto em casos de emergência devidamente sinalizados (CTB Art. 29, §3º)."
   },
-  // 26
   {
     text: "Qual o significado do sinal vermelho intermitente?",
     options: [
@@ -287,7 +261,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Sinal vermelho intermitente funciona como placa de Pare: parar e só seguir quando seguro (CTB Art. 29, §3º)."
   },
-  // 27
   {
     text: "O que fazer diante de lombada sem sinalização?",
     options: ["Reduzir velocidade", "Ignorar", "Ultrapassar", "Acelerar"],
@@ -296,7 +269,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "Sem sinalização, lombadas devem ser enfrentadas com redução de velocidade para segurança (CTB Art. 44)."
   },
-  // 28
   {
     text: "Qual a cor da placa de rota turística?",
     options: ["Marrom", "Azul", "Verde", "Amarela"],
@@ -305,7 +277,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "Placas marrons identificam rotas e pontos de interesse turístico (CTB Anexo I)."
   },
-  // 29
   {
     text: "O que indica faixa de pedestre elevada?",
     options: [
@@ -319,7 +290,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Faixa elevada (lombofaixa) serve como lombada para reduzir velocidade e proteger pedestres (CTB Art. 61, §2º)."
   },
-  // 30
   {
     text: "O espelho retrovisor permite:",
     options: [
@@ -333,7 +303,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Retrovisores permitem ver o que acontece atrás sem girar a cabeça, aumentando a segurança (CTB Art. 105, IV)."
   },
-  // 31
   {
     text: "Quando você deve usar farol baixo:",
     options: [
@@ -347,7 +316,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Farol baixo não ofusca e é obrigatório à noite em via urbana (CTB Art. 40, §3º)."
   },
-  // 32
   {
     text: "Placa “Dê preferência” tem formato:",
     options: ["Triângulo invertido", "Circular", "Quadrada", "Retangular"],
@@ -356,7 +324,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Placas de preferência são triângulos invertidos, sinalizando que você deve ceder passagem (CTB Anexo I)."
   },
-  // 33
   {
     text: "Qual a função do sinal sonoro ao dar ré?",
     options: [
@@ -370,7 +337,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "O som da ré alerta pedestres e veículos próximos de que o carro está recuando (CTB Art. 105, VI)."
   },
-  // 34
   {
     text: "Qual a cor da placa de rodovia federal?",
     options: ["Verde", "Azul", "Marrom", "Amarela"],
@@ -379,7 +345,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "Placas verdes são usadas em rodovias federais para indicar direções (CTB Anexo I)."
   },
-  // 35
   {
     text: "O que indica uma faixa amarela contínua no meio da via?",
     options: [
@@ -393,7 +358,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Faixa amarela contínua proíbe ultrapassagens, sinalizando via de mão dupla segura (CTB Art. 29, §1º)."
   },
-  // 36
   {
     text: "Qual equipamento acionar em emergência?",
     options: ["Pisca-alerta", "Farol alto", "Buzina", "Farol de neblina"],
@@ -402,7 +366,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "O pisca-alerta é o dispositivo de emergência para sinalizar veículo parado ou pane (CTB Art. 40, §2º)."
   },
-  // 37
   {
     text: "Qual função do retrovisor interno?",
     options: [
@@ -416,7 +379,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "O retrovisor interno permite monitorar o tráfego atrás sem virar a cabeça (CTB Art. 105, IV)."
   },
-  // 38
   {
     text: "O que significa placa com símbolo de hospital?",
     options: [
@@ -430,7 +392,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Placas com símbolo de hospital indicam proximidade de pronto-socorro ou atendimento médico (CTB Anexo I)."
   },
-  // 39
   {
     text: "Placa verde com nome de cidade é de:",
     options: [
@@ -444,7 +405,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Placas verdes com nomes de cidades orientam direções e distâncias (CTB Anexo I)."
   },
-  // 40
   {
     text: "O que significa faixa zebrada?",
     options: [
@@ -458,7 +418,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "Faixa zebrada demarca área proibida ao tráfego, usada em entroncamentos e obstáculos (CTB Art. 90, §1º)."
   },
-  // 41
   {
     text: "Qual luz do farol usar na chuva?",
     options: ["Baixa", "Alta", "Neblina dianteira", "Neblina traseira"],
@@ -467,7 +426,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Farol baixo evita ofuscamento em chuvas; neblinas têm dispositivos específicos (CTB Art. 40, §3º)."
   },
-  // 42
   {
     text: "Qual equipamento obrigatório para criança?",
     options: [
@@ -481,7 +439,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Cadeirinha conforme a idade é obrigatória para proteger crianças em veículos (Resolução CONTRAN 819/21)."
   },
-  // 43
   {
     text: "Qual sinalização avisa lombada?",
     options: [
@@ -495,7 +452,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Placas de advertência com símbolo de lombada alertam para redução de velocidade (CTB Anexo I)."
   },
-  // 44
   {
     text: "Para que serve o triângulo de sinalizaçãol?",
     options: [
@@ -509,7 +465,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Triângulo de sinalização avisa que há veículo parado ou pane adiante em emergência (CTB Art. 40, §2º)."
   },
-  // 45
   {
     text: "Quando usar luz baixa durante o dia?",
     options: ["Em rodovias", "Sempre em túneis", "Nunca durante o dia", "Em vias urbanas iluminadas"],
@@ -518,7 +473,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Farol baixo diurno é obrigatório em rodovias para maior visibilidade (Resolução CONTRAN 816/21)."
   },
-  // 46
   {
     text: "Qual documento comprova a propriedade do veículo?",
     options: [
@@ -532,7 +486,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "O CRV é o documento que comprova a propriedade; o CRLV comprova licenciamento (CTB Art. 120)."
   },
-  // 47
   {
     text: "Qual a validade do licenciamento anual?",
     options: [
@@ -546,7 +499,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "O licenciamento vence em 31 de janeiro do ano seguinte ao exercício (CTB Art. 131)."
   },
-  // 49
   {
     text: "O que fazer ao ouvir sirene de veículo de emergência?",
     options: [
@@ -560,7 +512,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Sinal sonoro de emergência exige liberar passagem, deslocando-se à direita (CTB Art. 29, VII)."
   },
-  // 50
   {
     text: "Qual a idade mínima para usar capacete em moto?",
     options: [
@@ -574,7 +525,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "O uso do capacete é obrigatório para todos os motociclistas, sem exceção de idade (CTB Art. 244)."
   },
-  // 51
   {
     text: "O que indica uma linha amarela contínua dupla?",
     options: [
@@ -588,7 +538,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Faixa amarela dupla contínua indica proibição de ultrapassagem nos dois sentidos (CTB Art. 29, §1º)."
   },
-  // 52
   {
     text: "Qual equipamento acionar em situação de emergência?",
     options: ["Pisca‑alerta", "Farol alto", "Buzina", "Farol de neblina"],
@@ -597,7 +546,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "O pisca‑alerta deve ser acionado em caso de pane ou emergência (CTB Art. 40, §2º)."
   },
-  // 53
   {
     text: "O que você deve fazer ao ver placa “Proibido Estacionar”?",
     options: [
@@ -611,7 +559,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Placa R‑6 proíbe qualquer estacionamento no local indicado (CTB Art. 88)."
   },
-  // 54
   {
     text: "Placa “Velocidade mínima” indica:",
     options: [
@@ -625,7 +572,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Placa R‑3 obriga veículos a manter pelo menos a velocidade indicada (CTB Art. 87)."
   },
-  // 55
   {
     text: "O que significa a placa ‘Pare’?",
     options: [
@@ -639,7 +585,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Placa R‑1 exige parada total antes de prosseguir (CTB Art. 87, I)."
   },
-  // 56
   {
     text: "O que significa uma placa com fundo vermelho e símbolo de caminhão?",
     options: [
@@ -653,7 +598,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
   explanation: "A placa R-39 indica 'Circulação exclusiva de caminhões'. Segundo o Anexo II da Resolução CONTRAN nº 160/2004 (atualizado pelas Resoluções posteriores), placas de regulamentação circulares com fundo branco e borda vermelha, contendo apenas o pictograma do veículo, indicam obrigatoriedade ou exclusividade. Nesse caso, somente caminhões podem circular pela via sinalizada com essa placa."
   },
-  // 57
   {
     text: "O que fazer ao se aproximar de um cruzamento sem sinalização?",
     options: [
@@ -667,7 +611,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "Em cruzamento não sinalizado, cede‑se passagem ao que vem pela direita (CTB Art. 29, III)."
   },
-  // 58
   {
     text: "Quando deve‑se usar o cinto de segurança?",
     options: [
@@ -681,7 +624,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "É obrigatório o uso do cinto por todos os ocupantes em movimento (CTB Art. 65)."
   },
-  // 59
   {
     text: "Qual documento comprova a habilitação para dirigir?",
     options: [
@@ -695,7 +637,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Somente a CNH é o documento legal que autoriza a condução (CTB Art. 159)."
   },
-  // 60
   {
     text: "Qual é a cor das placas que indicam serviços auxiliares, como hospitais, restaurantes e postos de combustível?",
     options: ["Azul", "Vermelha", "Marrom", "Verde"],
@@ -704,7 +645,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "Placas com fundo azul são utilizadas para indicar serviços auxiliares (CTB Anexo II, placas de indicação)."
   },
-  // 61
   {
     text: "Quando o semáforo está amarelo, o que o motorista deve fazer?",
     options: [
@@ -718,7 +658,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Amarelo indica atenção e preparação para parada, sem avanço imprudente (CTB Art. 29, §1º)."
   },
-  // 62
   {
     text: "Qual a distância mínima que o motorista deve manter ao estacionar próximo à guia da calçada?",
     options: ["30 centímetros", "10 centímetros", "50 centímetros", "1 metro"],
@@ -727,7 +666,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "Deve‑se parar a até 50 cm da guia, conforme regulamentação do CONTRAN (Resolução CONTRAN 303/2008)."
   },
-  // 63
   {
     text: "Ao se aproximar de um cruzamento com semáforo apagado, o que o motorista deve fazer?",
     options: [
@@ -741,7 +679,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "Sem sinalização, trata‑se como Pare: parar antes de prosseguir (CTB Art. 29, §3º)."
   },
-  // 65
   {
     text: "Qual a cor da placa que indica uma área escolar?",
     options: ["Amarela", "Vermelha", "Azul", "Verde"],
@@ -750,7 +687,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "Placas de advertência escolares são amarelas, alertando presença de crianças (CTB Anexo I)."
   },
-  // 66
   {
     text: "O que fazer ao avistar um sinal de trânsito com luz vermelha?",
     options: ["Parar completamente", "Reduzir a velocidade", "Acelerar para passar", "Ignorar"],
@@ -759,7 +695,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Luz vermelha obriga parada total antes da linha de retenção (CTB Art. 29, I)."
   },
-  // 67
   {
     text: "Qual a idade mínima para conduzir motocicleta?",
     options: [
@@ -773,7 +708,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "É necessário ter, no mínimo, 18 anos para conduzir motocicletas, conforme o CTB (CTB Art. 140, II)."
   },
-  // 68
   {
     text: "Quando o motorista deve dar preferência a pedestres?",
     options: [
@@ -787,7 +721,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Motoristas devem ceder passagem a pedestres na faixa, garantindo segurança (CTB Art. 214)."
   },
-  // 69
   {
     text: "Qual o objetivo da faixa amarela dupla contínua?",
     options: [
@@ -801,7 +734,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "Dual contínua amarela proíbe ultrapassagens em ambos sentidos (CTB Art. 29, §1º)."
   },
-  // 70
   {
     text: "Qual documento deve estar sempre no veículo?",
     options: [
@@ -815,7 +747,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "O CRLV comprova licenciamento e deve estar no veículo, conforme CTB Art. 133."
   },
-  // 72
   {
     text: "Qual a faixa que indica passagem exclusiva para ônibus?",
     options: [
@@ -829,7 +760,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "Faixa pintada de amarelo contínuo é reservada ao transporte coletivo (CTB Art. 94)."
   },
-  // 73
   {
     text: "O que significa a placa com símbolo de ciclista?",
     options: [
@@ -843,7 +773,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Indica ciclovia ou ciclofaixa, local reservado a ciclistas (CTB Art. 58)."
   },
-  // 74
   {
     text: "Quando o farol alto deve ser desligado?",
     options: [
@@ -857,7 +786,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Farol alto ofusca; deve ser desligado ao cruzar outros veículos (CTB Art. 40, §4º)."
   },
-  // 75
   {
     text: "Qual o procedimento correto ao estacionar?",
     options: [
@@ -871,7 +799,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Para segurança, estacionar usando freio de mão e desligar o motor (CTB Art. 40)."
   },
-  // 76
   {
     text: "O que indica uma placa de fundo amarelo com seta curva para esquerda?",
     options: [
@@ -885,7 +812,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Placas de advertência de curva sinalizam mudança de traçado à frente (CTB Anexo I)."
   },
-  // 77
   {
     text: "O que deve fazer o condutor ao avistar faixa de pedestre com pedestre esperando?",
     options: [
@@ -899,7 +825,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Pedestre esperando tem preferência; motorista deve parar e aguardar (CTB Art. 214)."
   },
-  // 78
   {
     text: "O que é considerado infração gravíssima?",
     options: [
@@ -913,7 +838,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "Dirigir sob efeito de álcool é infração gravíssima multiplicada por 10 (CTB Art. 165)."
   },
-  // 79
   {
     text: "Qual a distância mínima para usar farol de neblina dianteiro?",
     options: [
@@ -927,7 +851,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "Farol de neblina é permitido apenas em visibilidade reduzida por neblina ou chuva forte (CTB Art. 40, Anexo I)."
   },
-  // 81
   {
     text: "Qual o significado da placa R‑1 ‘Pare’?",
     options: [
@@ -941,7 +864,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "R‑1 exige parada total e obrigatória antes de seguir em frente (CTB Art. 87, I)."
   },
-  // 82
   {
     text: "Quando usar o farol de neblina traseiro?",
     options: [
@@ -955,7 +877,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "Farol traseiro de neblina só em baixa visibilidade (CTB Art. 40, Anexo I)."
   },
-  // 83
   {
     text: "O que é permitido na faixa de pedestres?",
     options: [
@@ -969,7 +890,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Faixa de pedestre é reservada única e exclusivamente ao atravessamento de pedestres (CTB Art. 214)."
   },
-  // 85
   {
     text: "Quando usar o farol alto?",
     options: [
@@ -983,7 +903,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Farol alto é indicado em rodovias sem iluminação para melhor visibilidade (CTB Art. 40, §3º)."
   },
-  // 86
   {
     text: "Qual o procedimento correto ao estacionar em uma rua com guia rebaixada?",
     options: [
@@ -997,7 +916,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "Em guias rebaixadas, estaciona‑se junto à guia para não obstruir o acesso (CTB Art. 40)."
   },
-  // 87
   {
     text: "O que deve fazer o motorista ao se aproximar de uma faixa de pedestres com pedestres esperando?",
     options: [
@@ -1011,7 +929,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Motorista deve parar e aguardar pedestres na faixa (CTB Art. 214)."
   },
-  // 88
   {
     text: "Qual a função do extintor de incêndio no veículo?",
     options: [
@@ -1025,7 +942,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Extintor serve para combater incêndios em veículos, conforme NR‑24 e CONTRAN (CTB Art. 105, IX)."
   },
-  // 89
   {
     text: "Quando o semáforo está vermelho intermitente, o que deve fazer o motorista?",
     options: [
@@ -1039,7 +955,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Vermelho intermitente funciona como placa de Pare — parar sempre (CTB Art. 29, §3º)."
   },
-  // 91
   {
     text: "Em rodovia, quando não há iluminação, qual farol usar?",
     options: [
@@ -1053,7 +968,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Em rodovias sem iluminação, farol alto aumenta a visibilidade (CTB Art. 40, §3º)."
   },
-  // 92
   {
     text: "Qual o tipo de placa que obriga parada antes do cruzamento?",
     options: [
@@ -1067,7 +981,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "R‑1 é a placa de Pare, exige parada total antes do cruzamento (CTB Art. 87, I)."
   },
-  // 94
   {
     text: "Qual documento comprova que o veículo está licenciado?",
     options: [
@@ -1081,7 +994,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "CRLV é comprovante de licenciamento anual obrigatório (CTB Art. 133)."
   },
-  // 95
   {
     text: "Ao perceber problemas na direção, o que o motorista deve fazer?",
     options: [
@@ -1095,7 +1007,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "Em pane na direção, parar em segurança e usar o triângulo de sinalização (CTB Art. 40)."
   },
-  // 96
   {
     text: "Qual sinalização de solo indica faixa de pedestres?",
     options: [
@@ -1109,7 +1020,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Faixa de pedestres é demarcada por linhas brancas largas paralelas no pavimento (CTB Art. 214)."
   },
-  // 97
   {
     text: "Onde o ciclista deve circular quando não houver ciclovia?",
     options: [
@@ -1123,7 +1033,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "Sem ciclovia, ciclistas devem usar acostamento ou borda direita da via (CTB Art. 58)."
   },
-  // 98
   {
     text: "É permitido pedalar duas pessoas em bicicleta comum?",
     options: [
@@ -1137,7 +1046,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Bicicleta comum é monolugar; transportar mais de um configura infração (CTB Art. 58, §1º)."
   },
-  // 99
   {
     text: "Qual a obrigatoriedade de campainha em bicicleta?",
     options: [
@@ -1151,7 +1059,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Campainha é equipamento de sinalização obrigatório (CTB Art. 105, VI)."
   },
-  // 100
   {
     text: "Como o pedestre deve atravessar em cruzamento sem semáforo?",
     options: [
@@ -1165,7 +1072,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Pedestre deve garantir segurança parando, observando fluxo e atravessando em linha reta (CTB Art. 70)."
   },
-  // 101
   {
     text: "Qual a cor do semáforo que indica 'siga com cautela' para pedestres?",
     options: ["Vermelha", "Amarela", "Verde", "Azul"],
@@ -1174,7 +1080,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "A luz amarela para pedestres indica que ainda há tempo, mas pede cautela, preparando‑se para parar (CTB Art. 70)."
   },
-  // 102
   {
     text: "O que deve fazer o motorista ao entrar em área escolar com faixa elevada?",
     options: [
@@ -1188,7 +1093,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Em zona escolar com faixa elevada, é obrigatório reduzir a velocidade e dar preferência ao pedestre (CTB Art. 61)."
   },
-  // 103
   {
     text: "Ciclista, ao sinalizar conversão à esquerda, deve:",
     options: [
@@ -1202,7 +1106,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "CTB Art. 58, §2º exige braço esquerdo estendido para sinalizar conversão à esquerda."
   },
-  // 104
   {
     text: "Motociclista, qual equipamento é obrigatório além do capacete?",
     options: [
@@ -1216,7 +1119,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "CTB Art. 244 exige uso de capacete com viseira ou óculos de proteção para motociclistas."
   },
-  // 105
   {
     text: "Pedestre, ao atravessar na faixa sem semáforo, deve:",
     options: [
@@ -1256,7 +1158,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "A placa R-6a, segundo o Anexo II do CTB, indica 'Proibido parar e estacionar'. Isso significa que o condutor não pode sequer parar o veículo no local, nem mesmo para embarque ou desembarque de passageiros."
   },  
-  // 107
   {
     text: "Qual a sinalização noturna traseira obrigatória para ciclistas?",
     options: [
@@ -1270,7 +1171,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "CTB Art. 105, I exige luz traseira vermelha ou refletor para ciclistas à noite."
   },
-  // 108
   {
     text: "Pedestre, em rua sem calçada, deve caminhar:",
     options: [
@@ -1284,7 +1184,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "CTB Art. 68 e Res. 619/16 recomendam pedestre à esquerda, de frente ao tráfego."
   },
-  // 109
   {
     text: "Motociclista, ao parar no semáforo, deve manter distância segura:",
     options: [
@@ -1298,7 +1197,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "Manter espaço de 50 cm a 1 m evita aquaplanagem de gases e garante segurança (CTB Art. 29)."
   },
-  // 110
   {
     text: "Motorista, a luz verde no semáforo indica:",
     options: [
@@ -1312,7 +1210,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "CTB Art. 29 define que verde libera passagem, mas com atenção ao entorno."
   },
-  // 111
   {
     text: "Ciclista, ao passar próximo a veículo estacionado, deve:",
     options: [
@@ -1326,7 +1223,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Manter distância previne acidentes com portas abertas (CTB Art. 201)."
   },
-  // 112
   {
     text: "Pedestre, se encontrar obras na calçada, deve:",
     options: [
@@ -1340,7 +1236,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Recomenda-se aguardar espaço seguro na via e atravessar observando fluxo (CTB Art. 70)."
   },
-  // 114
   {
     text: "Motociclista, ao trafegar à noite, deve usar:",
     options: [
@@ -1354,7 +1249,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Farol baixo evita ofuscamento e garante visibilidade à noite (CTB Art. 40)."
   },
-  // 115
   {
     text: "Pedestre, qual postura ao usar fone de ouvido?",
     options: [
@@ -1368,7 +1262,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Retirar fone ao cruzar vias melhora percepção de sons de trânsito (CTB Art. 70)."
   },
-  // 116
   {
     text: "Motorista, ao perder a faixa de rolamento, deve:",
     options: [
@@ -1382,7 +1275,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Qualquer manobra deve ser sinalizada antecipadamente (CTB Art. 196)."
   },
-  // 117
   {
     text: "Ciclista pode transitar em calçada?",
     options: [
@@ -1396,7 +1288,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "CTB Art. 59 proíbe ciclista na calçada, salvo autorização específica."
   },
-  // 118
   {
     text: "Pedestre, em dia de chuva forte, deve:",
     options: [
@@ -1410,7 +1301,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Reduzir distrações e garantir visibilidade do tráfego em condições adversas (CTB Art. 68)."
   },
-  // 119
   {
     text: "Motociclista, ao ultrapassar outro veículo, deve:",
     options: [
@@ -1424,7 +1314,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Ultrapassagem sempre pela esquerda, com sinalização (CTB Art. 29)."
   },
-  // 121
   {
     text: "Pedestre, ao pedir aplicativo de corrida, deve:",
     options: [
@@ -1438,7 +1327,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Combinar sempre ponto seguro, de preferência em calçada, para subir e descer do veículo (CTB Art. 49)."
   },
-  // 122
   {
     text: "Ciclista, ao trafegar em grupo, deve manter:",
     options: [
@@ -1452,7 +1340,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "O CTB, em seu Art. 58, orienta que o ciclista deve circular pelo bordo da pista no mesmo sentido do fluxo. Em grupos, recomenda-se trafegar em fila única, respeitando as regras de circulação e sinalizando manobras, conforme boas práticas descritas no Manual de Sinalização e Resoluções do Contran."
   },
-  // 123
   {
     text: "Motorista, ao trafegar em pista escorregadia, deve:",
     options: [
@@ -1466,7 +1353,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Em pista escorregadia, redução de velocidade e maior distância são essenciais (CTB Art. 29)."
   },
-  // 124
   {
     text: "Motociclista, se chuva forte reduzir visibilidade, deve:",
     options: [
@@ -1480,7 +1366,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Parar em local seguro até melhorar visibilidade evita acidentes (CTB Art. 40)."
   },
-  // 125
   {
     text: "Pedestre, sinal sonoro de pedestre (apito) indica:",
     options: [
@@ -1494,7 +1379,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Sinal sonoro nas faixas com semáforo auxilia pedestre a iniciar travessia (CTB Art. 70)."
   },
-  // 127
   {
     text: "Ciclista, o que indica faixa zebrada no solo?",
     options: [
@@ -1508,7 +1392,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "Zebradas indicam área proibida ao tráfego, usada para canalização (CTB Art. 90)."
   },
-  // 128
   {
     text: "Pedestre, ao caminhar em via rural sem passeio nem acostamento, deve:",
     options: [
@@ -1522,7 +1405,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Caminhar de frente ao tráfego permite melhor percepção de veículos (CTB Art. 68)."
   },
-  // 129
   {
     text: "Motorista, ao ultrapassar ciclista, deve buzinar?",
     options: [
@@ -1536,7 +1418,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Buzinar pode assustar ciclista; o correto é reduzir velocidade e manter 1,5 m de distância (CTB Art. 201)."
   },
-  // 130
   {
     text: "Motociclista, ao trafegar à tarde em túnel iluminado, deve usar:",
     options: [
@@ -1550,7 +1431,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Mesmo em túnel iluminado, farol baixo aumenta visibilidade e sinalização (CTB Art. 40)."
   },
-  // 131
   {
     text: "Pedestre, ao guiar criança, deve:",
     options: [
@@ -1564,7 +1444,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Manter crianças próximas e mão na mão evita quedas e separações (CTB Art. 70)."
   },
-  // 133
   {
     text: "Ciclista, ao precisar desmontar, deve:",
     options: [
@@ -1578,7 +1457,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Ao usar calçada, ciclista deve desmontar e empurrar bicicleta (CTB Art. 59)."
   },
-  // 135
   {
     text: "Motociclista, para conduzir em grupo, a formação correta é:",
     options: [
@@ -1592,7 +1470,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "Formação em fila aumenta visibilidade e reduz risco de acidentes em grupo (CTB Art. 196)."
   },
-  // 136
   {
     text: "Motorista, em chuva forte, farol de neblina dianteiro é:",
     options: [
@@ -1606,7 +1483,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "Conforme Res. 882/2021 do Contran, o uso é opcional em chuva forte."
   },
-  // 137
   {
     text: "Ciclista, ao trafegar em ciclofaixa, deve usar:",
     options: [
@@ -1620,7 +1496,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Uso de capacete e sinalização noturna é obrigatório em ciclovias (CTB Art. 105)."
   },
-  // 138
   {
     text: "Pedestre, ao aguardar ônibus, deve:",
     options: [
@@ -1634,7 +1509,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Aguardar ônibus em local seguro, calçada ou ponto específico, evitando riscos (CTB Art. 68)."
   },
-  // 139
   {
     text: "Motociclista, ao parar em um semáforo, pode deixar o motor ligado?",
     options: [
@@ -1648,7 +1522,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "O CTB não exige desligar o motor em semáforos, apenas em caso de pane ou emergência (CTB Art. 40)."
   },
-  // 141
   {
     text: "Pedestre em ponto de ônibus sem abrigo, deve esperar:",
     options: [
@@ -1662,7 +1535,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Esperar ônibus em área recuada no meio fio, fora da pista de rolamento (CTB Art. 68)."
   },
-  // 142
   {
     text: "Ciclista pode trafegar em ciclofaixa de pedestre?",
     options: [
@@ -1676,7 +1548,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Ciclovias e ciclofaixas exclusivas para ciclistas; pedal em faixa de pedestre é proibido (CTB Art. 59)."
   },
-  // 143
   {
     text: "Motociclista, em rodovia com chuva, deve usar:",
     options: [
@@ -1690,7 +1561,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Capacete com viseira limpa garante visibilidade em chuva (CTB Art. 244)."
   },
-  // 145
   {
     text: "Pedestre, em área industrial, usar:",
     options: [
@@ -1704,7 +1574,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Em áreas de carga e descarga, calçado seguro é recomendado (NR-24)."
   },
-  // 146
   {
     text: "Ciclista, sinal sonoro (campainha) serve para:",
     options: [
@@ -1718,7 +1587,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Campainha é sinalização sonora obrigatória para alertar pedestres (CTB Art. 105)."
   },
-  // 147
   {
     text: "O que fazer ao avistar faixa de pedestre com pedestre esperando?",
     options: [
@@ -1732,7 +1600,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Faixa de pedestre obriga parada para pedestre aguardando (CTB Art. 214)."
   },
-  // 148
   {
     text: "Pode utilizar celular ao volante?",
     options: [
@@ -1746,7 +1613,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Uso de celular ao volante é infração gravíssima (CTB Art. 252, V). A Resolução CONTRAN nº 909/2022 Reforça que o uso de celular deve ocorrer apenas com o veículo estacionado e desligado, fora da situação de condução."
   },
-  // 149
   {
     text: "Pedestre, o que fazer ao atravessar com chuva e sem guarda-chuva?",
     options: [
@@ -1760,7 +1626,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Buscar abrigo ou capa e atenção ao trânsito evita acidentes em piso escorregadio (CTB Art. 68)."
   },
-  // 150
   {
     text: "Ciclista, em ciclovia compartilhada com pedestre, deve:",
     options: [
@@ -1774,7 +1639,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Em ciclovias mistas, manter velocidade baixa e sinalizar ultrapassagens (CTB Art. 58)."
   },
-  // 151
   {
     text: "Em situação de emergência (pane), deve:",
     options: [
@@ -1788,7 +1652,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Em panes e emergências, é obrigatório acionar pisca-alerta e sinalizar o local (CTB Art. 40)."
   },
-  // 152
   {
     text: "Ciclista, em túnel sem iluminação, deve usar:",
     options: [
@@ -1802,7 +1665,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "CTB Art. 105 exige sinalização noturna (dianteira e traseira) em túneis e locais escuros."
   },
-  // 153
   {
     text: "Pedestre, se sinal sonoro divergir do visual, deve:",
     options: [
@@ -1816,7 +1678,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Visual (verde/vermelho) precede o sonoro em semáforos; atravessar só no verde visual (CTB Art. 70)."
   },
-  // 154
   {
     text: "Em alagamento leve, deve:",
     options: [
@@ -1830,7 +1691,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Desviar de poças previne perda de controle e aquaplanagem (CTB Art. 28)."
   },
-  // 155
   {
     text: "Motorista, ao estacionar próximo a hidrante, é permitido?",
     options: [
@@ -1844,7 +1704,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Estacionar perto de hidrante é infração grave; hidrante deve estar sempre livre (CTB Art. 181)."
   },
-  // 156
   {
     text: "Ciclista, antes de entrar na via, deve:",
     options: [
@@ -1858,7 +1717,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Sinalizar e checar fluxo de veículos antes de entrar na via (CTB Art. 196)."
   },
-  // 157
   {
     text: "Pedestre, ao sair de veículo estacionado, deve:",
     options: [
@@ -1872,7 +1730,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Observar o trânsito antes de abrir porta evita atropelamento por ciclistas/veículos (CTB Art. 49)."
   },
-  // 158
   {
     text: "Ao se aproximar de uma lombada, o motociclista deve:",
     options: [
@@ -1886,7 +1743,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Parar o veículo na área de cruzamento de vias, sobre faixas de pedestres, ciclovias, e sobre lombadas Pode caracterizar infração leve ou média, dependendo do contexto (CTB – Art. 183). Deve-se reduzir a velocidade antes da lombada para segurança e conforto (CTB Art. 28 e Res. CONTRAN 600/2016)."
   },
-  // 159
   {
     text: "Ao trafegar atrás de caminhão, deve:",
     options: [
@@ -1900,7 +1756,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Manter distância evita ponto cego e riscos de frenagem súbita (CTB Art. 29)."
   },
-  // 160
   {
     text: "Ciclista, ao cruzar via férrea, deve:",
     options: [
@@ -1914,7 +1769,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Desmontar e empurrar bicicleta em cruzamentos de trilhos garante estabilidade e segurança (CTB Art. 58)."
   },
-  // 161
   {
     text: "Pedestre, ao aguardar sinal de pedestre, deve:",
     options: [
@@ -1928,7 +1782,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Aguardar próximo ao meio‑fio, mas fora da pista de rolamento, para segurança (CTB Art. 70)."
   },
-  // 162
   {
     text: "Ao estacionar na via pública, o condutor deve manter distância segura de:",
     options: [
@@ -1942,7 +1795,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Evitar obstrução e risco de colisão com portas ou portões em movimento (CTB Art. 181 e Res. CONTRAN 268/2008)."
   },
-  // 163
   {
     text: "Motorista, ao ver linha tracejada branca no centro da via, o que significa?",
     options: [
@@ -1956,7 +1808,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "A linha tracejada branca indica que a ultrapassagem é permitida, desde que feita com segurança (CTB Art. 90 e Res. CONTRAN 160/2004)."
   },
-  // 164
   {
     text: "Ciclista, ao ouvir buzina, deve:",
     options: [
@@ -1970,7 +1821,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Observar motivo da buzina e sinalizar intenção para evitar colisões (CTB Art. 41)."
   },
-  // 165
   {
     text: "Pedestre, ao caminhar à noite fora de área iluminada, deve:",
     options: [
@@ -1984,7 +1834,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Roupas claras/refletivas aumentam visibilidade à noite (CTB Art. 68)."
   },
-  // 166
   {
     text: "Ao trafegar em via molhada, deve:",
     options: [
@@ -1998,7 +1847,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Reduzir velocidade e frear suavemente evita derrapagens em piso molhado (CTB Art. 29)."
   },
-  // 168
   {
     text: "Ciclista, ao encontrar obstáculo na ciclovia, deve:",
     options: [
@@ -2012,7 +1860,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Descer e empurrar garante estabilidade e evita quedas (CTB Art. 59)."
   },
-  // 169
   {
     text: "Pedestre, ao acompanhar animal de estimação, deve:",
     options: [
@@ -2026,7 +1873,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Usar guia curta e, se disponível, passarela, mantém controle e segurança (CTB Art. 68)."
   },
-  // 170
   {
     text: "Motociclista, ao rebocar carga, deve:",
     options: [
@@ -2040,7 +1886,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Carga deve ser fixada de forma segura, sem exceder largura máxima (CTB Art. 105)."
   },
-  // 171
   {
     text: "Motorista, ao ver linha dupla amarela, deve:",
     options: [
@@ -2054,7 +1899,6 @@ export const questions: Question[] = [
     difficultyLevel: 2,
     explanation: "Linha dupla amarela proíbe ultrapassagem em ambos os sentidos (CTB Art. 90)."
   },
-  // 172
   {
     text: "Ciclista, ao trafegar por via sem acostamento, deve:",
     options: [
@@ -2068,7 +1912,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "CTB Art. 58 recomenda ciclista circular junto ao meio fio na ausência de ciclovia."
   },
-  // 173
   {
     text: "Pedestre, ao atravessar grupo escolar em horário de entrada, deve:",
     options: [
@@ -2082,7 +1925,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Faixa escolar obriga parada de veículos e preferência ao pedestre (CTB Art. 61)."
   },
-  // 174
   {
     text: "Motociclista, ao ultrapassar pedestre na ciclofaixa, deve:",
     options: [
@@ -2096,7 +1938,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Em ciclovias mistas, sinalizar e manter distância lateral garantem segurança (CTB Art. 58)."
   },
-  // 175
   {
     text: "Motorista, ao ver pedestre iniciando travessia fora da faixa, deve:",
     options: [
@@ -2110,7 +1951,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Pedestre que já iniciou a travessia tem prioridade, mesmo fora da faixa (CTB Art. 214, III). Já o pisca-alerta é reservado para situações de emergência (CTB Art. 40, parágrafo único)."
   },
-  // 176
   {
     text: "Ciclista, ao cruzar caminho de veículos pesados, deve:",
     options: [
@@ -2124,7 +1964,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Parar e aguardar veículos pesados passa oferece visibilidade e segurança (CTB Art. 58)."
   },
-  // 177
   {
     text: "Pedestre, em calçada interrompida por canteiro, deve:",
     options: [
@@ -2138,7 +1977,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Calçada interrompida obriga o pedestre a descer e usar faixa ou acostamento (CTB Art. 68)."
   },
-  // 178
   {
     text: "Em curvas sinuosas, deve:",
     options: [
@@ -2152,7 +1990,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Em curvas, redução de velocidade e trajetória estável evitam derrapagens (CTB Art. 29)."
   },
-  // 179
   {
     text: "Em rodovia de pista simples, é obrigatório usar:",
     options: [
@@ -2166,7 +2003,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Resolução Contran 816/21 exige farol baixo em rodovias de pista simples durante o dia."
   },
-  // 180
   {
     text: "Ciclista, ao parar no topo de lombada sem visibilidade, deve:",
     options: [
@@ -2180,7 +2016,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Garanta visão ao descer da bicicleta e empurrar sobre lombadas sem sinalização (CTB Art. 58)."
   },
-  // 181
   {
     text: "Pedestre, ao caminharem em fila indiana, deve:",
     options: [
@@ -2194,7 +2029,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Manter formação em fila e usar calçada evita obstrução de via e riscos (CTB Art. 68)."
   },
-  // 182
   {
     text: "Motociclista, ao parar em faixa de retenção, deve:",
     options: [
@@ -2208,7 +2042,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Parar atrás da faixa de retenção respeita sinalização e evita avanço indevido (CTB Art. 89)."
   },
-  // 183
   {
     text: "Motorista, ao avistar placa de pedestre atravessando, deve:",
     options: [
@@ -2222,7 +2055,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "CTB Art. 214 obriga parada para pedestre em faixa, com redução de velocidade."
   },
-  // 184
   {
     text: "Ciclista, ao trafegar com carga, deve:",
     options: [
@@ -2236,7 +2068,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Distribuir carga adequadamente evita queda e mantém equilíbrio (CTB Art. 105)."
   },
-  // 185
   {
     text: "Pedestre, ao usar faixa compartilhada, deve:",
     options: [
@@ -2250,7 +2081,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Em faixas compartilhadas, aguardar passagem dá prioridade e evita acidentes (CTB Art. 59)."
   },
-  // 186
   {
     text: "Motociclista, ao trafegar com criança passageira, deve:",
     options: [
@@ -2264,7 +2094,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "CTB Art. 244 proíbe transporte de crianças em motocicletas; somente em dispositivo adequado."
   },
-  // 187
   {
     text: "Ao avistar sinal de parada obrigatória, deve:",
     options: [
@@ -2278,7 +2107,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "R‑1 'parada obrigatória' exige parada total antes de prosseguir, independentemente de tráfego (CTB Art. 44)."
   },
-  // 188
   {
     text: "Ciclista, ao trafegar à noite sem luz dianteira, é:",
     options: [
@@ -2292,7 +2120,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Ausência de luz dianteira noturna é infração grave (CTB Art. 105, I)."
   },
-  // 189
   {
     text: "Pedestre, ao caminhar em rua semáforo, deve:",
     options: [
@@ -2306,7 +2133,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Sempre buscar faixa de pedestre, mesmo sem semáforo, para travessia segura (CTB Art. 70)."
   },
-  // 190
   {
     text: "Motociclista, se veículo dianteiro sinalizar à direita, deve:",
     options: [
@@ -2320,7 +2146,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Manter distância e aguardar o veículo concluir manobra para evitar colisões (CTB Art. 196)."
   },
-  // 191
   {
     text: "Motorista, ao trafegar pela esquerda em pista de mão única, deve:",
     options: [
@@ -2334,7 +2159,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Em mão única, permanecer à direita e usar faixa esquerda só para ultrapassagem, retornando depois (CTB Art. 29)."
   },
-  // 193
   {
     text: "Pedestre, em via com tráfego intenso, deve:",
     options: [
@@ -2348,7 +2172,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Usar acostamento ou calçada sempre que disponível é norma de circulação segura (CTB Art. 68)."
   },
-  // 194
   {
     text: "Motociclista, se chuva forte, pode usar farol alto?",
     options: [
@@ -2362,7 +2185,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Farol alto ofusca veículos contrários; em chuva forte usar farol baixo (CTB Art. 40)."
   },
-  // 195
   {
     text: "Ao ver sinalização de obras, deve:",
     options: [
@@ -2376,7 +2198,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Sinalização de obras exige redução de velocidade e atenção (CTB Art. 66)."
   },
-  // 196
   {
     text: "Ciclista, ao trafegar em contramão, é:",
     options: [
@@ -2390,7 +2211,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Contramão para ciclistas é proibido, salvo em áreas específicas sinalizadas (CTB Art. 58)."
   },
-  // 197
   {
     text: "Pedestre, ao utilizar passarela, deve:",
     options: [
@@ -2404,7 +2224,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Usar passarela com calma e corrimão evita quedas (CTB Art. 69)."
   },
-  // 198
   {
     text: "Ao trafegar próximo a escola em horário de entrada, deve:",
     options: [
@@ -2418,7 +2237,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Zona escolar exige redução de velocidade e atenção redobrada (CTB Art. 61)."
   },
-  // 199
   {
     text: "Ao viajar longas distâncias, deve:",
     options: [
@@ -2432,7 +2250,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Fazer pausas regulares evita fadiga e melhora segurança (CTB Art. 28)."
   },
-  // 200
   {
     text: "Ciclista, ao usar guia elevada, deve:",
     options: [
@@ -2446,7 +2263,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Descer e empurrar bicicleta em guias elevadas garante segurança e estabilidade (CTB Art. 59)."
   },
-  // 201
   {
     text: "Pedestre, ao atravessar fora de faixa em zona rural, deve:",
     options: [
@@ -2460,7 +2276,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Fora de faixa, o pedestre deve escolher local com boa visibilidade e sinalizar antecipadamente (CTB Art. 70)."
   },
-  // 202
   {
     text: "Motorista, ao trafegar em neblina, deve usar:",
     options: [
@@ -2474,7 +2289,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Em neblina, usar farol baixo e farol de neblina dianteiro/traseiro (CTB Art. 40)."
   },
-  // 203
   {
     text: "Ciclista, ao sinalizar conversão à esquerda, deve:",
     options: [
@@ -2488,7 +2302,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Para converter à esquerda, o ciclista deve estender o braço esquerdo horizontalmente (CTB Art. 196)."
   },
-  // 204
   {
     text: "Pedestre, em calçada interrompida por canteiro, deve:",
     options: [
@@ -2502,7 +2315,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Calçada interrompida obriga o pedestre a descer e usar faixa ou acostamento (CTB Art. 68)."
   },
-  // 205
   {
     text: "Motociclista, ao trafegar atrás de ônibus em ponto, deve:",
     options: [
@@ -2516,7 +2328,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Aguardar ônibus partir evita atropelamento de pedestres desembarcando (CTB Art. 29)."
   },
-  // 206
   {
     text: "Motorista, ao perceber ponto cego grande veículo, deve:",
     options: [
@@ -2530,7 +2341,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Manter distância lateral evita ficar no ponto cego de caminhões e ônibus (CTB Art. 29)."
   },
-  // 207
   {
     text: "Ciclista, ao usar ciclovia compartilhada, deve:",
     options: [
@@ -2544,7 +2354,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Em ciclovia compartilhada, circular no mesmo sentido e respeitar pedestres (CTB Art. 58)."
   },
-  // 208
   {
     text: "Pedestre, ao encontrar semáforo inoperante, deve:",
     options: [
@@ -2558,7 +2367,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Semáforo inoperante obriga pedestre a aguardar local seguro para atravessar (CTB Art. 29)."
   },
-  // 209
   {
     text: "Motociclista, se veículo estacionado obstruir faixa, deve:",
     options: [
@@ -2572,7 +2380,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Obstrução de faixa exige redução de velocidade e espera de liberação (CTB Art. 29)."
   },
-  // 210
   {
     text: "Motorista, ao ver pedestre com deficiência visual, deve:",
     options: [
@@ -2586,7 +2393,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Parar e aguardar pedestre com deficiência visual atravessar garante prioridade e segurança (CTB Art. 214)."
   },
-  // 211
   {
     text: "Ciclista, em via de pista simples, deve usar faróis:",
     options: [
@@ -2600,7 +2406,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Farol baixo diurno em via simples aumenta visibilidade (Res. CONTRAN 816/21)."
   },
-  // 212
   {
     text: "Pedestre, ao atravessar com criança de colo, deve:",
     options: [
@@ -2614,7 +2419,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Aguardando semáforo e usando faixa, garante segurança de ambos (CTB Art. 70)."
   },
-  // 213
   {
     text: "Motociclista, em rodovia, deve manter distância mínima de:",
     options: [
@@ -2628,7 +2432,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Mantendo distância que permita frenagem segura reduz risco de colisão traseira (CTB Art. 29)."
   },
-  // 214
   {
     text: "Motorista, ao se aproximar de escola sem semáforo, deve:",
     options: [
@@ -2642,7 +2445,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Faixa escolar obriga redução de velocidade e preferência (CTB Art. 61)."
   },
-  // 215
   {
     text: "Ciclista, em cruzamento sem sinalização, deve:",
     options: [
@@ -2656,7 +2458,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "No cruzamento sem sinal, prioridade para quem vem da direita (CTB Art. 29)."
   },
-  // 216
   {
     text: "Pedestre, ao usar smartphone caminhando, deve:",
     options: [
@@ -2670,7 +2471,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Parar para usar smartphone fora da via garante segurança (CTB Art. 68)."
   },
-  // 217
   {
     text: "Motociclista, em chuva intensa, deve usar:",
     options: [
@@ -2684,7 +2484,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Farol baixo e neblina dianteira/as traseira otimizam visibilidade na chuva (CTB Art. 40)."
   },
-  // 218
   {
     text: "Motorista, em rua estreita, deve:",
     options: [
@@ -2698,7 +2497,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Redução de velocidade e distância lateral garantem segurança em ruas estreitas (CTB Art. 29)."
   },
-  // 219
   {
     text: "Ciclista, ao parar em semáforo, não pode:",
     options: [
@@ -2712,7 +2510,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Avançar semáforo fechado é infração grave (CTB Art. 208)."
   },
-  // 220
   {
     text: "Pedestre, ao circular em calçada escorregadia, deve:",
     options: [
@@ -2726,7 +2523,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Caminhar devagar e apoio no calcanhar aumenta aderência e segurança (CTB Art. 68)."
   },
-  // 221
   {
     text: "Motociclista, ao rebocar outro veículo, pode:",
     options: [
@@ -2740,7 +2536,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Reboque deve usar dispositivo seguro sem exceder dimensões (CTB Art. 105)."
   },
-  // 222
   {
     text: "Motorista, ao sair de garagem, deve:",
     options: [
@@ -2754,7 +2549,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Sinalizar e verificar fluxo ao sair de garagem garante segurança (CTB Art. 196)."
   },
-  // 223
   {
     text: "Ciclista, ao transitar próximo a pedestres, deve:",
     options: [
@@ -2768,7 +2562,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Reduzir velocidade e sinalizar garante convivência segura em espaços compartilhados (CTB Art. 58)."
   },
-  // 224
   {
     text: "Pedestre, ao atravessar com chuva, deve:",
     options: [
@@ -2782,7 +2575,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Usar guarda-chuva sem obstruir visão e checar ambos os lados (CTB Art. 70)."
   },
-  // 225
   {
     text: "Motociclista, ao trafegar atrás de ambulância com sirene, deve:",
     options: [
@@ -2796,7 +2588,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Dar passagem e manter distância para não atrapalhar socorro (CTB Art. 29)."
   },
-  // 226
   {
     text: "Motorista, ao se aproximar de passagem de nível, deve:",
     options: [
@@ -2810,7 +2601,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Reduzir velocidade e verificar trilhos evita acidentes com trens (CTB Art. 26)."
   },
-  // 227
   {
     text: "Ciclista, ao pedalar em grupo, deve:",
     options: [
@@ -2824,7 +2614,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Fila indiana e sinalização coordenada evitam colisões e obstrução (CTB Art. 58)."
   },
-  // 228
   {
     text: "Pedestre, ao encontrar semáforo com contagem regressiva, deve:",
     options: [
@@ -2838,7 +2627,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Contagem regressiva indica tempo seguro restante para atravessar (CTB Art. 70)."
   },
-  // 229
   {
     text: "Motociclista, ao estacionar em rampa, deve:",
     options: [
@@ -2852,7 +2640,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Freio de estacionamento garante estabilidade em rampas (CTB Art. 40)."
   },
-  // 230
   {
     text: "Motorista, ao trafegar em faixa reversível, deve:",
     options: [
@@ -2866,7 +2653,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Faixas reversíveis usam semáforos/painéis para indicar sentido válido (CTB Art. 90)."
   },
-  // 231
   {
     text: "Ciclista, em intersecção com semáforo, deve:",
     options: [
@@ -2880,7 +2666,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Ciclistas devem obedecer semáforo tal qual veículos automotores (CTB Art. 59)."
   },
-  // 232
   {
     text: "Pedestre, ao ver indicação sinalizada de rota turística, deve:",
     options: [
@@ -2894,7 +2679,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Placas de rota turística auxiliam pedestres e motoristas no roteamento seguro (CTB Anexo I)."
   },
-  // 233
   {
     text: "Motociclista, em rodovia federal, deve obedecer limite de:",
     options: [
@@ -2908,7 +2692,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Limite em rodovias federais varia, mas padrão comum é 110 km/h para motos (CTB Art. 61)."
   },
-  // 234
   {
     text: "Motorista, em via de mão única, pode:",
     options: [
@@ -2922,7 +2705,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Em mão única, ultrapassagem pela esquerda é permitida (CTB Art. 29)."
   },
-  // 235
   {
     text: "Ciclista, ao se deparar com semáforo intermitente amarelo, deve:",
     options: [
@@ -2936,7 +2718,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Semáforo intermitente amarelo indica atenção e prosseguir com cuidado (CTB Art. 53)."
   },
-  // 236
   {
     text: "Pedestre, ao atravessar via arterial sem faixa, deve:",
     options: [
@@ -2950,7 +2731,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Vias arteriais exigem uso de travessias sinalizadas ou passarelas (CTB Art. 70)."
   },
-  // 237
   {
     text: "Motociclista, ao trafegar por via pavimentada irregular, deve:",
     options: [
@@ -2964,7 +2744,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Reduzir velocidade e desviar de buracos evita queda e danos (CTB Art. 29)."
   },
-  // 238
   {
     text: "Motorista, ao ver placa de retorno permitido, pode:",
     options: [
@@ -2978,7 +2757,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Retorno permitido apenas nos pontos indicados pela sinalização (CTB Art. 89)."
   },
-  // 239
   {
     text: "Ciclista, ao pedalar na chuva, deve:",
     options: [
@@ -2992,7 +2770,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Redução de velocidade e roupas adequadas melhoram aderência e conforto (CTB Art. 58)."
   },
-  // 240
   {
     text: "Pedestre, ao circular em vias com poste baixo, deve:",
     options: [
@@ -3006,7 +2783,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Desviar evita choque com obstáculo e garante circulação segura (CTB Art. 68)."
   },
-  // 241
   {
     text: "Motociclista, ao trafegar por ponte estreita, deve:",
     options: [
@@ -3020,7 +2796,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Reduzir velocidade e manter posição central evita choque em pontes estreitas (CTB Art. 29)."
   },
-  // 242
   {
     text: "Motorista, ao ver placa indicativa de periculosidade, deve:",
     options: [
@@ -3034,7 +2809,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Placas de advertência exigem redução de velocidade e atenção redobrada (CTB Art. 81)."
   },
-  // 243
   {
     text: "Ciclista, ao trafegar por trecho com desnível, deve:",
     options: [
@@ -3048,7 +2822,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Redução de velocidade e postura correta evitam quedas em desníveis (CTB Art. 58)."
   },
-  // 244
   {
     text: "Pedestre, ao atravessar via com dividido, deve:",
     options: [
@@ -3062,7 +2835,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Se não completar travessia, aguardar em canteiro central para maior segurança (CTB Art. 70)."
   },
-  // 245
   {
     text: "Motociclista, ao trafegar por aclive íngreme, deve:",
     options: [
@@ -3076,7 +2848,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Redução de marcha e aceleração suave garantem torque e estabilidade em aclives (CTB Art. 29)."
   },
-  // 246
   {
     text: "Motorista, ao ver placa de velocidade máxima permitida, deve:",
     options: [
@@ -3090,7 +2861,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Limite de velocidade deve ser obedecido até sinalização em contrário (CTB Art. 61)."
   },
-  // 247
   {
     text: "Ciclista, ao trafegar por via com pedestres, deve:",
     options: [
@@ -3104,7 +2874,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Sinalizar e reduzir velocidade ao ultrapassar pedestres previne acidentes (CTB Art. 58)."
   },
-  // 248
   {
     text: "Pedestre, ao usar escadaria pública, deve:",
     options: [
@@ -3118,7 +2887,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Uso de corrimão e atenção nos degraus evita quedas (CTB Art. 68)."
   },
-  // 249
   {
     text: "Motociclista, ao trafegar com vento lateral forte, deve:",
     options: [
@@ -3132,7 +2900,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Redução de velocidade e firmeza no guidão mantém controle em ventos laterais (CTB Art. 29)."
   },
-  // 250
   {
     text: "Motorista, ao estacionar em local com guia pintada, deve:",
     options: [
@@ -3146,7 +2913,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Guia pintada indica área de proibição de estacionamento (CTB Art. 181)."
   },
-  // 251
   {
     text: "Motorista, ao trafegar em área de escolas, deve:",
     options: [
@@ -3160,7 +2926,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Em área escolar, CTB Art. 61 §1º exige redução de velocidade e atenção especial aos estudantes."
   },
-  // 252
   {
     text: "Ciclista, ao ver ambulância com sirene, deve:",
     options: [
@@ -3174,7 +2939,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "CTB Art. 29 inciso VII obriga dar passagem a veículos de emergência com sirene."
   },
-  // 253
   {
     text: "Pedestre, ao usar passarela, tem:",
     options: [
@@ -3188,7 +2952,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "CTB Art. 69 garante preferência do pedestre em passarelas e faixas a ele destinadas."
   },
-  // 254
   {
     text: "Motociclista, em caso de aquaplanagem, deve:",
     options: [
@@ -3202,7 +2965,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "CTB Art. 28 determina que o condutor deverá guardar distância de segurança e manter o veículo sob controle em condições adversas."
   },
-  // 255
   {
     text: "Motorista, ao transportar criança, deve usar:",
     options: [
@@ -3216,7 +2978,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "Resolução CONTRAN 819/21 exige uso de dispositivo de retenção adequado à idade, peso e altura da criança."
   },
-  // 256
   {
     text: "Em área escolar, ao ver sinalização de criança, motorista deve:",
     options: [
@@ -3230,7 +2991,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "CTB Art. 61 e Res. CONTRAN 483/14 exigem redução de velocidade e atenção em áreas escolares."
   },
-  // 257
   {
     text: "Pedestre, ao ver faixa de ciclista, deve:",
     options: [
@@ -3244,7 +3004,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "CTB Art. 68 determina que pedestres devem utilizar faixas ou passagens a eles destinadas."
   },
-  // 258
   {
     text: "Ciclista, ao trafegar à noite, deve usar:",
     options: [
@@ -3258,7 +3017,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "CTB Art. 105-VI exige uso de sinalização noturna dianteira, traseira, lateral e nos pedais."
   },
-  // 259
   {
     text: "Motociclista, ao ver carro entrando na via, deve:",
     options: [
@@ -3272,7 +3030,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "CTB Art. 44 determina redução de velocidade em situações de risco potencial."
   },
-  // 260
   {
     text: "Motorista, em curva sem visibilidade, pode ultrapassar?",
     options: [
@@ -3286,7 +3043,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: "CTB Art. 203-II proíbe ultrapassagem em curvas sem visibilidade, considerada infração gravíssima."
   },
-  // 251
   {
     text: "Pedestre, ao encontrar faixa de pedestre molhada, deve:",
     options: [
@@ -3300,7 +3056,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `O art. 70 do CTB estabelece que o pedestre deve atravessar com cuidado “observando o fluxo de veículos” – em condições adversas, como piso molhado, isso significa verificar a aderência e movimentar-se lentamente para evitar quedas.`
   },
-  // 252
   {
     text: "Motorista, ao se aproximar de cruzamento com placa de preferência, deve:",
     options: [
@@ -3314,7 +3069,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `O art. 44, inciso I do CTB define a placa R-2 (“Dê preferência”) como “forma triangular invertida” e determina que o condutor “deve reduzir a velocidade e dar preferência de passagem ao trânsito na via com prioridade”.`
   },
-  // 253
   {
     text: "Ciclista, ao trafegar em via sem acostamento, deve:",
     options: [
@@ -3328,7 +3082,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `O art. 58 do CTB dispõe que “os ciclistas devem andar o mais próximo [...] possível do bordo da pista, no mesmo sentido do trânsito”. Em vias sem acostamento, isso significa manter-se o mais à direita possível.`
   },
-  // 254
   {
     text: "Pedestre, ao aguardar ônibus em ponto, deve:",
     options: [
@@ -3342,7 +3095,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `O art. 68 do CTB orienta que o pedestre “deve permanecer na calçada ou local seguro, sem invadir a pista de rolamento”. Nos pontos de ônibus, isso significa aguardar fora da via, em local protegido.`
   },
-  // 255
   {
     text: "Motociclista, ao transportar carga, deve:",
     options: [
@@ -3356,7 +3108,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `O art. 105, inciso VII do CTB exige que a carga seja “segura e distribuída de modo a não prejudicar o equilíbrio do veículo”. Devem ser usados dispositivos adequados e fixação firme.`
   },
-  // 256
   {
     text: "Motorista, ao trafegar em estrada de terra, deve:",
     options: [
@@ -3370,7 +3121,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `O art. 29 do CTB estabelece que o condutor deve “manter velocidade compatível com a segurança”. Em estrada de terra, pistas soltas exigem redução de velocidade e frenagens suaves para evitar derrapagens.`
   },
-  // 257
   {
     text: "Ciclista, ao pedalar à noite, deve usar:",
     options: [
@@ -3384,7 +3134,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Conforme art. 105 do CTB, as bicicletas “devem ter dispositivo de sinalização noturna – luz branca frontal e vermelha traseira” para serem visíveis à noite.`
   },
-  // 258
   {
     text: "Pedestre, ao usar faixa elevada, deve:",
     options: [
@@ -3398,7 +3147,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `O art. 70 do CTB garante prioridade à faixa elevada, porém recomenda-se observar o fluxo para confirmar que os veículos reduziram antes de iniciar a travessia.`
   },
-  // 259
   {
     text: "Motociclista, ao encarar lombada, deve:",
     options: [
@@ -3412,7 +3160,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `O art. 81 do CTB define a lombada como obstáculo que exige redução de velocidade. Manter equilíbrio evita perda de controle.`
   },
-  // 260
   {
     text: "Motorista, ao avistar placa de “Pare e siga quando possível”, deve:",
     options: [
@@ -3426,7 +3173,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `A placa R‑25 (semáforo adicional) intermitente em vermelho exige parada completa antes de prosseguir quando seguro (CTB Art. 77).`
   },
-  // 261
   {
     text: "Ciclista, ao se aproximar de ponte sem acostamento, deve:",
     options: [
@@ -3440,7 +3186,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `O art. 58 do CTB requer que o ciclista circule o mais próximo possível do bordo; em ponte sem acostamento, isso é ainda mais crítico para evitar quedas.`
   },
-  // 262
   {
     text: "Pedestre, ao atravessar em faixa sem semáforo, deve:",
     options: [
@@ -3454,7 +3199,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `O art. 70 do CTB orienta que pedestres devem atravessar “observando o fluxo de veículos” – reduzir velocidade e olhar em ambas as direções.`
   },
-  // 263
   {
     text: "Motociclista, ao trafegar em via urbana iluminada, deve:",
     options: [
@@ -3468,7 +3212,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `A Res. 816/21 determina uso de farol baixo durante o dia em rodovias; em via urbana iluminada, farol baixo mantém visibilidade sem ofuscar.`
   },
-  // 264
   {
     text: "Motorista, ao trafegar em trecho de obras, deve:",
     options: [
@@ -3482,7 +3225,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `O art. 61 do CTB prevê redução de velocidade e respeito à sinalização extra em trechos de obras para proteger trabalhadores e usuários.`
   },
-  // 265
   {
     text: "Ciclista, ao trafegar com passageiro, deve:",
     options: [
@@ -3496,7 +3238,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `O art. 58 parágrafo único do CTB proíbe transporte de passageiros em bicicletas, salvo se houver dispositivo específico que garanta equilíbrio.`
   },
-  // 266
   {
     text: "Pedestre, ao caminhar em área sem calçada, deve:",
     options: [
@@ -3510,7 +3251,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `O art. 68 do CTB recomenda trânsito de pedestres “pelo bordo da pista, sentido contrário ao do tráfego” quando não houver calçadas.`
   },
-  // 267
   {
     text: "Motociclista, ao trafegar em via com limite 50 km/h, deve:",
     options: [
@@ -3524,7 +3264,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `O art. 61 do CTB estabelece que o condutor não pode exceder o limite de velocidade indicado pela sinalização.`
   },
-  // 268
   {
     text: "Motorista, ao trafegar em rua de mão dupla, deve:",
     options: [
@@ -3538,7 +3277,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `O art. 29 do CTB autoriza ultrapassagem pela esquerda em via de mão dupla, desde que respeite sinalização e segurança.`
   },
-  // 269
   {
     text: "Ciclista, ao trafegar por via com lombada sinalizada, deve:",
     options: [
@@ -3552,7 +3290,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Placa A-13 (lombada) exige redução de velocidade antes do obstáculo (CTB Anexo II).`
   },
-  // 270
   {
     text: "Pedestre, ao caminhar em rua sem iluminação, deve:",
     options: [
@@ -3566,7 +3303,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB não especifica, mas Res. 105/2004 do Contran recomenda pedestres usarem elementos refletivos em condições de baixa visibilidade.`
   },
-  // 271
   {
     text: "Motociclista, ao trafegar em via rural, deve:",
     options: [
@@ -3580,7 +3316,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Resolução 816/21 obriga uso de farol baixo em rodovias e vias rurais durante o dia para maior visibilidade.`
   },
-  // 272
   {
     text: "Motorista, ao se aproximar de ciclovia, deve:",
     options: [
@@ -3594,7 +3329,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB Art. 29 exige cautela e redução de velocidade ao cruzar ciclovias, dando espaço seguro aos ciclistas.`
   },
-  // 273
   {
     text: "Ciclista, ao pedalar junto a canaletas de drenagem, deve:",
     options: [
@@ -3608,7 +3342,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Manter distância evita que as rodas fiquem presas nos sulcos das canaletas, prevenindo quedas (boas práticas).`
   },
-  // 274
   {
     text: "Pedestre, ao atravessar em faixa de pedestre com ciclovia integrada, deve:",
     options: [
@@ -3622,7 +3355,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Em faixa integrada, é necessário observar simultaneamente veículos e ciclistas antes de atravessar (CTB Art. 70).`
   },
-  // 275
   {
     text: "Motociclista, ao trafegar com garupa, deve:",
     options: [
@@ -3636,7 +3368,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB Art. 244 exige uso de capacete para piloto e passageiro; ambos devem estar centralizados para manter equilíbrio.`
   },
-  // 276
   {
     text: "Motorista, ao avistar sinalização de “Sem saída”, deve:",
     options: [
@@ -3650,7 +3381,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Placa R‑2c (sem saída) indica via sem continuidade; o motorista deve evitá-la se não for o destino (CTB Anexo II).`
   },
-  // 277
   {
     text: "Ciclista, ao trafegar em via sinuosa, deve:",
     options: [
@@ -3664,7 +3394,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Placas de curva (A‑3 e A‑4) exigem redução de velocidade para segurança em trechos sinuosos (CTB Anexo II).`
   },
-  // 278
   {
     text: "Pedestre, ao usar smartphone, antes de atravessar, deve:",
     options: [
@@ -3678,7 +3407,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB Art. 69 exige atenção plena ao cruzar; manusear smartphone reduz percepção de riscos.`
   },
-  // 279
   {
     text: "Motociclista, ao trafegar em área escolar, deve:",
     options: [
@@ -3692,7 +3420,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB Art. 61 prevê redução de velocidade em área escolar e prioridade a pedestres, especialmente crianças.`
   },
-  // 280
   {
     text: "Motorista, ao ver faixa de retenção pintada, deve:",
     options: [
@@ -3706,7 +3433,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB Art. 88 define faixa de retenção como linha que delimita onde o veículo deve parar quando o sinal estiver fechado.`
   },
-  // 281
   {
     text: "Ciclista, ao parar em semáforo, deve manter:",
     options: [
@@ -3720,7 +3446,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `A melhor prática é apoiar o pé no chão antes da faixa de retenção, garantindo estabilidade e respeitando o semáforo (CTB Art. 59).`
   },
-  // 282
   {
     text: "Pedestre, ao caminhar em via rural não iluminada, deve:",
     options: [
@@ -3734,7 +3459,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB Art. 68 e Res. 105/04 recomendam roupas claras ou refletivas e caminhar de frente para o tráfego.`
   },
-  // 283
   {
     text: "Motociclista, ao rebocar com corda, deve:",
     options: [
@@ -3748,7 +3472,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB Art. 105 exige uso de equipamento adequado para reboque, sem exceder dimensões ou comprometer segurança.`
   },
-  // 284
   {
     text: "Motorista, ao avistar pedestre idoso na faixa, deve:",
     options: [
@@ -3762,7 +3485,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB Art. 29, inciso XII, obriga ao condutor a dar preferência especial a pedestres idosos e reduzir velocidade para auxiliá-los.`
   },
-  // 285
   {
     text: "Ciclista, ao utilizar linha tracejada no centro, pode:",
     options: [
@@ -3776,7 +3498,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB Art. 90 define linha tracejada como indicativa de faixa dupla, permitindo ultrapassagem se segurança for garantida.`
   },
-  // 286
   {
     text: "Pedestre, ao atravessar com chuva forte, deve:",
     options: [
@@ -3790,7 +3511,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB Art. 70’s “observar o fluxo” estende-se a condições de chuva, verificando veículos antes de cada avanço.`
   },
-  // 287
   {
     text: "Motociclista, ao usar faixa exclusiva de ônibus, deve:",
     options: [
@@ -3804,7 +3524,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB Art. 29 proíbe circulação de ciclomotores e motocicletas em faixas exclusivas de ônibus, salvo autorização específica.`
   },
-  // 288
   {
     text: "Motorista, ao trafegar em curva sem sinalização, deve:",
     options: [
@@ -3818,7 +3537,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB Art. 29 recomenda velocidade compatível com a segurança; sem placa, reduzir antes da curva para manter controle.`
   },
-  // 289
   {
     text: "Ciclista, ao parar em semáforo, pode:",
     options: [
@@ -3832,7 +3550,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB Art. 59 e Art. 88 indicam que bicicleta deve parar antes da faixa de retenção e o ciclista pode apoiar o pé no chão para estabilidade.`
   },
-  // 290
   {
     text: "Pedestre, ao usar passarela com escada, deve:",
     options: [
@@ -3846,7 +3563,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB Art. 70 e Res. 619/16 recomendam uso de passarelas e atenção ao circular por escadas para evitar quedas.`
   },
-  // 291
   {
     text: "Motociclista, ao encarar lombada eletrônica, deve:",
     options: [
@@ -3860,7 +3576,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Embora lombada eletrônica fiscalize velocidade, CTB Art. 61 e Res. 396/11 impõem respeito aos limites com redução antes do obstáculo.`
   },
-  // 292
   {
     text: "Motorista, ao trafegar em via com solo solto, deve:",
     options: [
@@ -3874,7 +3589,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB Art. 29 requer velocidade compatível com a segurança, incluindo vias com terreno solto.`
   },
-  // 293
   {
     text: "Ciclista, ao pedalar em zona escolar, deve:",
     options: [
@@ -3888,7 +3602,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB Art. 61 obriga redução de velocidade em zona escolar; ciclistas devem sinalizar e trafegar lentamente para maior segurança de crianças.`
   },
-  // 294
   {
     text: "Pedestre, ao sinalizar com braile na calçada, deve:",
     options: [
@@ -3902,7 +3615,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Res. 396/11 do Contran define piso tátil direciona pedestres com deficiência visual; deve-se usar e não obstruir.`
   },
-  // 295
   {
     text: "Motociclista, ao trafegar em trecho com grade metálica no chão, deve:",
     options: [
@@ -3916,7 +3628,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Grades metálicas são escorregadias – reduzir velocidade e desviar evita derrapagens.`
   },
-  // 296
   {
     text: "Motorista, ao avistar sinalização de obras, deve:",
     options: [
@@ -3930,7 +3641,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB Art. 61 e Res. 200/06 determinam redução de velocidade e respeito a sinalização de obras.`
   },
-  // 297
   {
     text: "Ciclista, ao pedalar em área rural sem iluminação, deve:",
     options: [
@@ -3944,7 +3654,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB Art. 105 e Res. 227/07 impõem sinalização noturna – luz branca frontal e coletes/refletores em vias escuras.`
   },
-  // 298
   {
     text: "Pedestre, ao atravessar com carrinho de bebê, deve:",
     options: [
@@ -3958,7 +3667,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB Art. 70 exige uso de faixa e observação do fluxo; com carrinho, atenção redobrada e regra mantém-se a mesma.`
   },
-  // 299
   {
     text: "Motociclista, ao trafegar em via com faixa amarela intermitente, deve:",
     options: [
@@ -3972,7 +3680,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB Art. 53 e Res. 396/11 definem faixa amarela intermitente como sinal de atenção redobrada.`
   },
-  // 300
   {
     text: "Motorista, ao ver ciclista parado na via, deve:",
     options: [
@@ -3986,7 +3693,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB Art. 29 e Art. 201 (distância mínima de 1,5 m) obrigam o condutor a reduzir velocidade e manter espaço seguro ao ultrapassar ciclistas.`
   },
-  // 301
   {
     text: "Ciclista, ao trafegar em via compartilhada com pedestres, deve:",
     options: [
@@ -4000,7 +3706,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `O art. 58 do CTB estabelece que o ciclista “deve ajustar sua velocidade e comportamento ao ambiente”, em faixa mista reduzindo a velocidade e sinalizando para não surpreender pedestres.`
   },
-  // 302
   {
     text: "Motorista, ao avistar placa de ‘Velocidade máxima permitida’, deve:",
     options: [
@@ -4014,7 +3719,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `O art. 61 do CTB determina que ao avistar placa R‑19, o condutor “não pode exceder a velocidade máxima” ali estabelecida.`
   },
-  // 303
   {
     text: "Pedestre, ao atravessar via em declive, deve:",
     options: [
@@ -4028,7 +3732,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `O art. 70 do CTB reforça observação do fluxo em todos os casos; em declive, a visibilidade pode ser reduzida, exigindo atenção redobrada.`
   },
-  // 304
   {
     text: "Motociclista, ao trafegar com baixa carga de combustível, deve:",
     options: [
@@ -4042,7 +3745,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Boa prática de segurança (Art. 29 do CTB) recomenda planejar abastecimento em local seguro para não parar no meio da via, evitando risco de colisão.`
   },
-  // 305
   {
     text: "Motorista, ao avistar placa de ‘Proibido Ultrapassar’, deve:",
     options: [
@@ -4056,7 +3758,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Placa R‑8 (Proibido Ultrapassar) – CTB art. 89 estabelece que “é proibido ultrapassar veículos em área sinalizada”.`
   },
-  // 306
   {
     text: "Pedestre, ao usar smartphone em passarela, deve:",
     options: [
@@ -4070,7 +3771,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Res. 619/16 do Contran orienta atenção às superfícies e uso de corrimão em passarelas e escadas para prevenir queda.`
   },
-  // 307
   {
     text: "Ciclista, ao trafegar em via de terra, deve:",
     options: [
@@ -4084,7 +3784,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29 impõe condução em velocidade compatível com segurança; em solo sem pavimento, reduzir e desviar de buracos evita quedas.`
   },
-  // 308
   {
     text: "Motorista, ao avistar sinal de ‘Rotatória à frente’, deve:",
     options: [
@@ -4098,7 +3797,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Placa A‑15 (rotatória) – CTB Anexo II: reduz-se a velocidade antes de acessar e sinaliza-se saída para orientar demais usuários.`
   },
-  // 309
   {
     text: "Pedestre, ao caminhar próximo a área de descarga de caminhões, deve:",
     options: [
@@ -4112,7 +3810,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB Art. 68 recomenda permanecer em lugar seguro e evitar obstáculos móveis — em área de descarga, manter distância de veículos.`
   },
-  // 310
   {
     text: "Motociclista, ao trafegar em noite chuvosa, deve:",
     options: [
@@ -4126,7 +3823,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29 e Res. 396/11 exigem redução de velocidade e uso de luz baixa para não ofuscar e manter visibilidade em chuva.`
   },
-  // 311
   {
     text: "Ciclista, ao sinalizar conversão, deve:",
     options: [
@@ -4140,7 +3836,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 58 parágrafo 2º: “o ciclista deve sinalizar a manobra estendendo o braço na direção correspondente”.`
   },
-  // 312
   {
     text: "Motorista, ao avistar faixas zebras, deve:",
     options: [
@@ -4154,7 +3849,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 90 define faixa zebrada como área proibida de circulação ou estacionamento para garantir passagem segura.`
   },
-  // 313
   {
     text: "Pedestre, ao caminhar em via sem sinalização, deve:",
     options: [
@@ -4168,7 +3862,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 70 orienta atravessar “em linha reta e observando o fluxo de veículos”, escolhendo pontos com visibilidade.`
   },
-  // 314
   {
     text: "Motociclista, ao trafegar com chuvas fortes, deve:",
     options: [
@@ -4182,7 +3875,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: velocidade compatível com segurança; chuva forte exige reduzir mais e aumentar distância lateral para evitar aquaplanagem.`
   },
-  // 315
   {
     text: "Motorista, ao avistar placa de ‘Risco de derrapagem’, deve:",
     options: [
@@ -4196,7 +3888,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Placa A‑49 (derrapagem) – CTB Anexo II: exige reduzir velocidade e prosseguir com cuidado para evitar saída de pista.`
   },
-  // 316
   {
     text: "Ciclista, ao ser ultrapassado por veículo, deve:",
     options: [
@@ -4210,7 +3901,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Boas práticas (CTB art. 29) recomendam manter trajetória e permitir que veículos ultrapassem com segurança, sem movimentos bruscos.`
   },
-  // 317
   {
     text: "Pedestre, ao andar em calçada estreita, deve:",
     options: [
@@ -4224,7 +3914,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 68 recomenda circulação em calçadas pela direita, em fila única se necessário para convívio seguro.`
   },
-  // 318
   {
     text: "Motociclista, ao trafegar em local com neblina, deve:",
     options: [
@@ -4238,7 +3927,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29 e Res. 396/11 orientam uso de luz de neblina e redução de velocidade em baixa visibilidade.`
   },
-  // 319
   {
     text: "Motorista, ao avistar placa de ‘Retorno proibido’, deve:",
     options: [
@@ -4252,7 +3940,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Placa R‑2d (retorno proibido) – CTB Anexo II proíbe retorno naquele trecho, sob pena de infração.`
   },
-  // 320
   {
     text: "Ciclista, ao pedalar em ciclofaixa exclusiva de ônibus, deve:",
     options: [
@@ -4266,7 +3953,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29 proíbe circulação de bicicletas em faixas exclusivas de ônibus, garantindo prioridade exclusiva ao transporte coletivo.`
   },
-  // 321
   {
     text: "Pedestre, ao atravessar em faixa sem sinal, deve:",
     options: [
@@ -4280,7 +3966,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 70 reforça observação do fluxo e travessia segura, mesmo sem semáforo.`
   },
-  // 322
   {
     text: "Motociclista, ao trafegar em via de mão única, deve:",
     options: [
@@ -4294,7 +3979,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: em mão única, ultrapassagem ocorre pela esquerda, respeitando sinalização e segurança.`
   },
-  // 323
   {
     text: "Motorista, ao ver faixa de pedestre elevada, deve:",
     options: [
@@ -4308,7 +3992,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 70: faixa elevada é considerada faixa de pedestre, com prioridade e redução de velocidade obrigatórias.`
   },
-  // 324
   {
     text: "Ciclista, ao trafegar em via com lombofaixa, deve:",
     options: [
@@ -4322,7 +4005,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Lombofaixa (lombada elevada) impõe redução de velocidade para proteger pedestres e manter estabilidade (Anexo I, CTB).`
   },
-  // 325
   {
     text: "Pedestre, ao usar faixa com semáforo de contagem regressiva, deve:",
     options: [
@@ -4336,7 +4018,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 69: semáforo de pedestres com contagem regressiva indica tempo disponível; iniciar travessia apenas se houver tempo suficiente para cruzar com segurança.`
   },
-  // 326
   {
     text: "Motociclista, ao trafegar em via local, deve:",
     options: [
@@ -4350,7 +4031,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: em via local, há maior presença de pedestres e veículos estacionados, exigindo redução de velocidade e atenção.`
   },
-  // 327
   {
     text: "Motorista, ao avistar faixa amarela contínua no meio, deve:",
     options: [
@@ -4364,7 +4044,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 90: faixa contínua amarela proíbe ultrapassagem e troca de faixa, devendo o condutor manter-se à direita.`
   },
-  // 328
   {
     text: "Ciclista, ao trafegar em cruzamento sem semáforo, deve:",
     options: [
@@ -4378,7 +4057,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 59: ciclistas obedecem mesmas regras de trânsito de veículos, reduzindo e parando em cruzamentos sem semáforo conforme necessidade.`
   },
-  // 329
   {
     text: "Pedestre, ao atravessar em faixa com semáforo verde para veículos, deve:",
     options: [
@@ -4392,7 +4070,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 69: pedestres só devem iniciar travessia após sinal verde específico para pedestres, observando semáforo dedicado.`
   },
-  // 330
   {
     text: "Motociclista, ao trafegar em área residencial, deve:",
     options: [
@@ -4406,7 +4083,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 61: em áreas residenciais com limite reduzido, condutor deve respeitar velocidade e zelar por pedestres e crianças.`
   },
-  // 331
   {
     text: "Motorista, ao avistar ciclista em ciclofaixa à esquerda, deve:",
     options: [
@@ -4420,7 +4096,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: antes de conversão à esquerda, deve-se aguardar ciclistas na ciclofaixa e ceder passagem.`
   },
-  // 332
   {
     text: "Ciclista, ao trafegar com bicicleta adaptada para carga, deve:",
     options: [
@@ -4434,7 +4109,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 105: carga em bicicletas deve respeitar capacidade e não comprometer equilíbrio, usando dispositivos adequados.`
   },
-  // 333
   {
     text: "Pedestre, ao caminhar em faixa elevada sem semáforo, deve:",
     options: [
@@ -4448,7 +4122,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 70: faixa elevada é equivalente a semáforo vermelho para veículos; pedestre observa redução e só então inicia travessia.`
   },
-  // 334
   {
     text: "Motociclista, ao trafegar em via com tantos veículos estacionados, deve:",
     options: [
@@ -4462,7 +4135,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: manter velocidade compatível e distância lateral para evitar “portas abertas” e preservar segurança.`
   },
-  // 335
   {
     text: "Motorista, ao se aproximar de faixa de ônibus elevada, deve:",
     options: [
@@ -4476,7 +4148,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Mesmo sendo exclusiva, a faixa elevada também exige redução de velocidade e respeito à demarcação para evitar acidentes com passageiros.`
   },
-  // 336
   {
     text: "Ciclista, ao pedalar em faixa compartilhada sem sinalização, deve:",
     options: [
@@ -4490,7 +4161,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 58 e art. 68: em vias mistas, ciclistas cedem passagem a pedestres e ajustam velocidade.`
   },
-  // 337
   {
     text: "Pedestre, ao cruzar linha férrea, deve:",
     options: [
@@ -4504,7 +4174,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 68: embora não trate diretamente de linhas férreas, adota-se princípio de “observar fluxo” – aqui, trens.`
   },
-  // 338
   {
     text: "Motociclista, ao trafegar em pista molhada, deve:",
     options: [
@@ -4518,7 +4187,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29 e art. 29, inciso II: seguir velocidade compatível e evitar frenagens bruscas em piso escorregadio.`
   },
-  // 339
   {
     text: "Motorista, ao trafegar em via urbana com ciclovia, deve:",
     options: [
@@ -4532,7 +4200,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: ciclovias são exclusivas para ciclistas; condutores devem respeitar e não invadir.`
   },
-  // 340
   {
     text: "Ciclista, ao pedalar com mochila grande, deve:",
     options: [
@@ -4546,7 +4213,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 105: carga deve ser equilibrada para não prejudicar manobrabilidade e segurança.`
   },
-  // 341
   {
     text: "Pedestre, ao encontrar piso tátil direcional, deve:",
     options: [
@@ -4560,7 +4226,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Res. 396/11 do Contran: piso tátil direcional guia pedestres com deficiência visual, devendo-se seguir até local seguro.`
   },
-  // 342
   {
     text: "Motociclista, ao trafegar em via com lombada seca (sem sinalização), deve:",
     options: [
@@ -4574,7 +4239,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Mesmo sem placa, obstáculo exige redução de velocidade (CTB art. 29) e cuidado adicional.`
   },
-  // 343
   {
     text: "Motorista, ao avistar faixa de pedestre sem semáforo mas com guarda-corpo, deve:",
     options: [
@@ -4588,7 +4252,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 70 e diretrizes de acessibilidade: guarda-corpo indica travessia controlada; aguardar liberação para garantir segurança.`
   },
-  // 344
   {
     text: "Ciclista, ao trafegar em via sem acostamento e sem ciclovia, deve:",
     options: [
@@ -4602,7 +4265,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 58: ciclistas circulam o mais próximo possível do bordo e no mesmo sentido do trânsito.`
   },
-  // 345
   {
     text: "Pedestre, ao atravessar em curva sem visibilidade, deve:",
     options: [
@@ -4616,7 +4278,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 70: escolher local com visibilidade antes de atravessar, evitando cruzar em pontos cegos.`
   },
-  // 346
   {
     text: "Motociclista, ao trafegar em via com movimento intenso, deve:",
     options: [
@@ -4630,7 +4291,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: cabe manter distância, prever manobras e sinalizar, mesmo em tráfego intenso, para segurança de todos.`
   },
-  // 347
   {
     text: "Motorista, ao se aproximar de faixa de pedestre e não haver pedestres, deve:",
     options: [
@@ -4644,7 +4304,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 70 exige que o condutor reduza a velocidade ao se aproximar de faixa de pedestre, mesmo sem pedestres, para eventual travessia.`
   },
-  // 348
   {
     text: "Ciclista, ao trafegar em via com trânsito misto, deve:",
     options: [
@@ -4658,7 +4317,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 58 e art. 68: em trânsito misto, ciclistas ajustam velocidade e respeitam pedestres.`
   },
-  // 349
   {
     text: "Pedestre, ao atravessar rua com duas faixas por sentido, deve:",
     options: [
@@ -4672,7 +4330,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 69: pedestres aguardam sinal verde específico; em travessia sem semáforo, aguardam momento seguro para ambas as faixas.`
   },
-  // 350
   {
     text: "Motociclista, ao encostar em pedestre para ultrapassagem, deve:",
     options: [
@@ -4686,7 +4343,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 201 (distância mínima de 1,5 m) e art. 29 exigem manter espaço lateral ao ultrapassar pedestres ou ciclistas.`
   },
-  // 351
   {
     text: "Motorista, ao avistar placa de ‘Parada obrigatória’, deve:",
     options: [
@@ -4700,7 +4356,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Placa R‑1 – CTB art. 44 determina “parada obrigatória e total do veículo antes da linha de retenção ou, na falta desta, antes da via transversal”.`
   },
-  // 352
   {
     text: "Ciclista, ao chegar em entroncamento sem sinalização, deve:",
     options: [
@@ -4714,7 +4369,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29 e art. 29, inciso V: em entroncamentos, aplica-se preferência a quem vier pela direita, inclusive ciclistas.`
   },
-  // 353
   {
     text: "Pedestre, ao atravessar na faixa de pedestre elevada, deve:",
     options: [
@@ -4728,7 +4382,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 70: faixa elevada confere prioridade ao pedestre; ele deve aguardar a parada dos veículos antes de iniciar a travessia.`
   },
-  // 354
   {
     text: "Motociclista, ao trafegar em via rural sem acostamento, deve:",
     options: [
@@ -4742,7 +4395,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: em vias sem acostamento, motociclista circula o mais próximo possível do bordo, mantendo atenção a veículos maiores.`
   },
-  // 355
   {
     text: "Motorista, ao avistar placa de ‘Curva perigosa à esquerda’, deve:",
     options: [
@@ -4756,7 +4408,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Placa A‑3a – CTB Anexo II: alerta para curva perigosa; condutor deve reduzir velocidade e não invadir pista oposta.`
   },
-  // 356
   {
     text: "Ciclista, ao se aproximar de ponte estreita, deve:",
     options: [
@@ -4770,7 +4421,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: aproximações de trechos estreitos exigem redução de velocidade e manutenção de trajetória segura.`
   },
-  // 357
   {
     text: "Pedestre, ao atravessar rua com tráfego intenso de ônibus, deve:",
     options: [
@@ -4784,7 +4434,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 70: priorizar travessia em local sinalizado; evitar áreas de ônibus embarcando/desembaracando.`
   },
-  // 358
   {
     text: "Motociclista, ao trafegar em pista molhada, deve:",
     options: [
@@ -4798,7 +4447,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: frenar de modo gradual e usar freio motor em piso escorregadio evita bloqueio de rodas e queda.`
   },
-  // 359
   {
     text: "Motorista, ao avistar ciclista sinalizando conversão, deve:",
     options: [
@@ -4812,7 +4460,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 58 parágrafo 2º e art. 29: manobra de ciclista sinalizada obriga condutor a aguardar e manter distância segura durante a conversão.`
   },
-  // 360
   {
     text: "Pedestre, ao caminhar em calçada com obstáculos, deve:",
     options: [
@@ -4826,7 +4473,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 68: circulação em calçadas deve ser feita de forma segura, contornando obstáculos com antecedência e mantendo distância de veículos.`
   },
-  // 361
   {
     text: "Motociclista, ao trafegar em meia-luz, deve:",
     options: [
@@ -4840,7 +4486,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 40 e Res. 498/14 do Contran: uso de luz baixa obrigatório ao amanhecer e entardecer, com lanternas auxiliares se necessário.`
   },
-  // 362
   {
     text: "Motorista, ao estacionar em via urbana, deve:",
     options: [
@@ -4854,7 +4499,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 181, inciso I: estacionamento paralelo à guia, próximo ao meio-fio, exceto quando houver vagas demarcadas diferentes.`
   },
-  // 363
   {
     text: "Ciclista, ao trafegar em curva, deve:",
     options: [
@@ -4868,7 +4512,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: adaptação de velocidade à geometria da via, reduzindo antes de curvas para manter aderência e equilíbrio.`
   },
-  // 364
   {
     text: "Pedestre, ao se aproximar de via férrea com cancela, deve:",
     options: [
@@ -4882,7 +4525,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Equivalência ao CTB art. 70: circulação segura em passagens de nível com cancela exige aguardar abertura completa.`
   },
-  // 365
   {
     text: "Motociclista, ao trafegar à noite, deve:",
     options: [
@@ -4896,7 +4538,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 40: alternar farol alto para não ofuscar condutores de veículos em sentido contrário.`
   },
-  // 366
   {
     text: "Motorista, ao avistar placa de ‘Pare intermitente’, deve:",
     options: [
@@ -4910,7 +4551,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Placa R‑2b (pare intermitente) – CTB art. 44: exige parada total e prosseguimento apenas quando seguro.`
   },
-  // 367
   {
     text: "Ciclista, ao trafegar em via compartilhada, deve:",
     options: [
@@ -4924,7 +4564,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 58 e art. 68: em compartilhamento, ciclista mantém velocidade segura e cede espaço a pedestres.`
   },
-  // 368
   {
     text: "Pedestre, ao cruzar via com canteiro central, deve:",
     options: [
@@ -4938,7 +4577,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 70: canteiro central pode servir como ponto de espera, iniciando travessia de parte a parte com segurança.`
   },
-  // 369
   {
     text: "Motociclista, ao trafegar em rodovia sem iluminação, deve:",
     options: [
@@ -4952,7 +4590,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 40: em rodovias sem iluminação, farol alto e auxiliares garantem visibilidade, acompanhado de redução de velocidade.`
   },
-  // 370
   {
     text: "Motorista, ao encontrar cruzamento sem sinal, deve:",
     options: [
@@ -4966,7 +4603,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29 e art. 29, inciso V: preferência a quem vier pela direita em cruzamentos sem sinalização.`
   },
-  // 371
   {
     text: "Ciclista, ao trafegar em estrada rural, deve:",
     options: [
@@ -4980,7 +4616,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 58: ciclistas circulam à direita e sinalizam sempre a intenção de manobra, mesmo em estradas rurais.`
   },
-  // 372
   {
     text: "Pedestre, ao caminhar em via sob chuva forte, deve:",
     options: [
@@ -4994,7 +4629,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 68: condições adversas exigem uso de elementos de proteção e maior atenção ao fluxo de veículos.`
   },
-  // 373
   {
     text: "Motociclista, ao trafegar em via com lombada sinalizada, deve:",
     options: [
@@ -5008,7 +4642,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29 e sinalização de lombada (A‑13) exigem redução de velocidade antes de passar sobre lombadas.`
   },
-  // 374
   {
     text: "Motorista, ao ver faixa amarela intermitente, deve:",
     options: [
@@ -5022,7 +4655,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 53 (Anexo II): faixa amarela intermitente indica situação de atenção/perigo, exigindo redução de velocidade.`
   },
-  // 375
   {
     text: "Ciclista, ao circular em rota turística sinalizada, deve:",
     options: [
@@ -5036,7 +4668,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Placas marrons de rota turística (Anexo II, CTB) orientam trajeto; ciclistas devem seguir para melhor orientação e segurança.`
   },
-  // 376
   {
     text: "Pedestre, ao atravessar em faixa com semáforo sonoro, deve:",
     options: [
@@ -5050,7 +4681,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Res. 396/11: semáforo sonoro auxilia pedestres com deficiência visual; sinais sonoros indicam início/fim da travessia.`
   },
-  // 377
   {
     text: "Motociclista, ao trafegar em via com ciclovia separada, deve:",
     options: [
@@ -5064,7 +4694,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: ciclovias são exclusivas para bicicletas; motociclistas não devem invadir ou utilizar.`
   },
-  // 378
   {
     text: "Motorista, ao ver sinalização de ‘Retorno permitido’, pode:",
     options: [
@@ -5078,7 +4707,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Placa R‑2c (retorno permitido) – CTB Anexo II: retorno valido apenas no local indicado, evitando manobras perigosas.`
   },
-  // 379
   {
     text: "Ciclista, ao trafegar em via sem iluminação, deve:",
     options: [
@@ -5092,7 +4720,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 105 e Res. 396/11: bicicletas devem ter sinalização noturna dianteira e traseira em vias sem iluminação.`
   },
-  // 380
   {
     text: "Pedestre, ao utilizar passarela com rampa, deve:",
     options: [
@@ -5106,7 +4733,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Diretrizes de acessibilidade (Res. 703/17 do Contran) recomendam uso de corrimão e cuidado em rampas para segurança.`
   },
-  // 381
   {
     text: "Motociclista, ao trafegar em via alagada, deve:",
     options: [
@@ -5120,7 +4746,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: em alagamentos, manter baixa velocidade e evitar áreas profundas para não perder controle da moto.`
   },
-  // 382
   {
     text: "Motorista, ao se aproximar de cruzamento com semáforo apagado, deve:",
     options: [
@@ -5134,7 +4759,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: semáforo apagado configura-se cruzamento sem sinalização; aplica-se preferência a quem vier pela direita.`
   },
-  // 383
   {
     text: "Ciclista, ao trafegar em faixa mista de circulação, deve:",
     options: [
@@ -5148,7 +4772,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 58 e art. 68: em faixas mistas, ciclistas devem ajustar velocidade e ceder passagem a pedestres.`
   },
-  // 384
   {
     text: "Pedestre, ao caminhar em via urbana com passeios irregulares, deve:",
     options: [
@@ -5162,7 +4785,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 68: obrigatório cuidado redobrado em calçadas irregulares, contornando imperfeições para prevenir quedas.`
   },
-  // 385
   {
     text: "Motociclista, ao perceber aquaplanagem, deve:",
     options: [
@@ -5176,7 +4798,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29 e orientações de segurança recomendam reduzir aceleração, manter trajetória reta e não frear bruscamente em aquaplanagem.`
   },
-  // 386
   {
     text: "Motorista, ao passar por ponte com piso metálico, deve:",
     options: [
@@ -5190,7 +4811,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: pisos metálicos reduzem atrito; condutor deve reduzir velocidade e manter trajetória central para evitar derrapagem.`
   },
-  // 387
   {
     text: "Ciclista, ao trafegar próximo de veículos estacionados, deve:",
     options: [
@@ -5204,7 +4824,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29 e art. 201: manter distância lateral para evitar acidentes com portas abertas de veículos estacionados.`
   },
-  // 388
   {
     text: "Pedestre, ao caminhar em via com fluxo de ciclistas, deve:",
     options: [
@@ -5218,7 +4837,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 68: pedestres circulam na calçada; ao cruzar ciclovia, observam fluxo de bicicletas antes de atravessar.`
   },
-  // 389
   {
     text: "Motociclista, ao sinalizar parada de emergência, deve:",
     options: [
@@ -5232,7 +4850,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 40 e art. 68: pisca-alerta sinaliza emergência; motociclista deve parar em local seguro para não obstruir via.`
   },
-  // 390
   {
     text: "Motorista, ao avistar placa de ‘Piso Escorregadio’, deve:",
     options: [
@@ -5246,7 +4863,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Placa A‑49 (escorregadio) – CTB Anexo II: alerta para superfície escorregadia; condutor reduz velocidade e evita manobra brusca.`
   },
-  // 391
   {
     text: "Ciclista, ao trafegar em via com lombada seca sem sinalização, deve:",
     options: [
@@ -5260,7 +4876,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: obstáculos não sinalizados requerem redução de velocidade e controle do veículo para manter equilíbrio.`
   },
-  // 392
   {
     text: "Pedestre, ao atravessar via de mão dupla sem sinalização, deve:",
     options: [
@@ -5274,7 +4889,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 70: travessia em linha reta com observação do fluxo em ambas as direções em vias sem sinalização.`
   },
-  // 393
   {
     text: "Motociclista, ao trafegar com garupa, deve:",
     options: [
@@ -5288,7 +4902,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 105: moto com passageiro requer ajuste de suspensão e manutenção de distância para estabilidade.`
   },
-  // 394
   {
     text: "Motorista, ao avistar faixa de pedestre pintada de amarelo, deve:",
     options: [
@@ -5302,7 +4915,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Faixa amarela de advertência de segurança (CTB Anexo II) indica cuidado; motorist﻿a deve reduzir velocidade e ceder passagem.`
   },
-  // 395
   {
     text: "Ciclista, ao trafegar em via com sinal sonoro para pedestre, deve:",
     options: [
@@ -5316,7 +4928,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 69 e Res. 396/11: sinal sonoro alerta pedestres; ciclistas não devem obstruir área de travessia.`
   },
-  // 396
   {
     text: "Pedestre, ao aguardar travessia em faixa com semáforo, deve:",
     options: [
@@ -5330,7 +4941,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 69: pedestres aguardam sinal verde na calçada junto ao meio-fio, dentro da área de travessia demarcada.`
   },
-  // 397
   {
     text: "Motociclista, ao trafegar em via com piso irregulares (paralelepípedos), deve:",
     options: [
@@ -5344,7 +4954,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: piso irregular demanda redução de velocidade e controle firme do guidão para evitar perda de aderência.`
   },
-  // 398
   {
     text: "Motorista, ao avistar ciclista sinalizando parada, deve:",
     options: [
@@ -5358,7 +4967,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 201: ao ultrapassar ciclista parado, manter distância lateral e evitar buzinares, garantindo segurança.`
   },
-  // 399
   {
     text: "Ciclista, ao trafegar com bagagem volumosa, deve:",
     options: [
@@ -5372,7 +4980,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 105: bagagem volumosa deve ser distribuída uniformemente, usando bagageiros apropriados para manter estabilidade.`
   },
-  // 400
   {
     text: "Pedestre, ao usar travessia com semáforo e botoeira, deve:",
     options: [
@@ -5386,7 +4993,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 69 e normas de sinalização: botoeiras acionam semáforo para pedestre; aguardar luz verde específica antes de iniciar travessia.`
   },
-  // 401
   {
     text: "Motociclista, ao manobrar em estacionamento, deve:",
     options: [
@@ -5400,7 +5006,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: manobras em baixa velocidade requerem uso de indicativo luminoso e observação de pontos cegos para segurança.`
   },
-  // 402
   {
     text: "Motorista, ao trafegar em via com neblina densa, deve:",
     options: [
@@ -5414,7 +5019,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 40: em neblina, uso de luz baixa e farol de neblina é obrigatório; velocidade deve ser compatível com visibilidade.`
   },
-  // 403
   {
     text: "Ciclista, ao trafegar com restrição de visibilidade (curva), deve:",
     options: [
@@ -5428,7 +5032,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: em pontos de visibilidade reduzida, ciclista reduz velocidade e sinaliza manobras para alertar outros usuários.`
   },
-  // 404
   {
     text: "Pedestre, ao se aproximar de travessia em desnível (passarela), deve:",
     options: [
@@ -5442,7 +5045,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Diretrizes de acessibilidade (Res. 703/17) recomendam uso de corrimão e atenção ao piso em travessias elevadas.`
   },
-  // 405
   {
     text: "Motociclista, ao rebocar outro veículo, deve:",
     options: [
@@ -5456,7 +5058,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 105: reboque por motocicleta requer uso de dispositivo aprovado e sinalização adequada para segurança.`
   },
-  // 406
   {
     text: "Motorista, ao trafegar em via com piso solto (areia), deve:",
     options: [
@@ -5470,7 +5071,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: piso solto exige redução de velocidade e condução suave para evitar derrapagens.`
   },
-  // 407
   {
     text: "Ciclista, ao transpor lombada sinalizada, deve:",
     options: [
@@ -5484,7 +5084,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Sinalização de lombada (A‑13) – CTB Anexo II: exige redução de velocidade e controle para transposição sem desequilíbrio.`
   },
-  // 408
   {
     text: "Pedestre, ao utilizar travessia de ciclovia, deve:",
     options: [
@@ -5498,7 +5097,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 68: ao cruzar ciclovia, pedestre observa fluxo de bicicletas e aguarda espaço seguro antes de atravessar.`
   },
-  // 409
   {
     text: "Motociclista, ao trafegar em estrada de terra, deve:",
     options: [
@@ -5512,7 +5110,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: estradas de terra exigem velocidade reduzida e escolha de trajetória sem buracos para manter controle.`
   },
-  // 410
   {
     text: "Motorista, ao trafegar em trevo de acesso, deve:",
     options: [
@@ -5526,7 +5123,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: manobra de saída em trevo requer redução de velocidade e uso de seta para indicar mudança de faixa.`
   },
-  // 411
   {
     text: "Ciclista, ao trafegar em ciclofaixa junto a via, deve:",
     options: [
@@ -5540,7 +5136,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 58: ciclista em ciclofaixa deve permanecer dentro dos limites e obedecer semáforos específicos.`
   },
-  // 412
   {
     text: "Pedestre, ao aguardar transporte público, deve:",
     options: [
@@ -5554,7 +5149,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 68: pontos de ônibus demarcados oferecem área segura para espera, sem invadir pista de rolamento.`
   },
-  // 413
   {
     text: "Motociclista, ao trafegar em pista de rolamento ondulada, deve:",
     options: [
@@ -5568,7 +5162,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: ondulações espalhadas na via exigem redução de velocidade e firmeza no guidão para evitar desequilíbrio.`
   },
-  // 414
   {
     text: "Motorista, ao trafegar em via de pista dupla, deve:",
     options: [
@@ -5582,7 +5175,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: via de pista dupla impõe manter-se à direita e ocupar faixa esquerda apenas para ultrapassar.`
   },
-  // 415
   {
     text: "Ciclista, ao trafegar em pista compartilhada com pedestres, deve:",
     options: [
@@ -5596,7 +5188,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 68: em compartilhamento, ciclista reduz velocidade e sinaliza presença ao ultrapassar pedestres.`
   },
-  // 416
   {
     text: "Pedestre, ao caminhar em calçada estreita, deve:",
     options: [
@@ -5610,7 +5201,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 68: calçadas estreitas requerem paciência; pedestre aguarda passagem ou utiliza faixa de pedestre segura.`
   },
-  // 417
   {
     text: "Motociclista, ao trafegar em rodovia de pista simples, deve:",
     options: [
@@ -5624,7 +5214,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29 e art. 196: veículos, inclusive motocicletas, mantêm-se à direita e só ultrapassam pela esquerda, sinalizando com antecedência.`
   },
-  // 418
   {
     text: "Motorista, ao avistar ciclista na via, deve:",
     options: [
@@ -5638,7 +5227,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 201, parágrafo único: ultrapassagem de ciclistas exige distância mínima de 1,5 m para segurança.`
   },
-  // 419
   {
     text: "Ciclista, ao estacionar bicicleta em área pública, deve:",
     options: [
@@ -5652,7 +5240,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Recomendações gerais de segurança urbana: uso de cadeado em suporte fixo previne furto e obstrução de passeio público.`
   },
-  // 420
   {
     text: "Pedestre, ao caminhar em faixa elevada, deve:",
     options: [
@@ -5666,7 +5253,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 70: faixa elevada funciona como lombada; pedestre aguarda parada dos veículos antes de iniciar travessia.`
   },
-  // 421
   {
     text: "Motociclista, ao trafegar com garupa, deve:",
     options: [
@@ -5680,7 +5266,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 105: condução com garupa exige adaptação de velocidade e comunicação clara para postura e segurança.`
   },
-  // 422
   {
     text: "Motorista, ao trafegar em via com ônibus parado, deve:",
     options: [
@@ -5694,7 +5279,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 196: ultrapassagem de ônibus parado requer sinalização e ultrapassar pela esquerda com segurança.`
   },
-  // 423
   {
     text: "Ciclista, ao trafegar em dia de chuva, deve:",
     options: [
@@ -5708,7 +5292,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: condições adversas de chuva exigem redução de velocidade, roupas impermeáveis e sinalização adicional para visibilidade.`
   },
-  // 424
   {
     text: "Pedestre, ao atravessar via com divisor físico, deve:",
     options: [
@@ -5722,7 +5305,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 70: divisores físicos possuem passagens demarcadas; pedestre aguarda e atravessa somente em locais apropriados.`
   },
-  // 425
   {
     text: "Motociclista, ao trafegar em via com lombada triangular (sinalização), deve:",
     options: [
@@ -5736,7 +5318,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Placa A‑13b – CTB Anexo II: alerta para lombada; condutor reduz velocidade antes de transpor obstáculo com segurança.`
   },
-  // 426
   {
     text: "Motorista, ao trafegar em via mista (ônibus & carros), deve:",
     options: [
@@ -5750,7 +5331,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 86: faixas exclusivas de ônibus exigem respeito; ultrapassagem só após fim de faixa ou autorização específica.`
   },
-  // 427
   {
     text: "Ciclista, ao trafegar em via interdita parcialmente, deve:",
     options: [
@@ -5764,7 +5344,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Diretrizes de obras (Res. 556/15): ciclovias interdictas requerem desvio sinalizado, sem invadir área em obra.`
   },
-  // 428
   {
     text: "Pedestre, ao observar semáforo com contagem regressiva, deve:",
     options: [
@@ -5778,7 +5357,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 69 e normas de sinalização: contadores regressivos indicam tempo disponível; pedestre aguarda fim antes de iniciar travessia.`
   },
-  // 429
   {
     text: "Motociclista, ao usar freios ABS intrigados, deve:",
     options: [
@@ -5792,7 +5370,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 105: sistemas ABS dispensam bombeamento; freio gradual com alavanca fixa evita bloqueio de rodas.`
   },
-  // 430
   {
     text: "Motorista, ao trafegar em curva com sinalização de velocidade máxima, deve:",
     options: [
@@ -5806,7 +5383,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Placa de regulamentação R‑26 indica velocidade máxima; CTB art. 87 exige obediência ao limite em curvas.`
   },
-  // 431
   {
     text: "Ciclista, ao trafegar em via de mão única, pode:",
     options: [
@@ -5820,7 +5396,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: circulação em mão única é sempre no sentido da via; ciclistas mantêm-se à direita.`
   },
-  // 432
   {
     text: "Pedestre, ao caminhar em área rural sem calçada, deve:",
     options: [
@@ -5834,7 +5409,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 68: na ausência de calçadas, pedestre utiliza acostamento, circulando em sentido contrário ao tráfego para maior visibilidade.`
   },
-  // 433
   {
     text: "Motociclista, ao trafegar em via com faixa zebrada, deve:",
     options: [
@@ -5848,7 +5422,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Faixa zebrada (CTB Anexo II) delimita área proibida de circulação; motociclista não deve trafegar sobre ela.`
   },
-  // 434
   {
     text: "Motorista, ao ver sinalização de ‘Dê preferência’, deve:",
     options: [
@@ -5862,7 +5435,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Placa R‑1c (dê preferência) – CTB art. 29.III: indica dar preferência a veículos da via transversal que se aproximam pela direita.`
   },
-  // 435
   {
     text: "Ciclista, ao trafegar em pista compartilhada com veículos motorizados, deve:",
     options: [
@@ -5876,7 +5448,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 58: ao compartilhar pista com veículos motorizados, ciclista fica o mais à direita e sinaliza movimentos.`
   },
-  // 436
   {
     text: "Pedestre, ao caminhar em via com buracos, deve:",
     options: [
@@ -5890,7 +5461,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 68: circulação segura em via com irregularidades exige desviar de buracos e manter atenção ao passo.`
   },
-  // 437
   {
     text: "Motociclista, ao rebocar em segunda motocicleta, deve:",
     options: [
@@ -5904,7 +5474,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 234: rebocar motocicleta por outra é proibido; cria situação de risco extremo.`
   },
-  // 438
   {
     text: "Motorista, ao trafegar em via com sinalização semafórica inverterida (semáforo invertido– verde aceso em cima), deve:",
     options: [
@@ -5918,7 +5487,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: sequência de luzes semafóricas mantém significado independentemente da posição física; obedece-se conforme cor.`
   },
-  // 439
   {
     text: "Ciclista, ao trafegar em via de trânsito rápido (rodovia urbana com acesso controlado), deve:",
     options: [
@@ -5932,7 +5500,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 59: ciclistas não podem trafegar em vias de trânsito rápido de acesso controlado; devem usar rotas alternativas.`
   },
-  // 440
   {
     text: "Pedestre, ao aguardar o transporte escolar, deve:",
     options: [
@@ -5946,7 +5513,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 67: transporte escolar possui pontos demarcados; pedestres aguardam fora da via, em área segura.`
   },
-  // 441
   {
     text: "Motociclista, ao trafegar em via com indicação de velocidade mínima, deve:",
     options: [
@@ -5960,7 +5526,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Placa R‑3 (velocidade mínima) – CTB art. 87: exige velocidade igual ou superior ao valor indicado para manter fluidez do tráfego.`
   },
-  // 442
   {
     text: "Motorista, ao encontrar pedestre no meio da via, deve:",
     options: [
@@ -5974,7 +5539,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29 e art. 70: presença de pedestre na via requer redução de velocidade e cessão de passagem para travessia segura.`
   },
-  // 443
   {
     text: "Ciclista, ao trafegar em dias de ventania lateral, deve:",
     options: [
@@ -5988,7 +5552,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29 e orientações técnicas: ventos laterais exigem redução de velocidade e ajuste de manuseio para estabilidade.`
   },
-  // 444
   {
     text: "Pedestre, ao caminhar em via com acústico de transporte público, deve:",
     options: [
@@ -6002,7 +5565,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 68: transporte público em movimento gera fluxo de pedestres; manter distância reduz risco de atropelamentos.`
   },
-  // 445
   {
     text: "Motociclista, ao trafegar com farol de neblina dianteiro ligado indevidamente, ocorre:",
     options: [
@@ -6016,7 +5578,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 40 e Res. 716/17: uso inadequado de farol de neblina causa ofuscamento e configura infração média.`
   },
-  // 446
   {
     text: "Motorista, ao trafegar em via com ciclovia elevada, deve:",
     options: [
@@ -6030,7 +5591,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 58 e art. 29: ciclovia elevada é exclusiva para ciclistas; veículos motorizados não devem invadir nem obstruir.`
   },
-  // 447
   {
     text: "Ciclista, ao trafegar em via com pavimento irregular, deve:",
     options: [
@@ -6044,7 +5604,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: em piso irregular, ciclista reduz velocidade e segura firmemente o guidão para controlar estabilidade.`
   },
-  // 448
   {
     text: "Pedestre, ao caminhar com carrinho de bebê, deve:",
     options: [
@@ -6058,7 +5617,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 68: circulação com carrinho de bebê deve ocorrer na calçada, utilizando rampas e passagens apropriadas para segurança.`
   },
-  // 449
   {
     text: "Motociclista, ao trafegar em via com placa de ‘Proibido Ultrapassar’, deve:",
     options: [
@@ -6072,7 +5630,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Placa R‑6 – CTB art. 186: ultrapassagem proibida em todo trecho; motociclista não deve ultrapassar até o fim da restrição.`
   },
-  // 450
   {
     text: "Motorista, ao trafegar em via com pista de desaceleração, deve:",
     options: [
@@ -6086,7 +5643,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Princípios de direção segura: pista de desaceleração serve para reduzir velocidade antes de saída; CTB art. 29 recomenda uso apropriado de faixas auxiliares.`
   },
-  // 451
   {
     text: "Ciclista, ao trafegar em via com canteiro central, deve:",
     options: [
@@ -6100,7 +5656,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 58: quando existir infraestrutura para circulação, ciclistas devem usá-la e não transpor canteiros de forma imprópria.`
   },
-  // 452
   {
     text: "Motorista, ao trafegar em via com ciclovia acima do nível da pista, deve:",
     options: [
@@ -6114,7 +5669,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 58: ciclovias são de uso exclusivo de ciclistas; veículos motorizados não devem invadir ou estacionar sobre elas.`
   },
-  // 453
   {
     text: "Pedestre, ao caminhar em via urbana com acostamento, deve:",
     options: [
@@ -6128,7 +5682,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 68: na falta de calçada, pedestre utiliza acostamento, circulando em sentido contrário ao fluxo para melhor visibilidade.`
   },
-  // 454
   {
     text: "Motociclista, ao rebocar objeto leve, deve:",
     options: [
@@ -6142,7 +5695,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 105: motocicleta só pode rebocar outro veículo por dispositivo aprovado; reboque de objetos simples não é permitido.`
   },
-  // 455
   {
     text: "Motorista, ao trafegar em pista dupla com via lateral, deve:",
     options: [
@@ -6156,7 +5708,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Princípios de circulação: pista lateral serve a acesso local; via principal mantém fluxo de trânsito mais rápido.`
   },
-  // 456
   {
     text: "Ciclista, ao transpor obstrução temporária na ciclovia, deve:",
     options: [
@@ -6170,7 +5721,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 60, VI: ciclistas devem desmontar e empurrar a bicicleta ao atravessar obstáculos em ciclovias ou calçadas.`
   },
-  // 457
   {
     text: "Pedestre, ao encontrar obra na calçada, deve:",
     options: [
@@ -6184,7 +5734,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 68: obras na calçada devem possuir desvio sinalizado; pedestre segue indicação para manter segurança.`
   },
-  // 458
   {
     text: "Motociclista, ao trafegar em via sinuosa, deve:",
     options: [
@@ -6198,7 +5747,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: curvas exigem redução de velocidade e sinalização antecipada para manobra segura.`
   },
-  // 459
   {
     text: "Motorista, ao trafegar em área escolar com sinalização, deve:",
     options: [
@@ -6212,7 +5760,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 61: áreas escolares requerem atenção redobrada e redução de velocidade para proteção de crianças.`
   },
-  // 460
   {
     text: "Ciclista, ao trafegar em faixa mista de uso compartilhado, deve:",
     options: [
@@ -6226,7 +5773,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 58: em faixa mista, ciclistas mantêm-se à direita e sinalizam suas intenções para segurança de todos.`
   },
-  // 461
   {
     text: "Pedestre, ao atravessar rua sem semáforo, deve:",
     options: [
@@ -6240,7 +5786,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 70: pedestre escolhe local visível, aguarda momento seguro e atravessa em linha reta para reduzir tempo de exposição.`
   },
-  // 462
   {
     text: "Motociclista, ao trafegar em via com sinalização de velocidade máxima, deve:",
     options: [
@@ -6254,7 +5799,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 87: limites de velocidade são obrigatórios; exceder configura infração.`
   },
-  // 463
   {
     text: "Motorista, ao trafegar em avenida com ciclofaixa, deve:",
     options: [
@@ -6268,7 +5812,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 58: ciclofaixa é exclusiva para bicicletas; veículos motorizados devem respeitar separação e distância de segurança.`
   },
-  // 464
   {
     text: "Ciclista, ao trafegar em via com interseção complexa, deve:",
     options: [
@@ -6282,7 +5825,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: interseções requerem redução de velocidade e sinalização antecipada, garantindo posicionamento seguro.`
   },
-  // 465
   {
     text: "Pedestre, ao caminhar em calçada sem rebaixamento, deve:",
     options: [
@@ -6296,7 +5838,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Normas de acessibilidade (Res. 73/2014): calçadas sem rebaixamento exigem busca por rampas ou pontos adequados de travessia.`
   },
-  // 466
   {
     text: "Motociclista, ao trafegar em dia de neblina, deve:",
     options: [
@@ -6310,7 +5851,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 40: em neblina, farol alto ofusca; recomenda-se farol baixo e neblina, com redução de velocidade.`
   },
-  // 467
   {
     text: "Motorista, ao trafegar em via com placa de ‘Semáforo à frente’, deve:",
     options: [
@@ -6324,7 +5864,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Placa A‑28 – CTB Anexo II: alerta de semáforo à frente requer redução de velocidade e atenção ao dispositivo.`
   },
-  // 468
   {
     text: "Ciclista, ao trafegar em pista compartilhada com pedestres, deve:",
     options: [
@@ -6338,7 +5877,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 68: em áreas compartilhadas, ciclistas mantêm velocidade baixa e comunicam aproximação para evitar colisões.`
   },
-  // 469
   {
     text: "Pedestre, ao caminhar em via com piso escorregadio, deve:",
     options: [
@@ -6352,7 +5890,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 68: condições de piso escorregadio exigem passo cuidadoso e redução de velocidade para evitar quedas.`
   },
-  // 470
   {
     text: "Motociclista, ao trafegar em via com curvas sucessivas, deve:",
     options: [
@@ -6366,7 +5903,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: curvas sucessivas requerem redução de velocidade e sinalização antecipada para cada manobra.`
   },
-  // 471
   {
     text: "Motorista, ao trafegar em pista molhada, deve:",
     options: [
@@ -6380,7 +5916,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: pista molhada reduz aderência; exige redução de velocidade e maior distância ao veículo da frente.`
   },
-  // 472
   {
     text: "Ciclista, ao trafegar em via com faixa de ônibus, deve:",
     options: [
@@ -6394,7 +5929,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 88: faixa de ônibus é exclusiva; ciclistas não devem invadir nem trafegar sobre ela.`
   },
-  // 473
   {
     text: "Pedestre, ao cruzar via com lombada, deve:",
     options: [
@@ -6408,7 +5942,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 70: lombada elevada funciona como faixa de pedestre; pedestre caminha com atenção e passo reduzido.`
   },
-  // 474
   {
     text: "Motociclista, ao trafegar com passageiro, deve:",
     options: [
@@ -6422,7 +5955,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 105: condução com passageiro exige redução de velocidade e ajuste de postura para estabilidade.`
   },
-  // 475
   {
     text: "Motorista, ao trafegar em via com diversas faixas, deve:",
     options: [
@@ -6436,7 +5968,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 196: mudança de faixa requer uso da seta e verificação de espelhos e pontos cegos.`
   },
-  // 476
   {
     text: "Ciclista, ao trafegar em pista com desnível, deve:",
     options: [
@@ -6450,7 +5981,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: desníveis na via exigem redução de velocidade e controle de equilíbrio para segurança.`
   },
-  // 477
   {
     text: "Pedestre, ao caminhar sob iluminação insuficiente, deve:",
     options: [
@@ -6464,7 +5994,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Recomendações gerais de segurança: iluminação insuficiente requer uso de refletivos ou lanterna para visibilidade.`
   },
-  // 478
   {
     text: "Motociclista, ao trafegar em estacionamento estreito, deve:",
     options: [
@@ -6478,7 +6007,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: estacionamento estreito exige manobra em baixa velocidade e atenção a pedestres e outros veículos.`
   },
-  // 479
   {
     text: "Motorista, ao chegar em interseção com semáforo apagado, deve:",
     options: [
@@ -6492,7 +6020,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: semáforo apagado requer tratamento como parada obrigatória (placa R-2) e avanço seguro.`
   },
-  // 480
   {
     text: "Ciclista, ao trafegar em cenário urbano noturno, deve:",
     options: [
@@ -6506,7 +6033,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 105: bicicletas devem ter sinalização noturna dianteira (branca) e traseira (vermelha) e uso de vestimenta refletiva.`
   },
-  // 481
   {
     text: "Pedestre, ao caminhar em via de tráfego intenso, deve:",
     options: [
@@ -6520,7 +6046,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 70: tráfego intenso recomenda uso de travessias seguras como faixas ou passarelas.`
   },
-  // 482
   {
     text: "Motociclista, ao trafegar em rodovia de pista simples, deve:",
     options: [
@@ -6534,7 +6059,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 196: ultrapassagem em pista simples deve ocorrer pela esquerda, com indicativo luminoso e segurança.`
   },
-  // 483
   {
     text: "Motorista, ao trafegar próximo a faixa de pedestre usada por pessoas com mobilidade reduzida, deve:",
     options: [
@@ -6548,7 +6072,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 70 e Lei 10.098/2000: faixas acessíveis priorizam pedestres com mobilidade reduzida; condutor dá preferência e reduz velocidade.`
   },
-  // 484
   {
     text: "Ciclista, ao trafegar em estrada de serra com aclives e declives, deve:",
     options: [
@@ -6562,7 +6085,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Princípios de segurança: aclives e declives em serra exigem uso dos freios controlado e redução de velocidade para estabilidade.`
   },
-  // 485
   {
     text: "Pedestre, ao usar faixa elevada perto de escola, deve:",
     options: [
@@ -6576,7 +6098,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 61: faixas escolares elevadas exigem travessia lenta e atenção ao entorno escolar.`
   },
-  // 486
   {
     text: "Motociclista, ao trafegar em dia chuvoso, deve:",
     options: [
@@ -6590,7 +6111,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: condições de chuva implicam em velocidade reduzida, maior distância de segurança e proteção contra intempéries.`
   },
-  // 487
   {
     text: "Motorista, ao trafegar em via com desnível acentuado, deve:",
     options: [
@@ -6604,7 +6124,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: desníveis acentuados requerem redução de velocidade prévia para manter estabilidade e segurança.`
   },
-  // 488
   {
     text: "Ciclista, ao trafegar em trecho de obras, deve:",
     options: [
@@ -6618,7 +6137,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 58 e Res. 556/15: em trechos de obras, ciclista deve seguir desvios sinalizados ou desmontar a bicicleta para empurrar.`
   },
-  // 489
   {
     text: "Pedestre, ao atravessar faixa de pedestre com semáforo sonoro, deve:",
     options: [
@@ -6632,7 +6150,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 69: semáforos sonoros auxiliam travessia de pedestres com deficiência visual; pedestre inicia travessia ao ouvir sinal.`
   },
-  // 490
   {
     text: "Motociclista, ao trafegar em via com lombada triangular, deve:",
     options: [
@@ -6646,7 +6163,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Placa A‑13a – CTB Anexo II: alerta para lombada triangular; condutor reduz velocidade e mantém postura para transposição segura.`
   },
-  // 491
   {
     text: "Motorista, ao se aproximar de travessia de ciclistas, deve:",
     options: [
@@ -6660,7 +6176,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 58: travessias de ciclistas requerem redução de velocidade e espera para garantir segurança.`
   },
-  // 492
   {
     text: "Ciclista, ao trafegar em trecho com sinalização de piso tátil, deve:",
     options: [
@@ -6674,7 +6189,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Normas de acessibilidade (NBR 16537): piso tátil é destinado a deficientes visuais; ciclistas devem evitá-lo para não impedir orientação.`
   },
-  // 493
   {
     text: "Pedestre, ao usar faixa de pedestre sem semáforo, deve:",
     options: [
@@ -6688,7 +6202,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 70: pedestre deve reduzir velocidade ao entrar na faixa e buscar contato visual com motoristas para assegurar travessia.`
   },
-  // 494
   {
     text: "Motociclista, ao trafegar em via com residências, deve:",
     options: [
@@ -6702,7 +6215,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 29: áreas residenciais exigem condução defensiva, redução de velocidade e atenção a pedestres e acessos privados.`
   },
-  // 495
   {
     text: "Motorista, ao trafegar próximo a ponto de táxi, deve:",
     options: [
@@ -6716,7 +6228,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 47: operação de embarque/desembarque em pontos de táxi requer atenção e redução de velocidade para segurança.`
   },
-  // 496
   {
     text: "Ciclista, ao trafegar em via com sinalização “Pare”, deve:",
     options: [
@@ -6730,7 +6241,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `Placa R‑2 (Pare) – CTB art. 44: exige parada total antes de cruzar qualquer via.`
   },
-  // 497
   {
     text: "Pedestre, ao caminhar em via com calçada irregular, deve:",
     options: [
@@ -6744,7 +6254,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 68: irregularidades em calçada exigem atenção e desvio cuidadoso para evitar quedas.`
   },
-  // 498
   {
     text: "Motociclista, ao trafegar em via com travessia de pedestres, deve:",
     options: [
@@ -6758,7 +6267,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 70: travessia de pedestres requer preferência e redução de velocidade, inclusive por motociclistas.`
   },
-  // 499
   {
     text: "Motorista, ao trafegar em via com ciclovia e ciclista sinalizando conversão, deve:",
     options: [
@@ -6772,7 +6280,6 @@ export const questions: Question[] = [
     difficultyLevel: 1,
     explanation: `CTB art. 58: ciclista tem direito de sinalizar manobra; motoristas devêm respeitar e aguardar conversão.`
   },
-  // 500
   {
     text: "Ciclista, ao trafegar em via com faixa de pedestre elevada, deve:",
     options: [
