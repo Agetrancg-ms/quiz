@@ -27,7 +27,7 @@ interface StatisticsProps {
 export default function Statistics({
   totalQuestions,
   correctAnswers,
-  wrongAnswers,
+
   score,
   level,
   onRestart,

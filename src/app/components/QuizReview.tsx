@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Loading from './Loading'
 
 interface QuizReviewProps {
   questions: Array<{

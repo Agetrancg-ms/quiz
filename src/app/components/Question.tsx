@@ -1,7 +1,6 @@
 // src/app/components/Question.tsx
 'use client'
 import { useEffect, useState, useRef } from 'react'
-import Loading from './Loading'
 import { useSoundEffects } from './SoundEffects'
 import Image from 'next/image'
 
@@ -36,7 +35,7 @@ export default function Question({
   const { playSuccess, playIncorrect, playClick } = useSoundEffects()
   const autoConfirmTimer = useRef<NodeJS.Timeout | null>(null)
 
-  // Reset state when question changes
+  // Reiniciar o estado quando a pergunta muda
   useEffect(() => {
     setConfirmed(false)
     setSelected(null)
@@ -48,7 +47,7 @@ export default function Question({
     }
   }, [question?.id])
 
-  // Auto-confirm after selection (corrigido para não travar ao trocar rapidamente)
+  // Autoconfirmar após a seleção (corrigido para não travar ao trocar rapidamente)
   useEffect(() => {
     if (!question || confirmed || selected === null) return
     if (autoConfirmTimer.current) {
@@ -66,7 +65,7 @@ export default function Question({
     }
   }, [selected, confirmed])
 
-  // Auto-continue after showing feedback
+  // Continuar automaticamente após mostrar o feedback
   useEffect(() => {
     if (!question) return
     
@@ -78,7 +77,7 @@ export default function Question({
     }
   }, [confirmed, showExplanation, selected, onAnswer, question])
 
-  // Handle keyboard navigation
+  // Gerenciar a navegação por teclado
   useEffect(() => {
     if (!question || !question.options) return
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -142,7 +141,6 @@ export default function Question({
 
   return (
     <div className="fixed inset-0 flex items-center justify-center">
-      {/* Background with overlay */}
       <div className="absolute inset-0">
         <div className="absolute inset-0">
           <Image
@@ -160,21 +158,16 @@ export default function Question({
         />
       </div>
 
-      {/* Content */}
       <div className="relative z-10 w-full max-w-4xl -mt-12 px-8">
-        {/* Progress indicator */}
         <div className="text-center mb-4 text-button text-lg font-semibold">
           Questão {currentQuestionNumber} de {totalQuestions}
         </div>
         <div className="w-full">
-          {/* Question Box with Mascot */}
           <div className="relative">
-            {/* Question Box */}
             <div className="relative bg-highlight rounded-2xl shadow-xl p-6 mb-8 pr-40">
               <h3 className="text-2xl font-bold text-card">
                 {question.text}
               </h3>
-              {/* Mascot */}
               <div className="absolute -right-8 lg:-right-18 top-1/2 -translate-y-1/2">
                 <Image
                   src="/mascote.png"
@@ -186,7 +179,6 @@ export default function Question({
                 />
               </div>
             </div>
-            {/* Options Container */}
             <div className="bg-card text-card rounded-2xl shadow-xl p-6 bg-opacity-95">
               <div className="space-y-4" role="radiogroup" aria-label="Opções da questão">
                 {question.options.map((option, index) => {
