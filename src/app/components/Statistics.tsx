@@ -98,7 +98,7 @@ export default function Statistics({
               : 'Continue praticando para melhorar seu conhecimento.'}
           </p>
           {showAchievement && (
-            <div className="mt-4 p-2 bg-button text-theme rounded-md" aria-live="polite" role="status">
+            <div className="mt-4 p-2 bg-button text-theme rounded-md bg-button text-button" aria-live="polite" role="status">
               {achievementMessage}
             </div>
           )}

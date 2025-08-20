@@ -1,39 +1,40 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { QuizAnswer, UserData, QuizSubmission } from '@/types/quiz'
+import { QuizSubmission } from '@/types/quiz'
 
 export async function POST(request: NextRequest) {
   try {
     const submission: QuizSubmission = await request.json()
 
-    if (!submission.userData?.name || !submission.userData?.bairro || 
-        !submission.userData?.idade || !submission.userData?.sexo) {
+    if (!submission.userData?.name || !submission.userData?.age || !submission.userData?.gender) {
       return NextResponse.json(
-        { error: 'Todos os campos obrigatórios devem ser preenchidos' },
+        { error: 'All required fields must be filled' },
         { status: 400 }
       )
     }
 
-    // Verifica se o usuário com o CPF já existe
-    const existingUser = await prisma.user.findUnique({
-      where: { cpf: submission.userData.cpf }
+    // Busque usuários existentes por nome, idade e sexo
+    const existingUser = await prisma.user.findFirst({
+      where: {
+        name: submission.userData.name,
+        age: parseInt(submission.userData.age),
+        gender: submission.userData.gender
+      }
     });
 
-    // Se existir, usa o usuário existente
+    // Criar ou utilizar usuário existente
     const user = existingUser || await prisma.user.create({
       data: {
         name: submission.userData.name,
-        bairro: submission.userData.bairro,
-        idade: parseInt(submission.userData.idade),
-        cpf: submission.userData.cpf,
-        sexo: submission.userData.sexo,
-        cnh: submission.userData.cnh || [],
-        conducao: submission.userData.conducao || [],
-        outrosConducao: submission.userData.outrosConducao,
+        age: parseInt(submission.userData.age),
+        gender: submission.userData.gender,
+        driverLicense: submission.userData.driverLicense || [],
+        transport: submission.userData.transport || [],
+        otherTransport: submission.userData.otherTransport,
       },
     })
 
-    // Verifica se já existe uma tentativa recente (últimos 5 segundos) para evitar duplicação
+    // Verifica as tentativas recentes (últimos 5 segundos) para evitar duplicação
     const recentAttempt = await prisma.quizAttempt.findFirst({
       where: {
         userId: user.id,
@@ -45,20 +46,20 @@ export async function POST(request: NextRequest) {
 
     if (recentAttempt) {
       return NextResponse.json(
-        { error: 'Submissão duplicada detectada' },
+        { error: 'Duplicate submission detected' },
         { status: 409 }
       );
     }
 
-    // Verifica se o número de respostas corresponde ao total de questões
+    // Verifica se o número de respostas corresponde ao total de perguntas
     if (submission.answers.length !== submission.totalQuestions) {
       return NextResponse.json(
-        { error: 'Número incorreto de respostas' },
+        { error: 'Incorrect number of answers' },
         { status: 400 }
       );
     }
 
-    // Processa as respostas e calcula estatísticas
+    // Processar respostas e calcular estatísticas
     const answersWithCorrectness = await Promise.all(
       submission.answers.map(async (answer) => {
         const question = await prisma.question.findUnique({
@@ -82,10 +83,10 @@ export async function POST(request: NextRequest) {
 
     const validAnswers = answersWithCorrectness.filter((a): a is Exclude<typeof a, null> => a !== null)
 
-    // Salva a tentativa do quiz
+    // Salvar
     const quizAttempt = await prisma.quizAttempt.create({
       data: {
-        level: submission.group || submission.level || 'não especificado',
+        level: submission.group || submission.level || 'not specified',
         score: submission.score,
         totalQuestions: submission.totalQuestions,
         userId: user.id,
@@ -93,7 +94,7 @@ export async function POST(request: NextRequest) {
       }
     })
 
-    // Calcula estatísticas finais
+    // Calcular estatísticas
     const correctAnswers = validAnswers.filter(a => a.isCorrect).length
     const wrongAnswers = submission.totalQuestions - correctAnswers
     const percentageCorrect = (correctAnswers / submission.totalQuestions) * 100
@@ -116,7 +117,7 @@ export async function POST(request: NextRequest) {
     })
   } catch (error) {
     return NextResponse.json(
-      { error: 'Erro ao enviar os resultados do quiz', detalhes: error instanceof Error ? error.message : 'Erro desconhecido' },
+      { error: 'Error submitting quiz results', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     )
   }

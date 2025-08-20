@@ -38,11 +38,6 @@ export default function QuizClient({ level = '', group = '', userData }: QuizCli
 
   // Fetch questions
   useEffect(() => {
-    if (!userData) {
-      return;
-    }
-
-    setIsLoading(true);
     const queryParams = new URLSearchParams();
     if (group) {
       queryParams.append('group', group);
@@ -73,7 +68,7 @@ export default function QuizClient({ level = '', group = '', userData }: QuizCli
         showSnackbar(`Erro: ${err.message}. Redirecionando para a página inicial...`, 'error');
         setTimeout(() => router.push('/'), 2000);
       });
-  }, [group, level, userData, router, showSnackbar]);
+  }, [group, level, router, showSnackbar]);
 
   // Handle keyboard shortcuts
   useEffect(() => {
@@ -174,38 +169,59 @@ export default function QuizClient({ level = '', group = '', userData }: QuizCli
         throw new Error('Número incorreto de respostas');
       }
 
+      // Se não houver userData (fundamental ou médio), criar um objeto simplificado
+      const submissionData = {
+        score,
+        totalQuestions: questions.length,
+        answers: Object.entries(answers).map(([questionId, answer]) => ({
+          questionId: Number(questionId),
+          answer
+        })),
+        level: level || undefined,
+        group: group || undefined,
+        userData: userData ? {
+          ...userData,
+          cnh: userData.cnh || [],
+          conducao: userData.conducao || []
+        } : { 
+          name: '',
+          age: '',
+          gender: '',
+          cnh: [],
+          conducao: []
+        }
+      };
+
+      // Não fazer a submissão para o banco de dados se for fundamental ou médio
+      if (level === 'fundamental' || level === 'medio') {
+        const statistics = {
+          correctAnswers: score,
+          wrongAnswers: questions.length - score,
+          score: (score / questions.length) * 100
+        };
+
+        return {
+          success: true,
+          statistics
+        };
+      }
+
       const response = await fetch('/api/submit', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          level: level || undefined,
-          group: group || undefined,
-          score,
-          totalQuestions: questions.length,
-          answers: Object.entries(answers).map(([questionId, answer]) => ({
-            questionId: parseInt(questionId),
-            answer,
-          })),
-          userData,
-        }),
+        body: JSON.stringify(submissionData)
       });
 
-      const result = await response.json();
-
       if (!response.ok) {
-        if (result.error === 'Submissão duplicada detectada') {
-          throw new Error('Suas respostas já foram registradas');
-        } else if (result.error === 'Número incorreto de respostas') {
-          throw new Error('Por favor, responda todas as questões');
-        } else {
-          throw new Error(result.error || 'Falha ao enviar resultados do quiz');
-        }
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Falha ao enviar resultados');
       }
 
-      return result;
+      return await response.json();
     } catch (error) {
+      console.error('Erro ao submeter resultados:', error);
       throw error;
     }
   };

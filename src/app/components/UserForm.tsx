@@ -6,284 +6,296 @@ interface UserFormProps {
 }
 
 export function UserForm({ onSubmit }: UserFormProps) {
-  const [userData, setUserData] = useState({
+  const [currentStep, setCurrentStep] = useState(1);
+  const [userData, setUserData] = useState<UserData>({
     name: '',
-    bairro: '',
-    idade: '',
-    cpf: '',
-    sexo: '',
-    cnh: [] as string[],
-    conducao: [] as string[],
-    outrosConducao: '',
-    aceiteTermo: false
+    age: '',
+    gender: '',
+    driverLicense: [],
+    transport: [],
+    otherTransport: ''
   });
   const [error, setError] = useState('');
 
-  const handleCNHChange = (category: string) => {
+  const handleDriverLicenseChange = (category: string) => {
     setUserData(prev => ({
       ...prev,
-      cnh: prev.cnh.includes(category)
-        ? prev.cnh.filter(c => c !== category)
-        : [...prev.cnh, category]
+      driverLicense: prev.driverLicense?.includes(category)
+        ? prev.driverLicense.filter(c => c !== category)
+        : [...(prev.driverLicense || []), category]
     }));
   };
 
-  const handleConducaoChange = (tipo: string) => {
+  const handleTransportChange = (type: string) => {
     setUserData(prev => ({
       ...prev,
-      conducao: prev.conducao.includes(tipo)
-        ? prev.conducao.filter(t => t !== tipo)
-        : [...prev.conducao, tipo]
+      transport: prev.transport?.includes(type)
+        ? prev.transport.filter(t => t !== type)
+        : [...(prev.transport || []), type]
     }));
+  };
+
+  const validateStep = (step: number) => {
+    switch (step) {
+      case 1:
+        if (!userData.name.trim()) return 'Nome é obrigatório';
+        if (!userData.age) return 'Idade é obrigatória';
+        if (!userData.gender) return 'Gênero é obrigatório';
+        break;
+      case 3:
+        if (!userData.transport?.length && !userData.otherTransport) 
+          return 'Selecione pelo menos um meio de transporte ou especifique outro';
+        break;
+    }
+    return '';
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
+    const stepError = validateStep(currentStep);
+    setError(stepError);
 
-    if (!userData.name.trim()) {
-      setError('Nome é obrigatório');
-      return;
-    }
+    if (stepError) return;
 
-    const idadeNum = Number(userData.idade);
-    if (isNaN(idadeNum) || idadeNum < 3 || idadeNum > 120) {
-      setError('A idade deve ser um número entre 3 e 120');
-      return;
-    }
-
-    /*if (!userData.cpf.trim()) {
-      setError('CPF é obrigatório');
-      return;
-    }*/
-
-    if (!userData.aceiteTermo) {
-      setError('É necessário aceitar os termos de uso dos dados');
+    if (currentStep < 4) {
+      setCurrentStep(prev => prev + 1);
       return;
     }
     
     onSubmit(userData);
   };
 
-  // Função utilitária para formatar CPF
-  function formatCPF(value: string) {
-    return value
-      .replace(/\D/g, '')
-      .slice(0, 11)
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-  }
+  const handleBack = () => {
+    setCurrentStep(prev => prev - 1);
+    setError('');
+  };
+
+  const StepIndicator = () => (
+    <div className="flex items-center justify-center my-4">
+      {[1, 2, 3, 4].map((step) => (
+        <div key={step} className="flex items-center">
+          <div
+            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold 
+              ${currentStep >= step ? 'bg-button text-button' : 'bg-input border-2 border-theme text-theme'}`}
+          >
+            {step}
+          </div>
+          {step < 4 && (
+            <div
+              className={`w-4 h-0.5 mx-0.5 ${
+                currentStep > step ? 'bg-button' : 'bg-input'
+              }`}
+            />
+          )}
+        </div>
+      ))}
+    </div>
+  );
+  
+
+  const renderStep1 = () => (
+    <div className="space-y-6 animate-fade-in-up">
+      <div>
+        <label htmlFor="name" className="block text-sm font-medium text-theme mb-1">
+          Nome <span className="text-error">*</span>
+        </label>
+        <input
+          type="text"
+          id="name"
+          required
+          className="w-full p-3 border border-theme rounded-lg bg-input text-input cursor-pointer"
+          value={userData.name}
+          onChange={e => setUserData(prev => ({ ...prev, name: e.target.value }))}
+          placeholder="Digite seu nome"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="age" className="block text-sm font-medium text-theme mb-1">
+          Idade <span className="text-error">*</span>
+        </label>
+        <input
+          type="number"
+          id="age"
+          required
+          className="w-full p-3 border border-theme rounded-lg bg-input text-input cursor-pointer"
+          value={userData.age}
+          min={3}
+          max={120}
+          onChange={e => setUserData(prev => ({ ...prev, age: e.target.value }))}
+          placeholder="Digite sua idade"
+        />
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-theme mb-3">
+          Gênero <span className="text-error">*</span>
+        </label>
+        <div className="grid grid-cols-3 gap-4">
+          {[
+            { value: 'M', label: 'Masculino' },
+            { value: 'F', label: 'Feminino' },
+            { value: 'N', label: 'Não Informar' }
+          ].map(({ value, label }) => (
+            <label
+              key={value}
+              className={`flex items-center justify-center p-3 rounded-lg border-2 cursor-pointer transition-all
+                ${userData.gender === value 
+                  ? 'border-button bg-button text-white' 
+                  : 'border-theme hover:border-button/50 text-theme'}`}
+            >
+              <input
+                type="radio"
+                name="gender"
+                value={value}
+                checked={userData.gender === value}
+                onChange={e => setUserData(prev => ({ ...prev, gender: e.target.value }))}
+                className="sr-only"
+              />
+              <span>{label}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderStep2 = () => (
+    <div className="space-y-6 animate-fade-in-up">
+      <div>
+        <label className="block text-lg font-medium text-theme mb-4">
+          Categorias de CNH <span className="text-sm font-normal text-theme">(Opcional)</span>
+        </label>
+        <div className="grid grid-cols-5 gap-4">
+          {['A', 'B', 'C', 'D', 'E'].map(category => (
+            <label
+              key={category}
+              className={`flex items-center justify-center p-4 rounded-lg border-2 cursor-pointer transition-all
+                ${userData.driverLicense?.includes(category)
+                  ? 'border-button bg-button text-white' 
+                  : 'border-theme hover:border-button/50 text-theme'}`}
+            >
+              <input
+                type="checkbox"
+                className="sr-only"
+                checked={userData.driverLicense?.includes(category)}
+                onChange={() => handleDriverLicenseChange(category)}
+              />
+              <span className="text-lg font-semibold">{category}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderStep3 = () => (
+    <div className="space-y-6 animate-fade-in-up">
+      <div>
+        <label className="block text-lg font-medium text-theme mb-4">
+          Meio de Transporte <span className="text-error">*</span>
+          <span className="text-sm font-normal ml-2">(Selecione ao menos um ou especifique outro)</span>
+        </label>
+        <div className="grid grid-cols-2 gap-4 mb-6">
+          {['Carro', 'Motocicleta', 'Bicicleta', 'Ônibus', 'Aplicativos', 'Caminhada'].map(type => (
+            <label
+              key={type}
+              className={`flex items-center justify-center p-4 rounded-lg border-2 cursor-pointer transition-all
+                ${userData.transport?.includes(type)
+                  ? 'border-button bg-button text-white' 
+                  : 'border-theme hover:border-button/50 text-theme'}`}
+            >
+              <input
+                type="checkbox"
+                className="sr-only"
+                checked={userData.transport?.includes(type)}
+                onChange={() => handleTransportChange(type)}
+              />
+              <span>{type}</span>
+            </label>
+          ))}
+        </div>
+        <div>
+          <label htmlFor="otherTransport" className="block text-sm font-medium text-theme mb-2">
+            Outro meio de transporte <span className="text-sm font-normal">(Opcional)</span>
+          </label>
+          <input
+            type="text"
+            id="otherTransport"
+            className="w-full p-3 border border-theme rounded-lg bg-input text-input cursor-pointer"
+            value={userData.otherTransport}
+            onChange={e => setUserData(prev => ({ ...prev, otherTransport: e.target.value }))}
+            placeholder="Especifique outro meio de transporte"
+          />
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderStep4 = () => (
+    <div className="space-y-6 animate-fade-in-up">
+      <div className="p-6 bg-card rounded-lg border border-theme">
+        <div className="mb-6 p-4 bg-highlight rounded-lg text-highlight text-sm leading-relaxed">
+          Seus dados serão utilizados apenas para fins estatísticos e de pesquisa sobre mobilidade urbana,
+          sem divulgação de informações pessoais. Os resultados auxiliarão no planejamento de políticas
+          públicas de trânsito e transporte.
+        </div>
+        <label className="flex items-start space-x-3 cursor-pointer group">
+          <input
+            type="checkbox"
+            checked={(userData.transport?.length ?? 0) > 0 || !!userData.otherTransport}
+            disabled
+            className="mt-1 h-5 w-5 rounded border-theme text-button focus:ring-button cursor-pointer"
+          />
+          <span className="text-theme group-hover:text-button transition-colors">
+            Concordo com o uso dos meus dados para fins estatísticos e de pesquisa sobre mobilidade urbana
+          </span>
+        </label>
+      </div>
+    </div>
+  );
 
   return (
-    <div className="bg-card text-card p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
-      <h2 className="text-2xl font-bold text-theme mb-6">Identificação</h2>
+    <div className="bg-card text-card p-6 sm:p-8 rounded-xl shadow-lg max-w-2xl mx-auto">
+      <h2 className="text-2xl font-bold text-theme text-center mb-2">
+        {currentStep === 1 && "Identificação"}
+        {currentStep === 2 && "Habilitação"}
+        {currentStep === 3 && "Meios de Transporte"}
+        {currentStep === 4 && "Termos de Uso"}
+      </h2>
+      
+      <StepIndicator />
       
       {error && (
-        <div className="mb-4 p-3 bg-error text-error rounded-lg" aria-live="polite" role="alert">
+        <div className="mb-6 p-4 bg-error text-error rounded-lg text-sm" role="alert">
           {error}
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-6" role="form">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-theme mb-1">
-              Nome Completo
-            </label>
-            <input
-              type="text"
-              id="name"
-              required
-              className="w-full p-2 border border-theme rounded-md bg-input text-input"
-              value={userData.name}
-              onChange={e => setUserData(prev => ({ ...prev, name: e.target.value }))}
-              placeholder="Digite seu nome completo"
-            />
-          </div>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {currentStep === 1 && renderStep1()}
+        {currentStep === 2 && renderStep2()}
+        {currentStep === 3 && renderStep3()}
+        {currentStep === 4 && renderStep4()}
 
-          <div>
-            <label htmlFor="bairro" className="block text-sm font-medium text-theme mb-1">
-              Bairro
-            </label>
-            <input
-              type="text"
-              id="bairro"
-              required
-              className="w-full p-2 border border-theme rounded-md bg-input text-input"
-              value={userData.bairro}
-              onChange={e => setUserData(prev => ({ ...prev, bairro: e.target.value }))}
-              placeholder="Digite seu bairro"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="idade" className="block text-sm font-medium text-theme mb-1">
-              Idade
-            </label>
-            <input
-              type="number"
-              id="idade"
-              required
-              className="w-full p-2 border border-theme rounded-md bg-input text-input"
-              value={userData.idade}
-              min={3}
-              max={120}
-              onChange={e => setUserData(prev => ({ ...prev, idade: e.target.value }))}
-              placeholder="Digite sua idade"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="cpf" className="block text-sm font-medium text-theme mb-1">
-              CPF
-            </label>
-            <input
-              type="text"
-              id="cpf"
-              //required
-              className="w-full p-2 border border-theme rounded-md bg-input text-input"
-              value={userData.cpf}
-              onChange={e => {
-                const formatted = formatCPF(e.target.value);
-                setUserData(prev => ({ ...prev, cpf: formatted }));
-              }}
-              placeholder="Digite seu CPF"
-              autoComplete="off"
-              inputMode="none"
-            />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-6">
-            <div>
-              <label htmlFor="sexo" className="block text-sm font-medium text-theme mb-1">
-                Sexo
-              </label>
-              <div className="mt-1 space-x-6">
-                <label className="inline-flex items-center">
-                  <input
-                    type="radio"
-                    id="sexoM"
-                    name="sexo"
-                    value="M"
-                    required
-                    checked={userData.sexo === 'M'}
-                    onChange={e => setUserData(prev => ({ ...prev, sexo: e.target.value }))}
-                    className="form-radio text-blue-600"
-                  />
-                  <span className="ml-2 text-theme">Masculino</span>
-                </label>
-                <label className="inline-flex items-center">
-                  <input
-                    type="radio"
-                    id="sexoF"
-                    name="sexo"
-                    value="F"
-                    checked={userData.sexo === 'F'}
-                    onChange={e => setUserData(prev => ({ ...prev, sexo: e.target.value }))}
-                    className="form-radio text-blue-600"
-                  />
-                  <span className="ml-2 text-theme">Feminino</span>
-                </label>            
-                <label className="inline-flex items-center">
-                  <input
-                    type="radio"
-                    id="sexoN"
-                    name="sexo"
-                    value="N"
-                    checked={userData.sexo === 'N'}
-                    onChange={e => setUserData(prev => ({ ...prev, sexo: e.target.value }))}
-                    className="form-radio text-blue-600"
-                  />
-                  <span className="ml-2 text-theme">Não informar</span>
-                </label>
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-theme mb-2">
-                CNH (Se possuir)
-              </label>
-              <div className="flex flex-wrap gap-4">
-                {['A', 'B', 'C', 'D', 'E'].map(category => (
-                  <label key={category} className="inline-flex items-center">
-                    <input
-                      type="checkbox"
-                      id={`cnh${category}`}
-                      checked={userData.cnh.includes(category)}
-                      onChange={() => handleCNHChange(category)}
-                      className="form-checkbox text-blue-600"
-                    />
-                    <span className="ml-2 text-theme">{category}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-theme mb-2">
-              Modo de condução
-            </label>
-            <div className="flex flex-wrap gap-3">
-              {['Carro', 'Moto', 'Bicicleta', 'Ônibus', 'Aplicativos'].map(tipo => (
-                <label key={tipo} className="inline-flex items-center">
-                  <input
-                    type="checkbox"
-                    id={`conducao${tipo}`}
-                    checked={userData.conducao.includes(tipo)}
-                    onChange={() => handleConducaoChange(tipo)}
-                    className="form-checkbox text-blue-600"
-                  />
-                  <span className="ml-2 text-theme">{tipo}</span>
-                </label>
-              ))}
-            </div>
-            <div className="mt-2">
-              <label htmlFor="outros" className="block text-sm font-medium text-theme">
-                Outros meios de transporte
-              </label>
-              <input
-                type="text"
-                id="outros"
-                className="w-full p-2 border border-theme rounded-md bg-input text-input"
-                value={userData.outrosConducao}
-                onChange={e => setUserData(prev => ({ ...prev, outrosConducao: e.target.value }))}
-                placeholder="Digite outros meios de transporte"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t-2 border-theme pt-6 mt-6">
-          <div className="mb-4 p-4 bg-highlight rounded-lg text-sm text-button">
-            Seus dados serão utilizados apenas para fins estatísticos e de pesquisa sobre mobilidade urbana, 
-            sem divulgação de informações pessoais. Os resultados auxiliarão no planejamento de políticas 
-            públicas de trânsito e transporte.
-          </div>
-          <label className="flex items-start space-x-3 cursor-pointer group">
-            <input
-              type="checkbox"
-              id="aceiteTermo"
-              checked={userData.aceiteTermo}
-              onChange={e => setUserData(prev => ({ ...prev, aceiteTermo: e.target.checked }))}
-              className="mt-0.5 h-5 w-5 rounded border-theme text-blue-600 focus:ring-blue-500 cursor-pointer"
-            />
-            <span className="text-base text-card group-hover:text-theme">
-              Concordo com o uso dos meus dados para fins de pesquisa e planejamento urbano
-            </span>
-          </label>
-        </div>
-
-        <div className="pt-4">
+        <div className="flex justify-between pt-6">
+          {currentStep > 1 && (
+            <button
+              type="button"
+              onClick={handleBack}
+              className="px-6 py-3 rounded-lg border-2 border-theme text-theme hover:bg-input 
+                transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-button cursor-pointer"
+            >
+              Voltar
+            </button>
+          )}
           <button
             type="submit"
-            className="w-full bg-button text-button py-3 px-4 rounded-md hover:opacity-90 
-              transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 cursor-pointer text-lg"
+            className={`${currentStep > 1 ? 'ml-auto' : 'w-full'} px-6 py-3 bg-button text-button rounded-lg 
+              hover:opacity-90 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 
+              focus:ring-button font-medium cursor-pointer`}
           >
-            Começar Quiz
+            {currentStep === 4 ? 'Começar Quiz' : 'Próximo'}
           </button>
         </div>
       </form>

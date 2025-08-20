@@ -8,7 +8,6 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  // Await the params to get the slug
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
   

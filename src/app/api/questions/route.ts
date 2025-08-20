@@ -1,16 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { Prisma } from '@prisma/client'
-
-interface QuestionResult {
-  id: number
-  text: string
-  options: string[]
-  correctOption: number
-  explanation: string | null
-  difficultyLevel: number
-  group: string | null
-}
 
 export async function GET(request: Request) {
   try {

@@ -27,15 +27,10 @@ interface QuizLayoutProps {
 export default function QuizLayout({ children }: QuizLayoutProps) {
   return (
     <section className="flex items-center justify-center relative overflow-hidden">
-      {/* Background pattern */}
       <div className="fixed inset-0 opacity-5 pointer-events-none" />
-      
-      {/* Main content */}
       <div className="relative z-10 w-full max-w-4xl">
         {children}
       </div>
-      
-      {/* Accessibility skip link */}
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-white p-4 z-50 rounded-lg shadow-lg"

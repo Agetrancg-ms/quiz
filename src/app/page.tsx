@@ -177,13 +177,13 @@ export default function HomePage() {
 								<hr className="border-t border-gray-400 w-full my-2" />
 								<div className="flex justify-between items-center">
 									<p className="text-xs xl:text-sm text-gray-400">
-										© 2023 Agetran. Todos os direitos reservados.
+										© 2025 Agetran - Todos os direitos reservados.
 									</p>
 									{/* Ícones sociais */}
 									<div className="flex gap-4">
-										<a href="https://www.facebook.com/pages/Agetran/212168202147315" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
+										{/*<a href="https://www.facebook.com/pages/Agetran/212168202147315" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
 											<i className="fab fa-facebook-f text-lg xl:text-xl"></i>
-										</a>
+										</a>*/}
 										<a href="https://www.instagram.com/agetran.cg" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
 											<i className="fab fa-instagram text-lg xl:text-xl"></i>
 										</a>
